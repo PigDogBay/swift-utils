@@ -9,7 +9,16 @@
 /* Begin PBXBuildFile section */
 		4D45EFE91A9DFB3700C40BB4 /* SwiftUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 4D45EFE81A9DFB3700C40BB4 /* SwiftUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4D45EFEF1A9DFB3700C40BB4 /* SwiftUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D45EFE31A9DFB3700C40BB4 /* SwiftUtils.framework */; };
-		4D45EFF61A9DFB3700C40BB4 /* SwiftUtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D45EFF51A9DFB3700C40BB4 /* SwiftUtilsTests.swift */; };
+		4D45F0021A9DFF8D00C40BB4 /* LetterSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D45F0011A9DFF8D00C40BB4 /* LetterSet.swift */; };
+		4D45F0041A9DFFB500C40BB4 /* StringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D45F0031A9DFFB500C40BB4 /* StringUtils.swift */; };
+		4D45F0081A9DFFBF00C40BB4 /* WordList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D45F0051A9DFFBE00C40BB4 /* WordList.swift */; };
+		4D45F0091A9DFFBF00C40BB4 /* WordListCallback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D45F0061A9DFFBE00C40BB4 /* WordListCallback.swift */; };
+		4D45F00A1A9DFFBF00C40BB4 /* WordSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D45F0071A9DFFBE00C40BB4 /* WordSearch.swift */; };
+		4D45F0101A9E002500C40BB4 /* LetterSetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D45F00B1A9E002500C40BB4 /* LetterSetTests.swift */; };
+		4D45F0111A9E002500C40BB4 /* StringUtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D45F00C1A9E002500C40BB4 /* StringUtilsTests.swift */; };
+		4D45F0121A9E002500C40BB4 /* WordListCallbackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D45F00D1A9E002500C40BB4 /* WordListCallbackTests.swift */; };
+		4D45F0131A9E002500C40BB4 /* WordListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D45F00E1A9E002500C40BB4 /* WordListTests.swift */; };
+		4D45F0141A9E002500C40BB4 /* WordSearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D45F00F1A9E002500C40BB4 /* WordSearchTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,7 +37,16 @@
 		4D45EFE81A9DFB3700C40BB4 /* SwiftUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftUtils.h; sourceTree = "<group>"; };
 		4D45EFEE1A9DFB3700C40BB4 /* SwiftUtilsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftUtilsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D45EFF41A9DFB3700C40BB4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4D45EFF51A9DFB3700C40BB4 /* SwiftUtilsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUtilsTests.swift; sourceTree = "<group>"; };
+		4D45F0011A9DFF8D00C40BB4 /* LetterSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LetterSet.swift; sourceTree = "<group>"; };
+		4D45F0031A9DFFB500C40BB4 /* StringUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringUtils.swift; sourceTree = "<group>"; };
+		4D45F0051A9DFFBE00C40BB4 /* WordList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordList.swift; sourceTree = "<group>"; };
+		4D45F0061A9DFFBE00C40BB4 /* WordListCallback.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordListCallback.swift; sourceTree = "<group>"; };
+		4D45F0071A9DFFBE00C40BB4 /* WordSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordSearch.swift; sourceTree = "<group>"; };
+		4D45F00B1A9E002500C40BB4 /* LetterSetTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LetterSetTests.swift; sourceTree = "<group>"; };
+		4D45F00C1A9E002500C40BB4 /* StringUtilsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringUtilsTests.swift; sourceTree = "<group>"; };
+		4D45F00D1A9E002500C40BB4 /* WordListCallbackTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordListCallbackTests.swift; sourceTree = "<group>"; };
+		4D45F00E1A9E002500C40BB4 /* WordListTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordListTests.swift; sourceTree = "<group>"; };
+		4D45F00F1A9E002500C40BB4 /* WordSearchTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordSearchTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +89,11 @@
 		4D45EFE51A9DFB3700C40BB4 /* SwiftUtils */ = {
 			isa = PBXGroup;
 			children = (
+				4D45F0011A9DFF8D00C40BB4 /* LetterSet.swift */,
+				4D45F0031A9DFFB500C40BB4 /* StringUtils.swift */,
+				4D45F0051A9DFFBE00C40BB4 /* WordList.swift */,
+				4D45F0061A9DFFBE00C40BB4 /* WordListCallback.swift */,
+				4D45F0071A9DFFBE00C40BB4 /* WordSearch.swift */,
 				4D45EFE81A9DFB3700C40BB4 /* SwiftUtils.h */,
 				4D45EFE61A9DFB3700C40BB4 /* Supporting Files */,
 			);
@@ -88,7 +111,11 @@
 		4D45EFF21A9DFB3700C40BB4 /* SwiftUtilsTests */ = {
 			isa = PBXGroup;
 			children = (
-				4D45EFF51A9DFB3700C40BB4 /* SwiftUtilsTests.swift */,
+				4D45F00B1A9E002500C40BB4 /* LetterSetTests.swift */,
+				4D45F00C1A9E002500C40BB4 /* StringUtilsTests.swift */,
+				4D45F00D1A9E002500C40BB4 /* WordListCallbackTests.swift */,
+				4D45F00E1A9E002500C40BB4 /* WordListTests.swift */,
+				4D45F00F1A9E002500C40BB4 /* WordSearchTests.swift */,
 				4D45EFF31A9DFB3700C40BB4 /* Supporting Files */,
 			);
 			path = SwiftUtilsTests;
@@ -209,6 +236,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D45F0041A9DFFB500C40BB4 /* StringUtils.swift in Sources */,
+				4D45F0021A9DFF8D00C40BB4 /* LetterSet.swift in Sources */,
+				4D45F0091A9DFFBF00C40BB4 /* WordListCallback.swift in Sources */,
+				4D45F00A1A9DFFBF00C40BB4 /* WordSearch.swift in Sources */,
+				4D45F0081A9DFFBF00C40BB4 /* WordList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,7 +248,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4D45EFF61A9DFB3700C40BB4 /* SwiftUtilsTests.swift in Sources */,
+				4D45F0131A9E002500C40BB4 /* WordListTests.swift in Sources */,
+				4D45F0141A9E002500C40BB4 /* WordSearchTests.swift in Sources */,
+				4D45F0101A9E002500C40BB4 /* LetterSetTests.swift in Sources */,
+				4D45F0121A9E002500C40BB4 /* WordListCallbackTests.swift in Sources */,
+				4D45F0111A9E002500C40BB4 /* StringUtilsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,6 +355,7 @@
 		4D45EFFA1A9DFB3700C40BB4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -328,12 +365,14 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		4D45EFFB1A9DFB3700C40BB4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -395,6 +434,7 @@
 				4D45EFFB1A9DFB3700C40BB4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4D45EFFC1A9DFB3700C40BB4 /* Build configuration list for PBXNativeTarget "SwiftUtilsTests" */ = {
 			isa = XCConfigurationList;
@@ -403,6 +443,7 @@
 				4D45EFFE1A9DFB3700C40BB4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
