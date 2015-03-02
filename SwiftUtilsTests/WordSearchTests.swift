@@ -49,8 +49,8 @@ class WordSearchTests: XCTestCase {
     func testGetQueryType()
     {
         XCTAssertEqual(SearchType.Crossword, target.getQueryType("m.g.c"))
-        XCTAssertEqual(SearchType.WildcardAndCrossword, target.getQueryType("m.g#"))
-        XCTAssertEqual(SearchType.Wildcard, target.getQueryType("mag#"))
+        XCTAssertEqual(SearchType.WildcardAndCrossword, target.getQueryType("m.g@"))
+        XCTAssertEqual(SearchType.Wildcard, target.getQueryType("mag@"))
         XCTAssertEqual(SearchType.Anagram, target.getQueryType("magic"))
         XCTAssertEqual(SearchType.Supergram, target.getQueryType("magic++"))
         XCTAssertEqual(SearchType.SupergramWild, target.getQueryType("magic*"))
@@ -60,8 +60,8 @@ class WordSearchTests: XCTestCase {
     func testPostProcessQuery1()
     {
         XCTAssertEqual("m.g.c", target.postProcessQuery("m.g.c", type: SearchType.Crossword))
-        XCTAssertEqual("m.g#", target.postProcessQuery("m.g#", type: SearchType.WildcardAndCrossword))
-        XCTAssertEqual("#mag#", target.postProcessQuery("#mag#", type: SearchType.Wildcard))
+        XCTAssertEqual("m.g@", target.postProcessQuery("m.g@", type: SearchType.WildcardAndCrossword))
+        XCTAssertEqual("@mag@", target.postProcessQuery("@mag@", type: SearchType.Wildcard))
         XCTAssertEqual("magic", target.postProcessQuery("magic", type: SearchType.Anagram))
         XCTAssertEqual("magic++", target.postProcessQuery("magic++", type: SearchType.Supergram))
         XCTAssertEqual("magic*", target.postProcessQuery("magic*", type: SearchType.SupergramWild))
@@ -69,9 +69,9 @@ class WordSearchTests: XCTestCase {
     }
     func testPostProcessQuery2()
     {
-        XCTAssertEqual("m.g.c", target.postProcessQuery("m*.g#.ß€?c", type: SearchType.Crossword))
-        XCTAssertEqual("m.g#", target.postProcessQuery("m.!!g#*", type: SearchType.WildcardAndCrossword))
-        XCTAssertEqual("#mag#", target.postProcessQuery("#maAB?G%^&*..g#", type: SearchType.Wildcard))
+        XCTAssertEqual("m.g.c", target.postProcessQuery("m*.g@.ß€?c", type: SearchType.Crossword))
+        XCTAssertEqual("m.g@", target.postProcessQuery("m.!!g@*", type: SearchType.WildcardAndCrossword))
+        XCTAssertEqual("@mag@", target.postProcessQuery("@maAB?G%^&*..g@", type: SearchType.Wildcard))
         XCTAssertEqual("magic", target.postProcessQuery("mag!@£?$#¢∞ic", type: SearchType.Anagram))
         XCTAssertEqual("magic++", target.postProcessQuery("ma..*?#FFgic++", type: SearchType.Supergram))
         XCTAssertEqual("magic*", target.postProcessQuery("magi£#.?.c*++", type: SearchType.SupergramWild))

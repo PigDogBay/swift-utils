@@ -176,7 +176,7 @@ public class WordList
         //need to add word boundary to prevent regex matching just part of the word string
         return "\\b"+query
             .replace(".", withString: "[a-z]")
-            .replace("#", withString: "[a-z]+")+"\\b"
+            .replace("@", withString: "[a-z]+")+"\\b"
     }
     /*
         Filter the word list so that it contains letters that are same size as word1

@@ -28,13 +28,13 @@ public class WordSearch
     public let MAX_WORD_LEN = 30
     public let CROSSWORD_STR = "."
     public let TWO_WORD_STR = " "
-    public let WILDCARD_STR = "#"
+    public let WILDCARD_STR = "@"
     public let SUPERGRAM_STR = "+"
     public let SUPERGRAM_WILD_STR = "*"
     
     private let CROSSWORD_CHAR_VALUE = UnicodeScalar(".").value
     private let TWO_WORD_CHAR_VALUE = UnicodeScalar(" ").value
-    private let WILDCARD_CHAR_VALUE = UnicodeScalar("#").value
+    private let WILDCARD_CHAR_VALUE = UnicodeScalar("@").value
     private let SUPERGRAM_CHAR_VALUE = UnicodeScalar("+").value
     private let SUPERGRAM_WILD_VALUE = UnicodeScalar("*").value
     private let LOWEST_CHAR_VALUE = UnicodeScalar("a").value
@@ -116,10 +116,10 @@ public class WordSearch
             //keep a-z and ' '
             query = stripChars(query, except1: TWO_WORD_CHAR_VALUE)
         case .Wildcard:
-            //keep a-z and #
+            //keep a-z and @
             query = stripChars(query, except1: WILDCARD_CHAR_VALUE)
         case .WildcardAndCrossword:
-            //keep a-z . #
+            //keep a-z . @
             query = stripChars(query, except1: CROSSWORD_CHAR_VALUE, except2: WILDCARD_CHAR_VALUE)
         }
         return query
