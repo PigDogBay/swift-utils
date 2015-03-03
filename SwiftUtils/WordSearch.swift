@@ -39,10 +39,45 @@ public class WordSearch
     private let SUPERGRAM_WILD_VALUE = UnicodeScalar("*").value
     private let LOWEST_CHAR_VALUE = UnicodeScalar("a").value
     private let HIGHEST_CHAR_VALUE = UnicodeScalar("z").value
+
+    private let LOWEST_ASCII_VALUE = UnicodeScalar(" ").value
+    private let HIGHEST_ASCII_VALUE = UnicodeScalar("z").value
     
     public init(wordList: WordList)
     {
         self.wordList = wordList
+    }
+    
+    /*
+        Remove non-ascii chars
+        Chop down to max length
+        Trim whitespace
+        Lowercase
+    */
+    public func clean(var raw: String)->String
+    {
+        if raw.utf16Count==0
+        {
+            return ""
+        }
+        raw = raw.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        var builder =  ""
+        let chars = raw.unicodeScalars
+        for c in chars
+        {
+            let v = c.value
+            if v>=LOWEST_ASCII_VALUE && v<=HIGHEST_ASCII_VALUE
+            {
+                builder.append(c)
+            }
+            if builder.utf16Count > MAX_WORD_LEN
+            {
+                break
+            }
+        }
+        builder = builder.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        
+        return builder.lowercaseString
     }
     
     public func preProcessQuery(var query: String)->String

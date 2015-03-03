@@ -25,7 +25,56 @@ class WordSearchTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
+    
+    func testClean1()
+    {
+        var expected = ""
+        var actual = target.clean(expected)
+        XCTAssertEqual(actual, expected)
 
+        expected = "1z9"
+        actual = target.clean(expected)
+        XCTAssertEqual(actual, expected)
+
+        expected = "m.g.."
+        actual = target.clean(expected)
+        XCTAssertEqual(actual, expected)
+        
+        expected = "@ace"
+        actual = target.clean(expected)
+        XCTAssertEqual(actual, expected)
+        
+        expected = "manchester united"
+        actual = target.clean(expected)
+        XCTAssertEqual(actual, expected)
+        
+        expected = "abcdefghijklmnopqrstuvwxyz"
+        actual = target.clean(expected)
+        XCTAssertEqual(actual, expected)
+    }
+    func testClean2()
+    {
+        var actual = target.clean("       ")
+        XCTAssertEqual(actual, "")
+
+        actual = target.clean("       whitespace      ")
+        XCTAssertEqual(actual, "whitespace")
+
+        actual = target.clean("˚œ∑´®†¥åßΩ≈ç√∫~µ®øπ†¥˙©")
+        XCTAssertEqual(actual, "")
+
+        actual = target.clean("˚œ∑´®†¥åßΩok≈ç√∫~µ®øπ")
+        XCTAssertEqual(actual, "ok")
+
+        actual = target.clean("˚œ∑´®†¥å  o k  ßΩ≈ç√∫~µ®øπ")
+        XCTAssertEqual(actual, "o k")
+        
+        actual = target.clean("AZ")
+        XCTAssertEqual(actual, "az")
+
+    }
+
+    
     func testPreProcessQuery1() {
         let actual = target.preProcessQuery("m.g.c")
         XCTAssertEqual(actual,"m.g.c")
