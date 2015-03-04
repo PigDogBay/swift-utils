@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D3368021AA71E3400EA824A /* ViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3368011AA71E3400EA824A /* ViewControllerExtensions.swift */; };
 		4D45EFE91A9DFB3700C40BB4 /* SwiftUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 4D45EFE81A9DFB3700C40BB4 /* SwiftUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4D45EFEF1A9DFB3700C40BB4 /* SwiftUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D45EFE31A9DFB3700C40BB4 /* SwiftUtils.framework */; };
 		4D45F0021A9DFF8D00C40BB4 /* LetterSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D45F0011A9DFF8D00C40BB4 /* LetterSet.swift */; };
@@ -32,6 +33,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4D3368011AA71E3400EA824A /* ViewControllerExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerExtensions.swift; sourceTree = "<group>"; };
 		4D45EFE31A9DFB3700C40BB4 /* SwiftUtils.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftUtils.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D45EFE71A9DFB3700C40BB4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4D45EFE81A9DFB3700C40BB4 /* SwiftUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftUtils.h; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 				4D45F0051A9DFFBE00C40BB4 /* WordList.swift */,
 				4D45F0061A9DFFBE00C40BB4 /* WordListCallback.swift */,
 				4D45F0071A9DFFBE00C40BB4 /* WordSearch.swift */,
+				4D3368011AA71E3400EA824A /* ViewControllerExtensions.swift */,
 				4D45EFE81A9DFB3700C40BB4 /* SwiftUtils.h */,
 				4D45EFE61A9DFB3700C40BB4 /* Supporting Files */,
 			);
@@ -240,6 +243,7 @@
 				4D45F0021A9DFF8D00C40BB4 /* LetterSet.swift in Sources */,
 				4D45F0091A9DFFBF00C40BB4 /* WordListCallback.swift in Sources */,
 				4D45F00A1A9DFFBF00C40BB4 /* WordSearch.swift in Sources */,
+				4D3368021AA71E3400EA824A /* ViewControllerExtensions.swift in Sources */,
 				4D45F0081A9DFFBF00C40BB4 /* WordList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
