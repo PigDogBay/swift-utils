@@ -17,4 +17,24 @@ extension UIViewController
         controller.addAction(action)
         self.presentViewController(controller, animated: true, completion: nil)
     }
+    public func mpdbShowAlert(title: String, msg : String)
+    {
+        let action = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil)
+        let controller = UIAlertController(title: title, message: msg, preferredStyle: UIAlertControllerStyle.Alert)
+        controller.addAction(action)
+        self.presentViewController(controller, animated: true, completion: nil)
+    }
+    public func mpdbCheckIsFirstTime()->Bool
+    {
+        let key = "HasWelcomeShown"
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let firstTimeSetting = defaults.objectForKey(key) as? Bool
+        if firstTimeSetting == nil
+        {
+            defaults.setBool(true, forKey: key)
+            defaults.synchronize()
+            return true
+        }
+        return false
+    }
 }
