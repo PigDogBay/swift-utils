@@ -26,6 +26,39 @@ class WordSearchTests: XCTestCase {
         super.tearDown()
     }
     
+    func testStandardSearchesOnly1()
+    {
+        var expected = ""
+        var actual = target.standardSearchesOnly(expected)
+        XCTAssertEqual(actual, expected)
+        
+        expected = "1z9"
+        actual = target.standardSearchesOnly(expected)
+        XCTAssertEqual(actual, expected)
+        
+        expected = "m.g.."
+        actual = target.standardSearchesOnly(expected)
+        XCTAssertEqual(actual, expected)
+        
+        expected = "@ace"
+        actual = target.standardSearchesOnly(expected)
+        XCTAssertEqual(actual, expected)
+        
+        expected = "manchester united"
+        actual = target.standardSearchesOnly(expected)
+        XCTAssertEqual(actual, expected)
+        
+        expected = "abcdefghijklmnopqrstuvwxyz"
+        actual = target.standardSearchesOnly(expected)
+        XCTAssertEqual(actual, expected)
+    }
+    func testStandardSearchesOnly2()
+    {
+        var actual = target.standardSearchesOnly("super+++")
+        XCTAssertEqual(actual, "super...")
+        actual = target.standardSearchesOnly("*su*per*")
+        XCTAssertEqual(actual, ".su.per.")
+    }
     func testClean1()
     {
         var expected = ""
