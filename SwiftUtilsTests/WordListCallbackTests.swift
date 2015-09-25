@@ -30,7 +30,7 @@ class WordListCallbackTests: XCTestCase, WordListCallback  {
 
     func testFilterWrapper() {
         // This is an example of a functional test case.
-        var target = WordListFilterWrapper(callback: self)
+        let target = WordListFilterWrapper(callback: self)
         target.update("unique")
         XCTAssertEqual(result!, "unique")
         result = nil
@@ -44,7 +44,7 @@ class WordListCallbackTests: XCTestCase, WordListCallback  {
     
     func testMissingLettersWrapper()
     {
-        var target = WordListMissingLetterWrapper(callback: self, originalWord: "abcdefghi")
+        let target = WordListMissingLetterWrapper(callback: self, originalWord: "abcdefghi")
         target.update("abcdef")
         XCTAssertEqual(result!, "abcdef (ghi)")
 

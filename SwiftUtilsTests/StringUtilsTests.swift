@@ -49,10 +49,10 @@ class StringUtilsTests: XCTestCase {
         //9*8   7-letter-words
         //9*8*7 6-letter-words
         XCTAssertEqual(actual.count,9*8*7 + 9*8 + 9,"count")
-        XCTAssert(contains(actual, "bcdefghi"), "1")
-        XCTAssert(contains(actual, "bcdeghi"), "2")
-        XCTAssert(contains(actual, "bcdegh"), "3")
-        XCTAssert(!contains(actual, "bcdeg"), "4")
+        XCTAssert(actual.contains("bcdefghi"), "1")
+        XCTAssert(actual.contains("bcdeghi"), "2")
+        XCTAssert(actual.contains("bcdegh"), "3")
+        XCTAssert(!actual.contains("bcdeg"), "4")
     }
     
     func testSubtractLetters1()
@@ -87,27 +87,27 @@ class StringUtilsTests: XCTestCase {
     //Check self is not modified
     func testSubtractLetters3()
     {
-        var target = "do not modify"
-        var actual = target.subtractLetters("do ")
+        let target = "do not modify"
+        let actual = target.subtractLetters("do ")
         XCTAssertEqual(actual, "not modify")
         XCTAssertEqual(target, "do not modify")
     }
     
     func testDoesNotContainBannedLetters()
     {
-        var actual = "abcdefghi".doesNotContainBannedLetters(Array("jkl"))
+        var actual = "abcdefghi".doesNotContainBannedLetters(["j","k","l"])
         XCTAssert(actual)
-        actual = "abcdefghi".doesNotContainBannedLetters(Array("abc"))
+        actual = "abcdefghi".doesNotContainBannedLetters(["a","b","c"])
         XCTAssert(!actual)
-        actual = "abcdefghi".doesNotContainBannedLetters(Array("ijk"))
+        actual = "abcdefghi".doesNotContainBannedLetters(["i","j","k"])
         XCTAssert(!actual)
-        actual = "abcdefghi".doesNotContainBannedLetters(Array("a"))
+        actual = "abcdefghi".doesNotContainBannedLetters(["a"])
         XCTAssert(!actual)
-        actual = "abcdefghi".doesNotContainBannedLetters(Array("i"))
+        actual = "abcdefghi".doesNotContainBannedLetters(["i"])
         XCTAssert(!actual)
-        actual = "abcdefghi".doesNotContainBannedLetters(Array("d"))
+        actual = "abcdefghi".doesNotContainBannedLetters(["d"])
         XCTAssert(!actual)
-        actual = "abcdefghi".doesNotContainBannedLetters(Array("z"))
+        actual = "abcdefghi".doesNotContainBannedLetters(["z"])
         XCTAssert(actual)
     }
 
