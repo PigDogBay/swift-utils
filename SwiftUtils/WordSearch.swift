@@ -56,7 +56,7 @@ public class WordSearch
     */
     public func clean(var raw: String)->String
     {
-        if raw.utf16Count==0
+        if raw.length==0
         {
             return ""
         }
@@ -70,7 +70,7 @@ public class WordSearch
             {
                 builder.append(c)
             }
-            if builder.utf16Count > MAX_WORD_LEN
+            if builder.length > MAX_WORD_LEN
             {
                 break
             }
@@ -80,7 +80,7 @@ public class WordSearch
         return builder.lowercaseString
     }
     
-    public func standardSearchesOnly(var query : String)->String
+    public func standardSearchesOnly(query : String)->String
     {
         return query
             .replace(SUPERGRAM_STR, withString: CROSSWORD_STR)
@@ -101,7 +101,7 @@ public class WordSearch
             .replace("8", withString: "........")
             .replace("9", withString: ".........")
         
-        if query.utf16Count > MAX_WORD_LEN
+        if query.length > MAX_WORD_LEN
         {
             query = query[0..<MAX_WORD_LEN]
         }
@@ -182,7 +182,7 @@ public class WordSearch
     }
     public func runQuery(query: String, type: SearchType, callback: WordListCallback)
     {
-        let len = query.utf16Count
+        let len = query.length
         self.wordList.reset()
         switch type
         {
@@ -205,7 +205,7 @@ public class WordSearch
             let queryRemovedSymbol = query.replace("*", withString: "")
             self.wordList.findSupergrams(queryRemovedSymbol, callback: callback, length: 0)
         case .TwoWordAnagram:
-            let words = split(query){$0==" "}
+            let words = query.characters.split{$0==" "}.map { String($0) }
             self.wordList.findMultiwordAnagrams(words[0], word2: words[1], callback: callback)
         case .Wildcard, .WildcardAndCrossword:
             self.wordList.findWildcards(query, callback: callback)

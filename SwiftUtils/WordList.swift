@@ -55,7 +55,7 @@ public class WordList
     
     public func findSupergrams(letters: String, callback: WordListCallback, length: Int)
     {
-        let len = letters.utf16Count
+        let len = letters.length
         let anagram = LetterSet(word: letters)
         for word in self.wordlist
         {
@@ -63,7 +63,7 @@ public class WordList
             {
                 break
             }
-            if (length==0 && word.utf16Count>len) || word.utf16Count == length
+            if (length==0 && word.length>len) || word.length == length
             {
                 if anagram.isSupergram(word)
                 {
@@ -79,7 +79,7 @@ public class WordList
     }
     public func findAnagrams(letters: String, callback: WordListCallback)
     {
-        let len = letters.utf16Count
+        let len = letters.length
         let anagram = LetterSet(word: letters)
         for word in self.wordlist
         {
@@ -87,7 +87,7 @@ public class WordList
             {
                 break
             }
-            if word.utf16Count == len
+            if word.length == len
             {
                 if anagram.isAnagram(word)
                 {
@@ -103,7 +103,7 @@ public class WordList
     }
     public func findSubAnagrams(letters: String, callback: WordListCallback)
     {
-        let len = letters.utf16Count
+        let len = letters.length
         let anagram = LetterSet(word: letters)
         for word in self.wordlist
         {
@@ -111,7 +111,7 @@ public class WordList
             {
                 break
             }
-            let wordLen = word.utf16Count
+            let wordLen = word.length
             if wordLen>self.MIN_ANAGRAM_LENGTH && wordLen < len
             {
                 if anagram.isSubgram(word)
@@ -129,7 +129,7 @@ public class WordList
 
     public func findCrosswords(crossword: String, callback: WordListCallback)
     {
-        let len = crossword.utf16Count
+        let len = crossword.length
         let pattern = createRegexPattern(crossword)
         for word in self.wordlist
         {
@@ -137,7 +137,7 @@ public class WordList
             {
                 break
             }
-            if word.utf16Count == len
+            if word.length == len
             {
                 if word.rangeOfString(pattern, options:NSStringCompareOptions.RegularExpressionSearch) != nil
                 {
@@ -171,7 +171,7 @@ public class WordList
             }
         }
     }
-    private func createRegexPattern(var query: String) ->String
+    private func createRegexPattern(query: String) ->String
     {
         //need to add word boundary to prevent regex matching just part of the word string
         return "\\b"+query
@@ -194,15 +194,15 @@ public class WordList
     public func findMultiwordAnagrams(word1: String, word2: String, callback: WordListCallback)
     {
         let superset = LetterSet(word: word1+word2)
-        var listA = self.getFilteredList(superset, length: word1.utf16Count)
+        var listA = self.getFilteredList(superset, length: word1.length)
         var listB: [String]
-        if word1.utf16Count == word2.utf16Count
+        if word1.length == word2.length
         {
             listB = listA
         }
         else
         {
-            listB = self.getFilteredList(superset, length: word2.utf16Count)
+            listB = self.getFilteredList(superset, length: word2.length)
         }
         //maybe swap lists depending on size
         if listA.count > listB.count
@@ -240,7 +240,7 @@ public class WordList
         var matches : [String] = []
         for word in self.wordlist
         {
-            if word.utf16Count == length && set.isSubgram(word)
+            if word.length == length && set.isSubgram(word)
             {
                 matches.append(word)
             }

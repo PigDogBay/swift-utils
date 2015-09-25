@@ -19,8 +19,8 @@ public extension String
     //return the string in specified range
     public subscript (r: Range<Int>) -> String
     {
-        let startIndex = advance(self.startIndex, r.startIndex)
-        let endIndex = advance(startIndex, r.endIndex - r.startIndex)
+        let startIndex = self.startIndex.advancedBy(r.startIndex)
+        let endIndex = startIndex.advancedBy(r.endIndex - r.startIndex)
         return self[Range(start: startIndex, end: endIndex)]
     }
     
@@ -29,6 +29,9 @@ public extension String
         return self.rangeOfString(s) != nil
     }
     
+    var length : Int{
+        return self.characters.count
+    }
     /*
         Returns all the words that are one letter less, 
         eg ABCD returns
@@ -37,8 +40,8 @@ public extension String
     public func getSubWords() ->[String]
     {
         //sort letter into a Array[Character]
-        let sortedLetters = sorted(self,<)
-        let len = sortedLetters.count
+        let sortedLetters = self.characters.sort(<)
+        let len = characters.count
         var subwords = [String]()
         for var i=0 ; i<len; i++
         {
@@ -54,7 +57,7 @@ public extension String
                 }
             }
             //don't add words already found
-            if !contains(subwords,builder)
+            if !subwords.contains(builder)
             {
                 subwords.append(builder)
             }
@@ -72,14 +75,14 @@ public extension String
     public func getSubWords(minLength: Int) -> [String]
     {
         var aggregate = [String]()
-        let len = self.utf16Count
+        let len = self.length
         if len>minLength
         {
             let parentList = self.getSubWords()
-            aggregate.extend(parentList)
+            aggregate.appendContentsOf(parentList)
             for subword in parentList
             {
-                aggregate.extend(subword.getSubWords(minLength))
+                aggregate.appendContentsOf(subword.getSubWords(minLength))
             }
         }
         return aggregate
@@ -89,8 +92,8 @@ public extension String
     */
     public func subtractLetters(word : String) ->String
     {
-        var builder = Array(self)
-        for delChar in word
+        var builder = Array(self.characters)
+        for delChar in word.characters
         {
             let len = builder.count
             for var i=0; i<len; i++
@@ -107,10 +110,10 @@ public extension String
     
     public func doesNotContainBannedLetters(bannedLetters: [Character]) -> Bool
     {
-        let chars = Array(self)
+        let chars = Array(self.characters)
         for c in bannedLetters
         {
-            if contains(chars, c)
+            if chars.contains(c)
             {
                 return false
             }

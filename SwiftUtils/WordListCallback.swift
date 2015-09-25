@@ -25,7 +25,7 @@ public class WordListFilterWrapper : WordListCallback
     }
     public func update(result: String)
     {
-        if (!contains(matches, result))
+        if (!matches.contains(result))
         {
             matches.append(result)
             callback.update(result)
