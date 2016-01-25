@@ -46,11 +46,17 @@ public class WordList
     {
         self.wordlist = wordlist
     }
+    /*
+        Adds the new words to the exisiting list and then
+        sorts by length, but for equal length words sort alphabetically
+        
+        Unfortunately the sort for added pro words to the std words
+        takes over 30s on the iPad
+    */
     public func addNewWords(newWords: [String])
     {
         wordlist.appendContentsOf(newWords)
         wordlist.sortInPlace({ (str1, str2) -> Bool in
-                //sort by length, but for equal length words sort alphabetically
                 let len1 = str1.length
                 let len2 = str2.length
                 if len1==len2 {
