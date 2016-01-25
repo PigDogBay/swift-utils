@@ -46,6 +46,19 @@ public class WordList
     {
         self.wordlist = wordlist
     }
+    public func addNewWords(newWords: [String])
+    {
+        wordlist.appendContentsOf(newWords)
+        wordlist.sortInPlace({ (str1, str2) -> Bool in
+                //sort by length, but for equal length words sort alphabetically
+                let len1 = str1.length
+                let len2 = str2.length
+                if len1==len2 {
+                    return str1.compare(str2) == .OrderedAscending
+                }
+                return len1>len2
+            })
+    }
     
     public func reset()
     {
