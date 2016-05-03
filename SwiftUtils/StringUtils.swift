@@ -21,7 +21,7 @@ public extension String
     {
         let startIndex = self.startIndex.advancedBy(r.startIndex)
         let endIndex = startIndex.advancedBy(r.endIndex - r.startIndex)
-        return self[Range(start: startIndex, end: endIndex)]
+        return self[startIndex ..< endIndex]
     }
     
     public func mpdb_contains(s : String) -> Bool
