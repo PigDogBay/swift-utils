@@ -23,7 +23,7 @@ public class LetterSet
     
     public func clear()
     {
-        for var i=0; i<26 ;i++
+        for i in 0 ..< 26 
         {
             setA[i]=0
         }
@@ -34,7 +34,7 @@ public class LetterSet
         for s in word.unicodeScalars
         {
             let index = Int(s.value) - LOWEST_CHAR_VALUE
-            setA[index]++
+            setA[index] += 1
         }
     }
     public func delete(word: String)
@@ -42,12 +42,12 @@ public class LetterSet
         for s in word.unicodeScalars
         {
             let index = Int(s.value) - LOWEST_CHAR_VALUE
-            setA[index]--
+            setA[index] -= 1
         }
     }
     public func isValid()->Bool
     {
-        for var i=0; i<26 ;i++
+        for i in 0 ..< 26
         {
             if setA[i]<0
             {
@@ -59,7 +59,7 @@ public class LetterSet
 
     private func clearSetB()
     {
-        for var i=0; i<26 ;i++
+        for i in 0 ..< 26
         {
             setB[i]=0
         }
@@ -71,13 +71,13 @@ public class LetterSet
         for s in letters.unicodeScalars
         {
             let index = Int(s.value) - LOWEST_CHAR_VALUE
-            setB[index]++
+            setB[index] += 1
         }
     }
     
     private func isASupersetOfB()->Bool
     {
-        for var i=0; i<26 ;i++
+        for i in 0 ..< 26
         {
             if setB[i] > setA[i]
             {
@@ -88,7 +88,7 @@ public class LetterSet
     }
     private func isASubsetOfB()->Bool
     {
-        for var i=0; i<26 ;i++
+        for i in 0 ..< 26
         {
             if setA[i] > setB[i]
             {
@@ -99,7 +99,7 @@ public class LetterSet
     }
     private func isAIdenticalToB()->Bool
     {
-        for var i=0; i<26 ;i++
+        for i in 0 ..< 26
         {
             if setA[i] != setB[i]
             {

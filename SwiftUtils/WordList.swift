@@ -87,7 +87,7 @@ public class WordList
                 if anagram.isSupergram(word)
                 {
                     callback.update(word)
-                    self.count++
+                    self.count += 1
                     if self.count == self.resultsLimit
                     {
                         break
@@ -111,7 +111,7 @@ public class WordList
                 if anagram.isAnagram(word)
                 {
                     callback.update(word)
-                    self.count++
+                    self.count += 1
                     if self.count == self.resultsLimit
                     {
                         break
@@ -136,7 +136,7 @@ public class WordList
                 if anagram.isSubgram(word)
                 {
                     callback.update(word)
-                    self.count++
+                    self.count += 1
                     if self.count == self.resultsLimit
                     {
                         break
@@ -161,7 +161,7 @@ public class WordList
                 if word.rangeOfString(pattern, options:NSStringCompareOptions.RegularExpressionSearch) != nil
                 {
                     callback.update(word)
-                    self.count++
+                    self.count += 1
                     if self.count == self.resultsLimit
                     {
                         break
@@ -182,7 +182,7 @@ public class WordList
             if word.rangeOfString(pattern, options:NSStringCompareOptions.RegularExpressionSearch) != nil
             {
                 callback.update(word)
-                self.count++
+                self.count += 1
                 if self.count == self.resultsLimit
                 {
                     break
@@ -245,7 +245,7 @@ public class WordList
                 if superset.isAnagram(second)
                 {
                     callback.update(first+" "+second)
-                    self.count++
+                    self.count += 1
                     if self.count == self.resultsLimit
                     {
                         return

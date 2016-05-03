@@ -54,15 +54,16 @@ public class WordSearch
         Trim whitespace
         Lowercase
     */
-    public func clean(var raw: String)->String
+    public func clean(raw: String)->String
     {
         if raw.length==0
         {
             return ""
         }
-        raw = raw.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
         var builder =  ""
-        let chars = raw.unicodeScalars
+        let chars = raw
+            .stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+            .unicodeScalars
         for c in chars
         {
             let v = c.value
@@ -87,9 +88,9 @@ public class WordSearch
             .replace(SUPERGRAM_WILD_STR, withString: CROSSWORD_STR)
     }
     
-    public func preProcessQuery(var query: String)->String
+    public func preProcessQuery(query: String)->String
     {
-        query = query
+        var query = query
             .lowercaseStringWithLocale(usLocale)
             .replace("?", withString: ".")
             .replace("2", withString: "..")
@@ -138,8 +139,9 @@ public class WordSearch
         return SearchType.Anagram
     }
 
-    public func postProcessQuery(var query: String, type: SearchType)->String
+    public func postProcessQuery(query: String, type: SearchType)->String
     {
+        var query = query
         switch type
         {
         case .Anagram:

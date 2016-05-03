@@ -43,13 +43,13 @@ public extension String
         let sortedLetters = self.characters.sort(<)
         let len = characters.count
         var subwords = [String]()
-        for var i=0 ; i<len; i++
+        for i in 0  ..< len
         {
             //string builder to make the sub word
             var builder = ""
             //copy the sortedLetters string but
             //skip the letter at index i
-            for var j=0 ; j<len ; j++
+            for j in 0  ..< len
             {
                 if (i != j)
                 {
@@ -96,7 +96,7 @@ public extension String
         for delChar in word.characters
         {
             let len = builder.count
-            for var i=0; i<len; i++
+            for i in 0 ..< len
             {
                 if delChar == builder[i]
                 {
