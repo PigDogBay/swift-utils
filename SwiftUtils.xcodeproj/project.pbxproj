@@ -20,6 +20,13 @@
 		4D45F0121A9E002500C40BB4 /* WordListCallbackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D45F00D1A9E002500C40BB4 /* WordListCallbackTests.swift */; };
 		4D45F0131A9E002500C40BB4 /* WordListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D45F00E1A9E002500C40BB4 /* WordListTests.swift */; };
 		4D45F0141A9E002500C40BB4 /* WordSearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D45F00F1A9E002500C40BB4 /* WordSearchTests.swift */; };
+		4D9D30ED1D2D243F0088392C /* IAPInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9D30EC1D2D243F0088392C /* IAPInterface.swift */; };
+		4D9D30EF1D2D26490088392C /* IAPDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9D30EE1D2D26490088392C /* IAPDelegate.swift */; };
+		4D9D30F11D2D28080088392C /* IAPProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9D30F01D2D28080088392C /* IAPProduct.swift */; };
+		4D9D30F31D2D2A290088392C /* MockIAP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9D30F21D2D2A290088392C /* MockIAP.swift */; };
+		4D9D30F51D2D2BAB0088392C /* MockIAPTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9D30F41D2D2BAB0088392C /* MockIAPTests.swift */; };
+		4D9D30F71D2D2E550088392C /* MockIAPDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9D30F61D2D2E550088392C /* MockIAPDelegate.swift */; };
+		4D9D30F91D2D36090088392C /* IAPObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9D30F81D2D36090088392C /* IAPObservable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +56,13 @@
 		4D45F00D1A9E002500C40BB4 /* WordListCallbackTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordListCallbackTests.swift; sourceTree = "<group>"; };
 		4D45F00E1A9E002500C40BB4 /* WordListTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordListTests.swift; sourceTree = "<group>"; };
 		4D45F00F1A9E002500C40BB4 /* WordSearchTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordSearchTests.swift; sourceTree = "<group>"; };
+		4D9D30EC1D2D243F0088392C /* IAPInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPInterface.swift; sourceTree = "<group>"; };
+		4D9D30EE1D2D26490088392C /* IAPDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPDelegate.swift; sourceTree = "<group>"; };
+		4D9D30F01D2D28080088392C /* IAPProduct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPProduct.swift; sourceTree = "<group>"; };
+		4D9D30F21D2D2A290088392C /* MockIAP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockIAP.swift; sourceTree = "<group>"; };
+		4D9D30F41D2D2BAB0088392C /* MockIAPTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockIAPTests.swift; sourceTree = "<group>"; };
+		4D9D30F61D2D2E550088392C /* MockIAPDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockIAPDelegate.swift; sourceTree = "<group>"; };
+		4D9D30F81D2D36090088392C /* IAPObservable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPObservable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +113,11 @@
 				4D3368011AA71E3400EA824A /* ViewControllerExtensions.swift */,
 				4D45EFE81A9DFB3700C40BB4 /* SwiftUtils.h */,
 				4D45EFE61A9DFB3700C40BB4 /* Supporting Files */,
+				4D9D30F01D2D28080088392C /* IAPProduct.swift */,
+				4D9D30EC1D2D243F0088392C /* IAPInterface.swift */,
+				4D9D30EE1D2D26490088392C /* IAPDelegate.swift */,
+				4D9D30F21D2D2A290088392C /* MockIAP.swift */,
+				4D9D30F81D2D36090088392C /* IAPObservable.swift */,
 			);
 			path = SwiftUtils;
 			sourceTree = "<group>";
@@ -120,6 +139,8 @@
 				4D45F00E1A9E002500C40BB4 /* WordListTests.swift */,
 				4D45F00F1A9E002500C40BB4 /* WordSearchTests.swift */,
 				4D45EFF31A9DFB3700C40BB4 /* Supporting Files */,
+				4D9D30F41D2D2BAB0088392C /* MockIAPTests.swift */,
+				4D9D30F61D2D2E550088392C /* MockIAPDelegate.swift */,
 			);
 			path = SwiftUtilsTests;
 			sourceTree = "<group>";
@@ -242,9 +263,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				4D45F0041A9DFFB500C40BB4 /* StringUtils.swift in Sources */,
+				4D9D30EF1D2D26490088392C /* IAPDelegate.swift in Sources */,
 				4D45F0021A9DFF8D00C40BB4 /* LetterSet.swift in Sources */,
+				4D9D30F91D2D36090088392C /* IAPObservable.swift in Sources */,
 				4D45F0091A9DFFBF00C40BB4 /* WordListCallback.swift in Sources */,
+				4D9D30F31D2D2A290088392C /* MockIAP.swift in Sources */,
 				4D45F00A1A9DFFBF00C40BB4 /* WordSearch.swift in Sources */,
+				4D9D30F11D2D28080088392C /* IAPProduct.swift in Sources */,
+				4D9D30ED1D2D243F0088392C /* IAPInterface.swift in Sources */,
 				4D3368021AA71E3400EA824A /* ViewControllerExtensions.swift in Sources */,
 				4D45F0081A9DFFBF00C40BB4 /* WordList.swift in Sources */,
 			);
@@ -254,9 +280,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D9D30F51D2D2BAB0088392C /* MockIAPTests.swift in Sources */,
 				4D45F0131A9E002500C40BB4 /* WordListTests.swift in Sources */,
 				4D45F0141A9E002500C40BB4 /* WordSearchTests.swift in Sources */,
 				4D45F0101A9E002500C40BB4 /* LetterSetTests.swift in Sources */,
+				4D9D30F71D2D2E550088392C /* MockIAPDelegate.swift in Sources */,
 				4D45F0121A9E002500C40BB4 /* WordListCallbackTests.swift in Sources */,
 				4D45F0111A9E002500C40BB4 /* StringUtilsTests.swift in Sources */,
 			);
