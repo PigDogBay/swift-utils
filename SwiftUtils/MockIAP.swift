@@ -37,11 +37,14 @@ public class MockIAP : IAPInterface
             }
         }
     }
-    public func restorePurchase(productID: String) {
+    public func restorePurchases() {
         let time = dispatch_time(DISPATCH_TIME_NOW,delay * Int64(NSEC_PER_SEC))
         dispatch_after(time, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0))
         {
-            self.observable.onRestorePurchaseCompleted(productID)
+            for p in self.serverProducts
+            {
+                self.observable.onRestorePurchaseCompleted(p.id)
+            }
         }
         
     }

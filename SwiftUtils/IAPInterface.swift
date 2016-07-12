@@ -14,7 +14,7 @@ public protocol IAPInterface
     func canMakePayments() -> Bool
     func requestProducts()
     func requestPurchase(productID : String)
-    func restorePurchase(productID : String)
+    func restorePurchases()
     
     func getProduct(productID : String) -> IAPProduct?
 }

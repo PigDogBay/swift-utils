@@ -15,34 +15,36 @@ public class IAPObservable
 {
     private var observersDictionary : [String : IAPDelegate] = [:]
 
+    public init(){
+    }
     public func addObserver(name: String, observer: IAPDelegate) {
         observersDictionary[name]=observer
     }
     public func removeObserver(name: String) {
         observersDictionary.removeValueForKey(name)
     }
-    func onPurchaseRequestCompleted(productID : String)
+    public func onPurchaseRequestCompleted(productID : String)
     {
         for (_,observer) in observersDictionary
         {
             observer.purchaseRequest(productID)
         }
     }
-    func onRestorePurchaseCompleted(productID : String)
+    public func onRestorePurchaseCompleted(productID : String)
     {
         for (_,observer) in observersDictionary
         {
             observer.restoreRequest(productID)
         }
     }
-    func onProductsRequestCompleted()
+    public func onProductsRequestCompleted()
     {
         for (_,observer) in observersDictionary
         {
             observer.productsRequest()
         }
     }
-    func onPurchaseRequestFailed(productID : String)
+    public func onPurchaseRequestFailed(productID : String)
     {
         for (_,observer) in observersDictionary
         {
