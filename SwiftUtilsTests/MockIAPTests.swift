@@ -29,6 +29,7 @@ class MockIAPTests: XCTestCase {
         target.observable.addObserver("test", observer: iapDelegate)
         
         target.requestPurchase("")
+        sleep(2)
         XCTAssert(iapDelegate.purchaseRequestCount==1)
         
         target.observable.removeObserver("test")
@@ -42,6 +43,7 @@ class MockIAPTests: XCTestCase {
         target.observable.addObserver("test", observer: iapDelegate)
         
         target.requestPurchase("")
+        sleep(2)
         XCTAssert(iapDelegate.purchaseRequestCount==1)
         
         target.observable.removeObserver("test")
