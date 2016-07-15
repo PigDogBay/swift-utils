@@ -10,7 +10,7 @@ import Foundation
 
 public class WordList
 {
-    private let MIN_ANAGRAM_LENGTH = 3
+    private let MIN_ANAGRAM_LENGTH = 1
     private let SUBANAGRAM_DEPTH = 3
     public var resultsLimit = 500
     public var wordlist: [String]!
