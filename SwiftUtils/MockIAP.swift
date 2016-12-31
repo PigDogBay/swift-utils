@@ -8,24 +8,24 @@
 
 import Foundation
 
-public class MockIAP : IAPInterface
+open class MockIAP : IAPInterface
 {
-    public var observable: IAPObservable
-    public var serverProducts : [IAPProduct] = []
-    public var retrievedProducts : [IAPProduct] = []
-    public var canMakePaymentsFlag = true
-    public var failPurchaseFlag = false
-    public var delay : Int64 = 1
+    open var observable: IAPObservable
+    open var serverProducts : [IAPProduct] = []
+    open var retrievedProducts : [IAPProduct] = []
+    open var canMakePaymentsFlag = true
+    open var failPurchaseFlag = false
+    open var delay : Int64 = 1
     
     public init(){
         observable = IAPObservable()
     }
-    public func canMakePayments() -> Bool {
+    open func canMakePayments() -> Bool {
         return canMakePaymentsFlag
     }
-    public func requestPurchase(productID: String) {
-        let time = dispatch_time(DISPATCH_TIME_NOW,delay * Int64(NSEC_PER_SEC))
-        dispatch_after(time, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0))
+    open func requestPurchase(_ productID: String) {
+        let time = DispatchTime.now() + Double(delay * Int64(NSEC_PER_SEC)) / Double(NSEC_PER_SEC)
+        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).asyncAfter(deadline: time)
         {
             if self.failPurchaseFlag
             {
@@ -37,9 +37,9 @@ public class MockIAP : IAPInterface
             }
         }
     }
-    public func restorePurchases() {
-        let time = dispatch_time(DISPATCH_TIME_NOW,delay * Int64(NSEC_PER_SEC))
-        dispatch_after(time, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0))
+    open func restorePurchases() {
+        let time = DispatchTime.now() + Double(delay * Int64(NSEC_PER_SEC)) / Double(NSEC_PER_SEC)
+        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).asyncAfter(deadline: time)
         {
             for p in self.serverProducts
             {
@@ -48,17 +48,17 @@ public class MockIAP : IAPInterface
         }
         
     }
-    public func requestProducts() {
+    open func requestProducts() {
         print("request Products")
-        let time = dispatch_time(DISPATCH_TIME_NOW,delay * Int64(NSEC_PER_SEC))
-        dispatch_after(time, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0))
+        let time = DispatchTime.now() + Double(delay * Int64(NSEC_PER_SEC)) / Double(NSEC_PER_SEC)
+        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).asyncAfter(deadline: time)
         {
             print("request Products - Dispatched")
             self.retrievedProducts = self.serverProducts
             self.observable.onProductsRequestCompleted()
         }
     }
-    public func getProduct(productID : String) -> IAPProduct?
+    open func getProduct(_ productID : String) -> IAPProduct?
     {
         for p in retrievedProducts
         {

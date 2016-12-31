@@ -22,14 +22,14 @@ class WordListTests: XCTestCase, WordListCallback {
     
     var matches: [String] = []
     
-    func update(result: String) {
+    func update(_ result: String) {
         matches.append(result)
     }
     
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        matches.removeAll(keepCapacity: false)
+        matches.removeAll(keepingCapacity: false)
     }
     
     override func tearDown() {
@@ -50,7 +50,7 @@ class WordListTests: XCTestCase, WordListCallback {
 
     func testPerformanceExample() {
         // This is an example of a performance test case.
-        self.measureBlock() {
+        self.measure() {
             // Put the code you want to measure the time of here.
         }
     }

@@ -11,8 +11,8 @@ import Foundation
 public protocol IAPDelegate : class
 {
     func productsRequest()
-    func purchaseRequest(productID : String)
-    func restoreRequest(productID : String)
-    func purchaseFailed(productID : String)
+    func purchaseRequest(_ productID : String)
+    func restoreRequest(_ productID : String)
+    func purchaseFailed(_ productID : String)
 
 }

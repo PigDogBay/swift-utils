@@ -10,28 +10,28 @@ import UIKit
 
 extension UIViewController
 {
-    public func mpdbShowErrorAlert(title: String, msg : String)
+    public func mpdbShowErrorAlert(_ title: String, msg : String)
     {
-        let action = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil)
-        let controller = UIAlertController(title: title, message: msg, preferredStyle: UIAlertControllerStyle.Alert)
+        let action = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil)
+        let controller = UIAlertController(title: title, message: msg, preferredStyle: UIAlertControllerStyle.alert)
         controller.addAction(action)
-        self.presentViewController(controller, animated: true, completion: nil)
+        self.present(controller, animated: true, completion: nil)
     }
-    public func mpdbShowAlert(title: String, msg : String)
+    public func mpdbShowAlert(_ title: String, msg : String)
     {
-        let action = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil)
-        let controller = UIAlertController(title: title, message: msg, preferredStyle: UIAlertControllerStyle.Alert)
+        let action = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil)
+        let controller = UIAlertController(title: title, message: msg, preferredStyle: UIAlertControllerStyle.alert)
         controller.addAction(action)
-        self.presentViewController(controller, animated: true, completion: nil)
+        self.present(controller, animated: true, completion: nil)
     }
     public func mpdbCheckIsFirstTime()->Bool
     {
         let key = "HasWelcomeShown"
-        let defaults = NSUserDefaults.standardUserDefaults()
-        let firstTimeSetting = defaults.objectForKey(key) as? Bool
+        let defaults = UserDefaults.standard
+        let firstTimeSetting = defaults.object(forKey: key) as? Bool
         if firstTimeSetting == nil
         {
-            defaults.setBool(true, forKey: key)
+            defaults.set(true, forKey: key)
             defaults.synchronize()
             return true
         }

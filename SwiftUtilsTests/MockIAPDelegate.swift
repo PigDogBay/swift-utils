@@ -17,17 +17,17 @@ class MockIAPDelegate: IAPDelegate {
     var purchaseFailedCount = 0;
     
     //MARK:- IAPDelegate
-    func restoreRequest(productID : String) {
+    func restoreRequest(_ productID : String) {
         restoreRequestCount += 1
     }
     func productsRequest() {
         productsRequestCount += 1
         
     }
-    func purchaseRequest(productID : String) {
+    func purchaseRequest(_ productID : String) {
         purchaseRequestCount += 1
     }
-    func purchaseFailed(productID : String) {
+    func purchaseFailed(_ productID : String) {
         purchaseFailedCount += 1
         
     }

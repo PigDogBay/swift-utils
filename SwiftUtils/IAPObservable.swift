@@ -11,40 +11,40 @@ import Foundation
 //
 // Helper class to handle the IAPDelegate events
 //
-public class IAPObservable
+open class IAPObservable
 {
-    private var observersDictionary : [String : IAPDelegate] = [:]
+    fileprivate var observersDictionary : [String : IAPDelegate] = [:]
 
     public init(){
     }
-    public func addObserver(name: String, observer: IAPDelegate) {
+    open func addObserver(_ name: String, observer: IAPDelegate) {
         observersDictionary[name]=observer
     }
-    public func removeObserver(name: String) {
-        observersDictionary.removeValueForKey(name)
+    open func removeObserver(_ name: String) {
+        observersDictionary.removeValue(forKey: name)
     }
-    public func onPurchaseRequestCompleted(productID : String)
+    open func onPurchaseRequestCompleted(_ productID : String)
     {
         for (_,observer) in observersDictionary
         {
             observer.purchaseRequest(productID)
         }
     }
-    public func onRestorePurchaseCompleted(productID : String)
+    open func onRestorePurchaseCompleted(_ productID : String)
     {
         for (_,observer) in observersDictionary
         {
             observer.restoreRequest(productID)
         }
     }
-    public func onProductsRequestCompleted()
+    open func onProductsRequestCompleted()
     {
         for (_,observer) in observersDictionary
         {
             observer.productsRequest()
         }
     }
-    public func onPurchaseRequestFailed(productID : String)
+    open func onPurchaseRequestFailed(_ productID : String)
     {
         for (_,observer) in observersDictionary
         {

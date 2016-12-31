@@ -72,7 +72,7 @@ class LetterSetTests: XCTestCase {
     func testPerformanceIsAnagram() {
         let target = LetterSet(word: "streamline")
         // This is an example of a performance test case.
-        self.measureBlock() {
+        self.measure() {
             for _ in 0 ..< self.loop
             {
                 target.isAnagram("linestream")
@@ -89,7 +89,7 @@ class LetterSetTests: XCTestCase {
     func testPerformanceIsSupergram1() {
         let target = LetterSet(word:  "hearts")
         // This is an example of a performance test case.
-        self.measureBlock() {
+        self.measure() {
             for _ in 0 ..< self.loop
             {
                 target.isSupergram("breathers")

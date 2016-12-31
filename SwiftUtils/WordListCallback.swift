@@ -10,20 +10,20 @@ import Foundation
 
 public protocol WordListCallback
 {
-    func update(result: String)
+    func update(_ result: String)
 }
 
-public class WordListFilterWrapper : WordListCallback
+open class WordListFilterWrapper : WordListCallback
 {
     //should callback be weak?
-    private let callback : WordListCallback!
-    private var matches: [String] = []
+    fileprivate let callback : WordListCallback!
+    fileprivate var matches: [String] = []
     
     public init(callback: WordListCallback)
     {
         self.callback = callback
     }
-    public func update(result: String)
+    open func update(_ result: String)
     {
         if (!matches.contains(result))
         {
@@ -34,10 +34,10 @@ public class WordListFilterWrapper : WordListCallback
 }
 
 
-public class WordListMissingLetterWrapper : WordListCallback
+open class WordListMissingLetterWrapper : WordListCallback
 {
-    private let callback : WordListCallback!
-    private let originalWord : String!
+    fileprivate let callback : WordListCallback!
+    fileprivate let originalWord : String!
     
     public init(callback: WordListCallback, originalWord: String)
     {
@@ -45,7 +45,7 @@ public class WordListMissingLetterWrapper : WordListCallback
         self.originalWord = originalWord
     }
     
-    public func update(result: String)
+    open func update(_ result: String)
     {
         let missingLetters = originalWord.subtractLetters(result)
         callback.update("\(result) (\(missingLetters))")

@@ -11,22 +11,28 @@ import Foundation
 public extension String
 {
     
-    public func replace(target: String, withString: String) -> String
+    public func replace(_ target: String, withString: String) -> String
     {
-        return self.stringByReplacingOccurrencesOfString(target, withString: withString, options: NSStringCompareOptions.LiteralSearch, range: nil)
+        return self.replacingOccurrences(of: target, with: withString, options: NSString.CompareOptions.literal, range: nil)
     }
     
     //return the string in specified range
     public subscript (r: Range<Int>) -> String
     {
-        let startIndex = self.startIndex.advancedBy(r.startIndex)
-        let endIndex = startIndex.advancedBy(r.endIndex - r.startIndex)
+//        
+//        let startIndex = self.startIndex.advancedBy(r.startIndex)
+//        let endIndex = startIndex.advancedBy(r.endIndex - r.startIndex)
+//        return self[startIndex ..< endIndex]
+        
+        let startIndex = self.characters.index(self.startIndex, offsetBy: r.lowerBound)
+        let endIndex = self.characters.index(self.startIndex, offsetBy: r.upperBound)
+//        let endIndex = <#T##String.CharacterView corresponding to `startIndex`##String.CharacterView#>.index(startIndex, offsetBy: r.upperBound - r.lowerBound)
         return self[startIndex ..< endIndex]
     }
     
-    public func mpdb_contains(s : String) -> Bool
+    public func mpdb_contains(_ s : String) -> Bool
     {
-        return self.rangeOfString(s) != nil
+        return self.range(of: s) != nil
     }
     
     var length : Int{
@@ -40,7 +46,7 @@ public extension String
     public func getSubWords() ->[String]
     {
         //sort letter into a Array[Character]
-        let sortedLetters = self.characters.sort(<)
+        let sortedLetters = self.characters.sorted(by: <)
         let len = characters.count
         var subwords = [String]()
         for i in 0  ..< len
@@ -72,17 +78,17 @@ public extension String
         9*8 seven letter words
         9*8*7 six letter words
     */
-    public func getSubWords(minLength: Int) -> [String]
+    public func getSubWords(_ minLength: Int) -> [String]
     {
         var aggregate = [String]()
         let len = self.length
         if len>minLength
         {
             let parentList = self.getSubWords()
-            aggregate.appendContentsOf(parentList)
+            aggregate.append(contentsOf: parentList)
             for subword in parentList
             {
-                aggregate.appendContentsOf(subword.getSubWords(minLength))
+                aggregate.append(contentsOf: subword.getSubWords(minLength))
             }
         }
         return aggregate
@@ -90,7 +96,7 @@ public extension String
     /*
         Subtracts the letters of word from the string
     */
-    public func subtractLetters(word : String) ->String
+    public func subtractLetters(_ word : String) ->String
     {
         var builder = Array(self.characters)
         for delChar in word.characters
@@ -100,7 +106,7 @@ public extension String
             {
                 if delChar == builder[i]
                 {
-                    builder.removeAtIndex(i)
+                    builder.remove(at: i)
                     break;
                 }
             }
@@ -108,7 +114,7 @@ public extension String
         return String(builder)
     }
     
-    public func doesNotContainBannedLetters(bannedLetters: [Character]) -> Bool
+    public func doesNotContainBannedLetters(_ bannedLetters: [Character]) -> Bool
     {
         let chars = Array(self.characters)
         for c in bannedLetters

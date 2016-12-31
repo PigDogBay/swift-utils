@@ -13,8 +13,8 @@ public protocol IAPInterface
     var observable : IAPObservable {get}
     func canMakePayments() -> Bool
     func requestProducts()
-    func requestPurchase(productID : String)
+    func requestPurchase(_ productID : String)
     func restorePurchases()
     
-    func getProduct(productID : String) -> IAPProduct?
+    func getProduct(_ productID : String) -> IAPProduct?
 }

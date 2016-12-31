@@ -9,19 +9,19 @@
 import Foundation
 
 //Class to help compare letters in lower case words
-public class LetterSet
+open class LetterSet
 {
     //buffers to hold a count of each letter, buffer[4] == count of the letter 'e'
-    private var setA : [Int] = [0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0]
-    private var setB : [Int] = [0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0]
-    private let LOWEST_CHAR_VALUE = Int(UnicodeScalar("a").value)
+    fileprivate var setA : [Int] = [0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0]
+    fileprivate var setB : [Int] = [0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0]
+    fileprivate let LOWEST_CHAR_VALUE = Int(UnicodeScalar("a").value)
     
     public init(word: String)
     {
         add(word)
     }
     
-    public func clear()
+    open func clear()
     {
         for i in 0 ..< 26 
         {
@@ -29,7 +29,7 @@ public class LetterSet
         }
     }
     
-    public func add(word: String)
+    open func add(_ word: String)
     {
         for s in word.unicodeScalars
         {
@@ -37,7 +37,7 @@ public class LetterSet
             setA[index] += 1
         }
     }
-    public func delete(word: String)
+    open func delete(_ word: String)
     {
         for s in word.unicodeScalars
         {
@@ -45,7 +45,7 @@ public class LetterSet
             setA[index] -= 1
         }
     }
-    public func isValid()->Bool
+    open func isValid()->Bool
     {
         for i in 0 ..< 26
         {
@@ -57,7 +57,7 @@ public class LetterSet
         return true
     }
 
-    private func clearSetB()
+    fileprivate func clearSetB()
     {
         for i in 0 ..< 26
         {
@@ -66,7 +66,7 @@ public class LetterSet
     }
     
 
-    private func addToSetB(letters: String)
+    fileprivate func addToSetB(_ letters: String)
     {
         for s in letters.unicodeScalars
         {
@@ -75,7 +75,7 @@ public class LetterSet
         }
     }
     
-    private func isASupersetOfB()->Bool
+    fileprivate func isASupersetOfB()->Bool
     {
         for i in 0 ..< 26
         {
@@ -86,7 +86,7 @@ public class LetterSet
         }
         return true;
     }
-    private func isASubsetOfB()->Bool
+    fileprivate func isASubsetOfB()->Bool
     {
         for i in 0 ..< 26
         {
@@ -97,7 +97,7 @@ public class LetterSet
         }
         return true;
     }
-    private func isAIdenticalToB()->Bool
+    fileprivate func isAIdenticalToB()->Bool
     {
         for i in 0 ..< 26
         {
@@ -108,7 +108,7 @@ public class LetterSet
         }
         return true;
     }
-    public func isAnagram(word: String) -> Bool
+    open func isAnagram(_ word: String) -> Bool
     {
         clearSetB()
         addToSetB(word)
@@ -116,14 +116,14 @@ public class LetterSet
     }
     
     //is word a super-anagram of the letters in set A
-    public func isSupergram(word: String) -> Bool
+    open func isSupergram(_ word: String) -> Bool
     {
         clearSetB()
         addToSetB(word)
         return isASubsetOfB()
     }
     //is word a sub-anagram of the letters in set A
-    public func isSubgram(word: String) -> Bool
+    open func isSubgram(_ word: String) -> Bool
     {
         clearSetB()
         addToSetB(word)

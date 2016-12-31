@@ -13,7 +13,7 @@ import SwiftUtils
 class WordListCallbackTests: XCTestCase, WordListCallback  {
 
     var result: String?
-    func update(result: String) {
+    func update(_ result: String) {
         self.result = result
     }
     
