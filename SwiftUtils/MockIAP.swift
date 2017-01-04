@@ -25,7 +25,7 @@ open class MockIAP : IAPInterface
     }
     open func requestPurchase(_ productID: String) {
         let time = DispatchTime.now() + Double(delay * Int64(NSEC_PER_SEC)) / Double(NSEC_PER_SEC)
-        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).asyncAfter(deadline: time)
+        DispatchQueue.global(qos: .default).asyncAfter(deadline: time)
         {
             if self.failPurchaseFlag
             {
@@ -39,7 +39,7 @@ open class MockIAP : IAPInterface
     }
     open func restorePurchases() {
         let time = DispatchTime.now() + Double(delay * Int64(NSEC_PER_SEC)) / Double(NSEC_PER_SEC)
-        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).asyncAfter(deadline: time)
+        DispatchQueue.global(qos: .default).asyncAfter(deadline: time)
         {
             for p in self.serverProducts
             {
@@ -51,7 +51,7 @@ open class MockIAP : IAPInterface
     open func requestProducts() {
         print("request Products")
         let time = DispatchTime.now() + Double(delay * Int64(NSEC_PER_SEC)) / Double(NSEC_PER_SEC)
-        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).asyncAfter(deadline: time)
+        DispatchQueue.global(qos: .default).asyncAfter(deadline: time)
         {
             print("request Products - Dispatched")
             self.retrievedProducts = self.serverProducts
