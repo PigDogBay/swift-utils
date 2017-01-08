@@ -10,9 +10,7 @@ import Foundation
 
 open class WordList
 {
-    open var resultsLimit = 500
     open var wordlist: [String]!
-    fileprivate var count = 0
 
     //Stop needs to be protected by a mutex,
     //keep an eye out for future enhancements in Swift, such as synchronized blocks
@@ -67,7 +65,6 @@ open class WordList
     open func reset()
     {
         stop = false
-        self.count = 0
     }
     
     open func findSupergrams(_ letters: String, callback: WordListCallback, length: Int)
@@ -85,11 +82,6 @@ open class WordList
                 if anagram.isSupergram(word)
                 {
                     callback.update(word)
-                    self.count += 1
-                    if self.count == self.resultsLimit
-                    {
-                        break
-                    }
                 }
             }
         }
@@ -109,11 +101,6 @@ open class WordList
                 if anagram.isAnagram(word)
                 {
                     callback.update(word)
-                    self.count += 1
-                    if self.count == self.resultsLimit
-                    {
-                        break
-                    }
                 }
             }
         }
@@ -134,11 +121,6 @@ open class WordList
                 if anagram.isSubgram(word)
                 {
                     callback.update(word)
-                    self.count += 1
-                    if self.count == self.resultsLimit
-                    {
-                        break
-                    }
                 }
             }
         }
@@ -159,11 +141,6 @@ open class WordList
                 if word.range(of: pattern, options:NSString.CompareOptions.regularExpression) != nil
                 {
                     callback.update(word)
-                    self.count += 1
-                    if self.count == self.resultsLimit
-                    {
-                        break
-                    }
                 }
             }
         }
@@ -180,11 +157,6 @@ open class WordList
             if word.range(of: pattern, options:NSString.CompareOptions.regularExpression) != nil
             {
                 callback.update(word)
-                self.count += 1
-                if self.count == self.resultsLimit
-                {
-                    break
-                }
             }
         }
     }
@@ -236,11 +208,6 @@ open class WordList
                 if superset.isAnagram(second)
                 {
                     callback.update(first+" "+second)
-                    self.count += 1
-                    if self.count == self.resultsLimit
-                    {
-                        return
-                    }
                 }
             }
         }
