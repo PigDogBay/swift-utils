@@ -80,14 +80,7 @@ open class WordSearch
         
         return builder.lowercased()
     }
-    
-    open func standardSearchesOnly(_ query : String)->String
-    {
-        return query
-            .replace(BLANK_STR, withString: CROSSWORD_STR)
-            .replace(SUPERGRAM_STR, withString: CROSSWORD_STR)
-    }
-    
+  
     open func preProcessQuery(_ query: String)->String
     {
         var query = query
