@@ -211,7 +211,7 @@ open class WordList
     open func findMultiwordAnagrams(_ word1: String, word2: String, callback: WordListCallback)
     {
         let superset = LetterSet(word: word1+word2)
-        var listA = self.getFilteredList(superset, length: word1.length)
+        let listA = self.getFilteredList(superset, length: word1.length)
         var listB: [String]
         if word1.length == word2.length
         {
@@ -220,13 +220,6 @@ open class WordList
         else
         {
             listB = self.getFilteredList(superset, length: word2.length)
-        }
-        //maybe swap lists depending on size
-        if listA.count > listB.count
-        {
-            let swap = listA
-            listA = listB
-            listB = swap
         }
         for first in listA
         {
