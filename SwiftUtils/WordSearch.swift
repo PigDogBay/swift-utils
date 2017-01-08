@@ -195,7 +195,8 @@ open class WordSearch
             self.wordList.findCrosswords(query, callback: callback)
         case .blanks:
             let queryRemovedSymbol = query.replace("+", withString: "")
-            self.wordList.findSupergrams(queryRemovedSymbol, callback: callback, length: len)
+            let numberOfBlanks = len - queryRemovedSymbol.length
+            self.wordList.findAnagrams(queryRemovedSymbol, numberOfBlanks: numberOfBlanks, callback: callback)
         case .supergram:
             let queryRemovedSymbol = query.replace("*", withString: "")
             self.wordList.findSupergrams(queryRemovedSymbol, callback: callback, length: 0)

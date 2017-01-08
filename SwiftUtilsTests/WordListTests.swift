@@ -67,5 +67,12 @@ class WordListTests: XCTestCase, WordListCallback {
         XCTAssertEqual("apple",target.wordlist[4])
         XCTAssertEqual("focus",target.wordlist[5])
     }
+    
+    func testFindAnagramsWithBlanks(){
+        let target = WordList(wordlist: list)
+        target.findAnagrams("aai", numberOfBlanks: 2, callback: self)
+        XCTAssert(4 == matches.count)
+        
+    }
 
 }

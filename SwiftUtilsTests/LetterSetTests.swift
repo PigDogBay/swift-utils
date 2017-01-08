@@ -21,6 +21,25 @@ class LetterSetTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
+    
+    func testIsAnagramBlank1(){
+        let target = LetterSet(word: "cat")
+        XCTAssert(target.isAnagram("chart", numberOfBlanks: 3))
+        XCTAssert(target.isAnagram("charts", numberOfBlanks: 3))
+        XCTAssertFalse(target.isAnagram("charted", numberOfBlanks: 3))
+    }
+    func testIsAnagramBlank2(){
+        let target = LetterSet(word: "")
+        XCTAssert(target.isAnagram("", numberOfBlanks: 0))
+        XCTAssert(target.isAnagram("cat", numberOfBlanks: 3))
+        XCTAssertFalse(target.isAnagram("cats", numberOfBlanks: 3))
+    }
+    func testIsAnagramBlank3(){
+        let target = LetterSet(word: "black")
+        XCTAssert(target.isAnagram("black", numberOfBlanks: 0))
+        XCTAssertFalse(target.isAnagram("clack", numberOfBlanks: 0))
+        XCTAssert(target.isAnagram("clack", numberOfBlanks: 1))
+    }
 
     func testIsAnagram1() {
         let target = LetterSet(word: "hearts")

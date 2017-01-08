@@ -114,6 +114,18 @@ open class LetterSet
         addToSetB(word)
         return isAIdenticalToB()
     }
+    open func isAnagram(_ word: String, numberOfBlanks: Int) -> Bool
+    {
+        clearSetB()
+        addToSetB(word)
+        for i in 0 ..< 26
+        {
+            setB[i] = setB[i] - setA[i]
+            if setB[i] < 0 { setB[i]=0}
+        }
+        let count = countSet(setB)
+        return count <= numberOfBlanks
+    }
     
     //is word a super-anagram of the letters in set A
     open func isSupergram(_ word: String) -> Bool
@@ -128,6 +140,15 @@ open class LetterSet
         clearSetB()
         addToSetB(word)
         return isASupersetOfB()
+    }
+    
+    fileprivate func countSet(_ set: [Int]) -> Int{
+        var count = 0
+        for i in set
+        {
+            count = count + i;
+        }
+        return count
     }
     
 }
