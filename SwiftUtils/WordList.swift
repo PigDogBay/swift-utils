@@ -10,8 +10,6 @@ import Foundation
 
 open class WordList
 {
-    fileprivate let MIN_ANAGRAM_LENGTH = 1
-    fileprivate let SUBANAGRAM_DEPTH = 3
     open var resultsLimit = 500
     open var wordlist: [String]!
     fileprivate var count = 0
@@ -131,7 +129,7 @@ open class WordList
                 break
             }
             let wordLen = word.length
-            if wordLen>self.MIN_ANAGRAM_LENGTH && wordLen < len
+            if wordLen>0 && wordLen < len
             {
                 if anagram.isSubgram(word)
                 {

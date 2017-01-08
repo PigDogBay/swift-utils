@@ -190,7 +190,7 @@ open class WordSearch
         {
         case .anagram:
             self.wordList.findAnagrams(query, callback: callback)
-            if self.findSubAnagrams && len>4 && len<self.MAX_WORD_LEN
+            if self.findSubAnagrams && len<self.MAX_WORD_LEN
             {
                 //show the unused letters in brackets
                 let missingLetterWrapper = WordListMissingLetterWrapper(callback: callback, originalWord: query)
