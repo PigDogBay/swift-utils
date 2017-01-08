@@ -15,8 +15,8 @@ public enum SearchType
     case twoWordAnagram
     case wildcard
     case wildcardAndCrossword
+    case blanks
     case supergram
-    case supergramWild
 }
 
 open class WordSearch
@@ -29,14 +29,14 @@ open class WordSearch
     open let CROSSWORD_STR = "."
     open let TWO_WORD_STR = " "
     open let WILDCARD_STR = "@"
-    open let SUPERGRAM_STR = "+"
-    open let SUPERGRAM_WILD_STR = "*"
+    open let BLANK_STR = "+"
+    open let SUPERGRAM_STR = "*"
     
     fileprivate let CROSSWORD_CHAR_VALUE = UnicodeScalar(".").value
     fileprivate let TWO_WORD_CHAR_VALUE = UnicodeScalar(" ").value
     fileprivate let WILDCARD_CHAR_VALUE = UnicodeScalar("@").value
-    fileprivate let SUPERGRAM_CHAR_VALUE = UnicodeScalar("+").value
-    fileprivate let SUPERGRAM_WILD_VALUE = UnicodeScalar("*").value
+    fileprivate let BLANK_CHAR_VALUE = UnicodeScalar("+").value
+    fileprivate let SUPERGRAM_VALUE = UnicodeScalar("*").value
     fileprivate let LOWEST_CHAR_VALUE = UnicodeScalar("a").value
     fileprivate let HIGHEST_CHAR_VALUE = UnicodeScalar("z").value
 
@@ -84,8 +84,8 @@ open class WordSearch
     open func standardSearchesOnly(_ query : String)->String
     {
         return query
+            .replace(BLANK_STR, withString: CROSSWORD_STR)
             .replace(SUPERGRAM_STR, withString: CROSSWORD_STR)
-            .replace(SUPERGRAM_WILD_STR, withString: CROSSWORD_STR)
     }
     
     open func preProcessQuery(_ query: String)->String
@@ -128,13 +128,13 @@ open class WordSearch
         {
             return SearchType.twoWordAnagram
         }
+        else if query.mpdb_contains(BLANK_STR)
+        {
+            return SearchType.blanks
+        }
         else if query.mpdb_contains(SUPERGRAM_STR)
         {
             return SearchType.supergram
-        }
-        else if query.mpdb_contains(SUPERGRAM_WILD_STR)
-        {
-            return SearchType.supergramWild
         }
         return SearchType.anagram
     }
@@ -150,12 +150,12 @@ open class WordSearch
         case .crossword:
             //keep a-z and .
             query = stripChars(query, except1: CROSSWORD_CHAR_VALUE)
-        case .supergram:
+        case .blanks:
             //keep a-z and +
-            query = stripChars(query, except1: SUPERGRAM_CHAR_VALUE)
-        case .supergramWild:
+            query = stripChars(query, except1: BLANK_CHAR_VALUE)
+        case .supergram:
             //keep a-z and *
-            query = stripChars(query, except1: SUPERGRAM_WILD_VALUE)
+            query = stripChars(query, except1: SUPERGRAM_VALUE)
         case .twoWordAnagram:
             //keep a-z and ' '
             query = stripChars(query, except1: TWO_WORD_CHAR_VALUE)
@@ -200,10 +200,10 @@ open class WordSearch
             }
         case .crossword:
             self.wordList.findCrosswords(query, callback: callback)
-        case .supergram:
+        case .blanks:
             let queryRemovedSymbol = query.replace("+", withString: "")
             self.wordList.findSupergrams(queryRemovedSymbol, callback: callback, length: len)
-        case .supergramWild:
+        case .supergram:
             let queryRemovedSymbol = query.replace("*", withString: "")
             self.wordList.findSupergrams(queryRemovedSymbol, callback: callback, length: 0)
         case .twoWordAnagram:
