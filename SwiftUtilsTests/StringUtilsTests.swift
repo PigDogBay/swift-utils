@@ -110,5 +110,20 @@ class StringUtilsTests: XCTestCase {
         actual = "abcdefghi".doesNotContainBannedLetters(["z"])
         XCTAssert(actual)
     }
+    
+    //
+    //0.193 0.192 0.196 unicodeScalars.count
+    //0.308 0.315 0.312 utf16.count
+    //0.465 0.461 0.465 characters.count
+    func testPerformanceLength() {
+        // This is an example of a performance test case.
+        let target = "wonderba"
+        self.measure {
+            for _ in 0 ..< 1000000
+            {
+                target.length
+            }
+        }
+    }
 
 }

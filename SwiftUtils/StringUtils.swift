@@ -36,7 +36,7 @@ public extension String
     }
     
     var length : Int{
-        return self.utf16.count
+        return self.unicodeScalars.count
     }
     /*
         Returns all the words that are one letter less, 
