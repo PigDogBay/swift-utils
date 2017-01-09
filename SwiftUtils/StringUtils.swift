@@ -19,14 +19,8 @@ public extension String
     //return the string in specified range
     public subscript (r: Range<Int>) -> String
     {
-//        
-//        let startIndex = self.startIndex.advancedBy(r.startIndex)
-//        let endIndex = startIndex.advancedBy(r.endIndex - r.startIndex)
-//        return self[startIndex ..< endIndex]
-        
-        let startIndex = self.characters.index(self.startIndex, offsetBy: r.lowerBound)
-        let endIndex = self.characters.index(self.startIndex, offsetBy: r.upperBound)
-//        let endIndex = <#T##String.CharacterView corresponding to `startIndex`##String.CharacterView#>.index(startIndex, offsetBy: r.upperBound - r.lowerBound)
+        let startIndex = self.index(self.startIndex, offsetBy: r.lowerBound)
+        let endIndex = self.index(self.startIndex, offsetBy: r.upperBound)
         return self[startIndex ..< endIndex]
     }
     
@@ -125,7 +119,6 @@ public extension String
             }
         }
         return true
-        
     }
     
 }

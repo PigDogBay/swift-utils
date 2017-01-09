@@ -125,5 +125,12 @@ class StringUtilsTests: XCTestCase {
             }
         }
     }
+    
+    func testSubstringSubscipt() {
+        let target = "Holly Bailey"
+        XCTAssertEqual(target[0..<5],"Holly")
+        XCTAssertEqual(target[3..<7],"ly B")
+        XCTAssertEqual(target[6..<12],"Bailey")
+    }
 
 }
