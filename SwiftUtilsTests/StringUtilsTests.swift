@@ -97,6 +97,10 @@ class StringUtilsTests: XCTestCase {
     {
         var actual = "abcdefghi".doesNotContainBannedLetters(["j","k","l"])
         XCTAssert(actual)
+        actual = "abcdefkghi".doesNotContainBannedLetters(["j","k","l"])
+        XCTAssert(!actual)
+        actual = "abcdeflghi".doesNotContainBannedLetters(["j","k","l"])
+        XCTAssert(!actual)
         actual = "abcdefghi".doesNotContainBannedLetters(["a","b","c"])
         XCTAssert(!actual)
         actual = "abcdefghi".doesNotContainBannedLetters(["i","j","k"])
@@ -121,7 +125,7 @@ class StringUtilsTests: XCTestCase {
         self.measure {
             for _ in 0 ..< 1000000
             {
-                target.length
+                _ = target.length
             }
         }
     }

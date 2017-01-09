@@ -107,18 +107,10 @@ public extension String
         }
         return String(builder)
     }
-    
-    public func doesNotContainBannedLetters(_ bannedLetters: [Character]) -> Bool
+
+    public func doesNotContainBannedLetters(_ bannedLetters: CharacterSet) -> Bool
     {
-        let chars = Array(self.characters)
-        for c in bannedLetters
-        {
-            if chars.contains(c)
-            {
-                return false
-            }
-        }
-        return true
+        return self.rangeOfCharacter(from: bannedLetters) == nil
     }
-    
+   
 }
