@@ -20,9 +20,9 @@ open class MissingLetters
     
     fileprivate var positions : [Int] = [0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,
                                          0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0]
-    let lettersLen : Int
-    let letters : String
-    var builder  = ""
+    fileprivate let lettersLen : Int
+    fileprivate let letters : String
+    fileprivate var builder  = ""
     
     /// Initialize class with anagram letters
     ///

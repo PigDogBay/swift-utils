@@ -26,11 +26,11 @@ open class WordSearch
     fileprivate let usLocale = Locale(identifier: "en_US")
 
     open let MAX_WORD_LEN = 30
-    open let CROSSWORD_STR = "."
-    open let TWO_WORD_STR = " "
-    open let WILDCARD_STR = "@"
-    open let BLANK_STR = "+"
-    open let SUPERGRAM_STR = "*"
+    static open let CROSSWORD_STR = "."
+    static open let TWO_WORD_STR = " "
+    static open let WILDCARD_STR = "@"
+    static open let BLANK_STR = "+"
+    static open let SUPERGRAM_STR = "*"
     
     fileprivate let CROSSWORD_CHAR_VALUE = UnicodeScalar(".").value
     fileprivate let TWO_WORD_CHAR_VALUE = UnicodeScalar(" ").value
@@ -105,27 +105,27 @@ open class WordSearch
     
     open func getQueryType(_ query: String) ->SearchType
     {
-        if query.mpdb_contains(WILDCARD_STR) && query.mpdb_contains(CROSSWORD_STR)
+        if query.mpdb_contains(WordSearch.WILDCARD_STR) && query.mpdb_contains(WordSearch.CROSSWORD_STR)
         {
             return SearchType.wildcardAndCrossword
         }
-        else if query.mpdb_contains(WILDCARD_STR)
+        else if query.mpdb_contains(WordSearch.WILDCARD_STR)
         {
             return SearchType.wildcard
         }
-        else if query.mpdb_contains(CROSSWORD_STR)
+        else if query.mpdb_contains(WordSearch.CROSSWORD_STR)
         {
             return SearchType.crossword
         }
-        else if query.mpdb_contains(TWO_WORD_STR)
+        else if query.mpdb_contains(WordSearch.TWO_WORD_STR)
         {
             return SearchType.twoWordAnagram
         }
-        else if query.mpdb_contains(BLANK_STR)
+        else if query.mpdb_contains(WordSearch.BLANK_STR)
         {
             return SearchType.blanks
         }
-        else if query.mpdb_contains(SUPERGRAM_STR)
+        else if query.mpdb_contains(WordSearch.SUPERGRAM_STR)
         {
             return SearchType.supergram
         }
