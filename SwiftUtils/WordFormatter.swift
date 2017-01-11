@@ -91,7 +91,7 @@ public class SupergramFormatter : IWordFormatter {
         self.highlightAttribute = [NSForegroundColorAttributeName : color]
     }
 
-    public var isAttributed: Bool { get { return false}}
+    public var isAttributed: Bool { get { return true}}
     
     public func format(_ word: String) -> String { return word }
     
@@ -110,13 +110,13 @@ public class SupergramFormatter : IWordFormatter {
 }
 
 /// Formats a word based on the query and search type
-open class WordFormatter : IWordFormatter
+public class WordFormatter : IWordFormatter
 {
     fileprivate let defaultFormatter : IWordFormatter = NoFormatting()
     fileprivate var formatter : IWordFormatter
     var highlightColor = UIColor.red
     
-    init(){
+    public init(){
         formatter = defaultFormatter
     }
     
@@ -133,11 +133,11 @@ open class WordFormatter : IWordFormatter
     //
     // Template Method
     //
-    public func setLabelText(_ label: UILabel, _ word : String) {
+    public func setLabelText(_ label: UILabel?, _ word : String) {
         if formatter.isAttributed {
-            label.attributedText = formatter.formatAttributed(word)
+            label?.attributedText = formatter.formatAttributed(word)
         } else {
-            label.text = formatter.format(word)
+            label?.text = formatter.format(word)
         }
     }
     

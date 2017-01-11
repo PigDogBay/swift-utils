@@ -185,10 +185,8 @@ open class WordSearch
             self.wordList.findAnagrams(query, callback: callback)
             if self.findSubAnagrams && len<self.MAX_WORD_LEN
             {
-                //show the unused letters in brackets
-                let missingLetterWrapper = WordListMissingLetterWrapper(callback: callback, originalWord: query)
                 //don't show the same word twice
-                let filterWrapper = WordListFilterWrapper(callback: missingLetterWrapper)
+                let filterWrapper = WordListFilterWrapper(callback: callback)
                 self.wordList.findSubAnagrams(query, callback: filterWrapper)
             }
         case .crossword:
