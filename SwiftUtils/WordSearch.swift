@@ -42,7 +42,29 @@ open class WordSearch
 
     fileprivate let LOWEST_ASCII_VALUE = UnicodeScalar(" ").value
     fileprivate let HIGHEST_ASCII_VALUE = UnicodeScalar("z").value
-    
+
+    public class func getGoogleUrl(word : String)->String{
+        return "https://www.google.com/search?q=define:\(word)"
+    }
+    public class func getMerriamWebsterUrl(word : String)->String{
+        return "https://www.merriam-webster.com/dictionary/\(word)"
+    }
+    public class func getThesaurusUrl(word : String)->String{
+        return "https://www.merriam-webster.com/thesaurus/\(word)"
+    }
+    public class func getCollinsUrl(word : String)->String{
+        return "https://www.collinsdictionary.com/dictionary/english/\(word)"
+    }
+    public class func getOxfordDictionariesUrl(word : String)->String{
+        return "https://en.oxforddictionaries.com/definition/\(word)"
+    }
+    public class func getAmericanHeritageUrl(word : String)->String{
+        return "https://www.ahdictionary.com/word/search.html?q=\(word)"
+    }
+    public class func getWikipediaUrl(word : String)->String{
+        return "https://en.wikipedia.org/wiki/\(word)"
+    }
+
     public init(wordList: WordList)
     {
         self.wordList = wordList
