@@ -114,7 +114,7 @@ public class WordFormatter : IWordFormatter
 {
     fileprivate let defaultFormatter : IWordFormatter = NoFormatting()
     fileprivate var formatter : IWordFormatter
-    var highlightColor = UIColor.red
+    public var highlightColor = UIColor.red
     
     public init(){
         formatter = defaultFormatter
