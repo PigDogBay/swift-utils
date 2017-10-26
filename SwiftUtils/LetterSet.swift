@@ -123,7 +123,7 @@ open class LetterSet
             setB[i] = setB[i] - setA[i]
             if setB[i] < 0 { setB[i]=0}
         }
-        let count = countSet(setB)
+        let count = setB.reduce(0, +)
         return count <= numberOfBlanks
     }
     
@@ -141,14 +141,4 @@ open class LetterSet
         addToSetB(word)
         return isASupersetOfB()
     }
-    
-    fileprivate func countSet(_ set: [Int]) -> Int{
-        var count = 0
-        for i in set
-        {
-            count = count + i;
-        }
-        return count
-    }
-    
 }
