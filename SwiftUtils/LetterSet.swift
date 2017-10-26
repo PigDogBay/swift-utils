@@ -23,8 +23,9 @@ open class LetterSet
     
     open func clear()
     {
-        for i in 0 ..< 26 
-        {
+        var i  = 26
+        while i != 0 {
+            i = i - 1
             setA[i]=0
         }
     }
@@ -59,8 +60,9 @@ open class LetterSet
 
     fileprivate func clearSetB()
     {
-        for i in 0 ..< 26
-        {
+        var i  = 26
+        while i != 0 {
+            i = i - 1
             setB[i]=0
         }
     }
@@ -118,8 +120,9 @@ open class LetterSet
     {
         clearSetB()
         addToSetB(word)
-        for i in 0 ..< 26
-        {
+        var i  = 26
+        while i != 0 {
+            i = i - 1
             setB[i] = setB[i] - setA[i]
             if setB[i] < 0 { setB[i]=0}
         }
@@ -144,9 +147,10 @@ open class LetterSet
     
     fileprivate func countSet(_ set: [Int]) -> Int{
         var count = 0
-        for i in set
-        {
-            count = count + i;
+        var i  = 26
+        while i != 0 {
+            i = i - 1
+            count = count + set[i]
         }
         return count
     }
