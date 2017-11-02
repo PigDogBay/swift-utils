@@ -112,5 +112,29 @@ class WordListCallbackTests: XCTestCase, WordListCallback  {
         target.update("abcdef")
         XCTAssertNil(result)
     }
+    func testContainsFilter1()
+    {
+        let target = ContainsFilter(callback: self, letters: "ace")
+        target.update("abcdef")
+        XCTAssertEqual(result!, "abcdef")
+    }
+    func testContainsFilter2()
+    {
+        let target = ContainsFilter(callback: self, letters: "axe")
+        target.update("abcdef")
+        XCTAssertNil(result)
+    }
+    func testExcludesFilter1()
+    {
+        let target = ExcludesFilter(callback: self, letters: "mno")
+        target.update("abcdef")
+        XCTAssertEqual(result!, "abcdef")
+    }
+    func testExcludesFilter2()
+    {
+        let target = ExcludesFilter(callback: self, letters: "fgh")
+        target.update("abcdef")
+        XCTAssertNil(result)
+    }
 
 }

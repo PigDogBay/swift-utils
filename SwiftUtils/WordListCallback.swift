@@ -142,9 +142,34 @@ open class ContainsFilter : WordListCallback {
     }
     open func update(_ result: String)
     {
-        if result.hasSuffix(letters) {
-            callback.update(result)
+        for c in letters.unicodeScalars {
+            if !result.unicodeScalars.contains(c){
+                //letter not found
+                return
+            }
         }
+        //contains all letters
+        callback.update(result)
+    }
+}
+open class ExcludesFilter : WordListCallback {
+    fileprivate let callback : WordListCallback
+    fileprivate let letters : String
+    
+    public init(callback : WordListCallback, letters : String){
+        self.callback = callback
+        self.letters = letters
+    }
+    open func update(_ result: String)
+    {
+        for c in letters.unicodeScalars {
+            if result.unicodeScalars.contains(c){
+                //excluded letter found
+                return
+            }
+        }
+        //does not contain any of the excluded letters
+        callback.update(result)
     }
 }
 
