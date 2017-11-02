@@ -230,8 +230,30 @@ open class WordList
                 }
             }
         }
-        
     }
+    open func findMultiwordAnagrams(_ letters: String, startLen : Int, callback: WordListCallback){
+        let len = letters.count
+        let middleWordSize = len/2
+        
+        //first show the user's requested word sizes
+        findOtherMultiwordAnagrams(letters, startLen, callback: callback)
+        
+        let skipLen = startLen > middleWordSize ? len - startLen : startLen
+        for i in stride(from: middleWordSize, to: 0, by: -1) {
+            if (self.stop) { break }
+            if i != skipLen {
+                findOtherMultiwordAnagrams(letters, i, callback: callback)
+            }
+        }
+    }
+
+    fileprivate func findOtherMultiwordAnagrams(_ letters : String,_ i : Int, callback : WordListCallback) {
+        let index = letters.index(letters.startIndex, offsetBy: i)
+        let word1 = String(letters[..<index])
+        let word2 = String(letters[index...])
+        findMultiwordAnagrams(word1, word2: word2, callback: callback)
+    }
+    
     fileprivate func getFilteredList(_ set: LetterSet, length: Int) -> [String]{
         var matches : [String] = []
         for word in self.wordlist

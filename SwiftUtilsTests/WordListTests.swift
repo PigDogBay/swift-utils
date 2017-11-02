@@ -72,7 +72,13 @@ class WordListTests: XCTestCase, WordListCallback {
         let target = WordList(wordlist: list)
         target.findAnagrams("aai", numberOfBlanks: 2, callback: self)
         XCTAssert(4 == matches.count)
-        
+    }
+    
+    func testMultiwordAnagrams(){
+        let target = WordList(wordlist: list)
+        target.findMultiwordAnagrams("acornelectron", startLen: 3, callback: self)
+        XCTAssert(1 == matches.count)
+        XCTAssertEqual("acorn electron", matches[0])
     }
 
 }
