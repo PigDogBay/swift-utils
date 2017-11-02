@@ -50,7 +50,67 @@ class WordListCallbackTests: XCTestCase, WordListCallback  {
 
         target.update("defghi")
         XCTAssertEqual(result!, "defghi (abc)")
-        
     }
-    
+
+    func testBiggerThanFilter1()
+    {
+        let target = BiggerThanFilter(callback: self, size: 5)
+        target.update("abcdef")
+        XCTAssertEqual(result!, "abcdef")
+    }
+    func testBiggerThanFilter2()
+    {
+        let target = BiggerThanFilter(callback: self, size: 5)
+        target.update("abcde")
+        XCTAssertNil(result)
+    }
+    func testLessThanFilter1()
+    {
+        let target = LessThanFilter(callback: self, size: 7)
+        target.update("abcdef")
+        XCTAssertEqual(result!, "abcdef")
+    }
+    func testLessThanFilter2()
+    {
+        let target = LessThanFilter(callback: self, size: 6)
+        target.update("abcdef")
+        XCTAssertNil(result)
+    }
+    func testEqualToFilter1()
+    {
+        let target = EqualToFilter(callback: self, size: 6)
+        target.update("abcdef")
+        XCTAssertEqual(result!, "abcdef")
+    }
+    func testEqualToFilter2()
+    {
+        let target = EqualToFilter(callback: self, size: 5)
+        target.update("abcdef")
+        XCTAssertNil(result)
+    }
+    func testStartsWithFilter1()
+    {
+        let target = StartsWithFilter(callback: self, letters: "abc")
+        target.update("abcdef")
+        XCTAssertEqual(result!, "abcdef")
+    }
+    func testStartsWithFilter2()
+    {
+        let target = StartsWithFilter(callback: self, letters: "def")
+        target.update("abcdef")
+        XCTAssertNil(result)
+    }
+    func testEndsWithFilter1()
+    {
+        let target = EndsWithFilter(callback: self, letters: "def")
+        target.update("abcdef")
+        XCTAssertEqual(result!, "abcdef")
+    }
+    func testEndsWithFilter2()
+    {
+        let target = EndsWithFilter(callback: self, letters: "abc")
+        target.update("abcdef")
+        XCTAssertNil(result)
+    }
+
 }
