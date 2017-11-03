@@ -40,8 +40,8 @@ public extension String
     public func getSubWords() ->[String]
     {
         //sort letter into a Array[Character]
-        let sortedLetters = self.characters.sorted(by: <)
-        let len = characters.count
+        let sortedLetters = self.sorted(by: <)
+        let len = self.count
         var subwords = [String]()
         for i in 0  ..< len
         {
@@ -92,20 +92,14 @@ public extension String
     */
     public func subtractLetters(_ word : String) ->String
     {
-        var builder = Array(self.characters)
-        for delChar in word.characters
+        var builder = self
+        for delChar in word
         {
-            let len = builder.count
-            for i in 0 ..< len
-            {
-                if delChar == builder[i]
-                {
-                    builder.remove(at: i)
-                    break;
-                }
+            if let index = builder.index(of: delChar) {
+                builder.remove(at: index)
             }
         }
-        return String(builder)
+        return builder
     }
 
     public func doesNotContainBannedLetters(_ bannedLetters: CharacterSet) -> Bool

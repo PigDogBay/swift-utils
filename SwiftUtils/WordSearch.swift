@@ -221,8 +221,8 @@ open class WordSearch
             let queryRemovedSymbol = query.replace("*", withString: "")
             self.wordList.findSupergrams(queryRemovedSymbol, callback: callback, length: 0)
         case .twoWordAnagram:
-            let words = query.characters.split{$0==" "}.map { String($0) }
-            self.wordList.findMultiwordAnagrams(words[0]+words[1], startLen: words[0].count, callback: callback)
+            let words = query.split(separator: " ")
+            self.wordList.findMultiwordAnagrams(String(words[0]+words[1]), startLen: words[0].count, callback: callback)
         case .wildcard, .wildcardAndCrossword:
             self.wordList.findWildcards(query, callback: callback)
         }
