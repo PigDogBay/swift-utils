@@ -205,7 +205,7 @@ open class WordSearch
         {
         case .anagram:
             self.wordList.findAnagrams(query, callback: callback)
-            if self.findSubAnagrams && len<self.MAX_WORD_LEN
+            if self.findSubAnagrams && len<=self.MAX_WORD_LEN
             {
                 //don't show the same word twice
                 let filterWrapper = WordListFilterWrapper(callback: callback)
