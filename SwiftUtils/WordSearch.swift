@@ -222,7 +222,9 @@ open class WordSearch
             self.wordList.findSupergrams(queryRemovedSymbol, callback: callback, length: 0)
         case .twoWordAnagram:
             let words = query.split(separator: " ")
-            self.wordList.findMultiwordAnagrams(String(words[0]+words[1]), startLen: words[0].count, callback: callback)
+            if words.count > 1 {
+                self.wordList.findMultiwordAnagrams(String(words[0]+words[1]), startLen: words[0].count, callback: callback)
+            }
         case .wildcard, .wildcardAndCrossword:
             self.wordList.findWildcards(query, callback: callback)
         }
