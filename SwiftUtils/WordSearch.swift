@@ -200,6 +200,10 @@ open class WordSearch
     open func runQuery(_ query: String, type: SearchType, callback: WordListCallback)
     {
         let len = query.length
+        //an empty query will return a match, as an empty string is in the word list
+        if len == 0 {
+            return
+        }
         self.wordList.reset()
         switch type
         {
