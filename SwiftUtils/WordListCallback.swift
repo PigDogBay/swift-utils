@@ -134,22 +134,19 @@ open class EndsWithFilter : WordListCallback {
 
 open class ContainsFilter : WordListCallback {
     fileprivate let callback : WordListCallback
-    fileprivate let letters : String
+    fileprivate let letterSet : LetterSet
     
     public init(callback : WordListCallback, letters : String){
         self.callback = callback
-        self.letters = letters
+        self.letterSet = LetterSet(word: letters)
     }
     open func update(_ result: String)
     {
-        for c in letters.unicodeScalars {
-            if !result.unicodeScalars.contains(c){
-                //letter not found
-                return
-            }
+        if (letterSet.isSupergram(result))
+        {
+            //contains all letters
+            callback.update(result)
         }
-        //contains all letters
-        callback.update(result)
     }
 }
 open class ExcludesFilter : WordListCallback {
