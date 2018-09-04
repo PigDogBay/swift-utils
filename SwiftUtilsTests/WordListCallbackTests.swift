@@ -169,7 +169,7 @@ class WordListCallbackTests: XCTestCase, WordListCallback  {
         XCTAssertEqual(result, "abcdef")
     }
     func testCrosswordFilter1(){
-        let target = CrosswordFilter(callback: self, letters: ".p.c...m")
+        let target = RegexFilter.createCrosswordFilter(callback: self, query: ".p.c...m")
         target.update("spectrum")
         XCTAssertEqual(result, "spectrum")
         result = nil
@@ -177,7 +177,7 @@ class WordListCallbackTests: XCTestCase, WordListCallback  {
         XCTAssertNil(result)
     }
     func testCrosswordFilter2(){
-        let target = CrosswordFilter(callback: self, letters: "@rum")
+        let target = RegexFilter.createCrosswordFilter(callback: self, query: "@rum")
         target.update("spectrum")
         XCTAssertEqual(result, "spectrum")
         result = nil
@@ -185,7 +185,7 @@ class WordListCallbackTests: XCTestCase, WordListCallback  {
         XCTAssertNil(result)
     }
     func testCrosswordFilter3(){
-        let target = CrosswordFilter(callback: self, letters: ".p@um")
+        let target = RegexFilter.createCrosswordFilter(callback: self, query: ".p@um")
         target.update("spectrum")
         XCTAssertEqual(result, "spectrum")
         result = nil
@@ -193,7 +193,7 @@ class WordListCallbackTests: XCTestCase, WordListCallback  {
         XCTAssertNil(result)
     }
     func testCrosswordFilter4(){
-        let target = CrosswordFilter(callback: self, letters: "........")
+        let target = RegexFilter.createCrosswordFilter(callback: self, query: "........")
         target.update("spectrum")
         XCTAssertEqual(result, "spectrum")
         result = nil
@@ -201,12 +201,12 @@ class WordListCallbackTests: XCTestCase, WordListCallback  {
         XCTAssertNil(result)
     }
     func testCrosswordFilter_bad_pattern(){
-        let target = CrosswordFilter(callback: self, letters: "][*[$-]")
+        let target = RegexFilter.createCrosswordFilter(callback: self, query: "][*[$-]")
         target.update("spectrum")
         XCTAssertNil(result)
     }
     func testCrosswordFilter_empty_string(){
-        let target = CrosswordFilter(callback: self, letters: "")
+        let target = RegexFilter.createCrosswordFilter(callback: self, query: "")
         target.update("spectrum")
         XCTAssertNil(result)
     }
