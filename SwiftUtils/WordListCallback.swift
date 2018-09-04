@@ -169,6 +169,34 @@ open class ExcludesFilter : WordListCallback {
         callback.update(result)
     }
 }
+open class ContainsWordFilter : WordListCallback {
+    fileprivate let callback : WordListCallback
+    fileprivate let word : String
+    public init(callback : WordListCallback, word : String){
+        self.callback = callback
+        self.word = word
+    }
+    open func update(_ result: String)
+    {
+        if result.contains(word){
+            callback.update(result)
+        }
+    }
+}
+open class ExcludesWordFilter : WordListCallback {
+    fileprivate let callback : WordListCallback
+    fileprivate let word : String
+    public init(callback : WordListCallback, word : String){
+        self.callback = callback
+        self.word = word
+    }
+    open func update(_ result: String)
+    {
+        if !result.contains(word){
+            callback.update(result)
+        }
+    }
+}
 
 
 
