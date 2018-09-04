@@ -128,7 +128,7 @@ class WordListCallbackTests: XCTestCase, WordListCallback  {
     {
         let target = ContainsFilter(callback: self, letters: "badee")
         target.update("abcdeef")
-        XCTAssertEqual(result!, "abcdeef")
+        XCTAssertEqual(result, "abcdeef")
     }
     func testContainsFilter_multiple_letters2()
     {
@@ -140,7 +140,7 @@ class WordListCallbackTests: XCTestCase, WordListCallback  {
     {
         let target = ExcludesFilter(callback: self, letters: "mno")
         target.update("abcdef")
-        XCTAssertEqual(result!, "abcdef")
+        XCTAssertEqual(result, "abcdef")
     }
     func testExcludesFilter2()
     {
@@ -151,7 +151,7 @@ class WordListCallbackTests: XCTestCase, WordListCallback  {
     func testContainsWord1(){
         let target = ContainsWordFilter(callback: self, word: "bcd")
         target.update("abcdef")
-        XCTAssertEqual(result!, "abcdef")
+        XCTAssertEqual(result, "abcdef")
     }
     func testContainsWord2(){
         let target = ContainsWordFilter(callback: self, word: "cbd")
@@ -166,6 +166,48 @@ class WordListCallbackTests: XCTestCase, WordListCallback  {
     func testExcludesWord2(){
         let target = ExcludesWordFilter(callback: self, word: "cbd")
         target.update("abcdef")
-        XCTAssertEqual(result!, "abcdef")
+        XCTAssertEqual(result, "abcdef")
+    }
+    func testCrosswordFilter1(){
+        let target = CrosswordFilter(callback: self, letters: ".p.c...m")
+        target.update("spectrum")
+        XCTAssertEqual(result, "spectrum")
+        result = nil
+        target.update("commodore")
+        XCTAssertNil(result)
+    }
+    func testCrosswordFilter2(){
+        let target = CrosswordFilter(callback: self, letters: "@rum")
+        target.update("spectrum")
+        XCTAssertEqual(result, "spectrum")
+        result = nil
+        target.update("commodore")
+        XCTAssertNil(result)
+    }
+    func testCrosswordFilter3(){
+        let target = CrosswordFilter(callback: self, letters: ".p@um")
+        target.update("spectrum")
+        XCTAssertEqual(result, "spectrum")
+        result = nil
+        target.update("commodore")
+        XCTAssertNil(result)
+    }
+    func testCrosswordFilter4(){
+        let target = CrosswordFilter(callback: self, letters: "........")
+        target.update("spectrum")
+        XCTAssertEqual(result, "spectrum")
+        result = nil
+        target.update("commodore")
+        XCTAssertNil(result)
+    }
+    func testCrosswordFilter_bad_pattern(){
+        let target = CrosswordFilter(callback: self, letters: "][*[$-]")
+        target.update("spectrum")
+        XCTAssertNil(result)
+    }
+    func testCrosswordFilter_empty_string(){
+        let target = CrosswordFilter(callback: self, letters: "")
+        target.update("spectrum")
+        XCTAssertNil(result)
     }
 }

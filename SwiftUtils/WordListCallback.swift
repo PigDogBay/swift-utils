@@ -197,6 +197,41 @@ open class ExcludesWordFilter : WordListCallback {
         }
     }
 }
+open class CrosswordFilter : WordListCallback {
+    fileprivate let callback : WordListCallback
+    fileprivate let regex : NSRegularExpression?
+    public init(callback : WordListCallback, letters : String){
+        self.callback = callback
+        let pattern = CrosswordFilter.createRegexPattern(letters)
+        regex = try? NSRegularExpression(pattern: pattern, options: [])
+    }
+    open func update(_ result: String)
+    {
+        let range = NSRange(location: 0, length: result.length)
+        if 1 == regex?.numberOfMatches(in: result, options: [], range: range){
+            callback.update(result)
+        }
+    }
+
+    class func createRegexPattern(_ query: String) ->String
+    {
+        //need to add word boundary to prevent regex matching just part of the word string
+        return "\\b"+query
+            .replace(".", withString: "[a-z]")
+            .replace("@", withString: "[a-z]+")+"\\b"
+    }
+}
+
+open class RegexFilter : WordListCallback {
+    fileprivate let callback : WordListCallback
+    public init(callback : WordListCallback, letters : String){
+        self.callback = callback
+    }
+    open func update(_ result: String)
+    {
+        callback.update(result)
+    }
+}
 
 
 
