@@ -210,4 +210,22 @@ class WordListCallbackTests: XCTestCase, WordListCallback  {
         target.update("spectrum")
         XCTAssertNil(result)
     }
+    func testRegexFilter1(){
+        let target = RegexFilter(callback: self, pattern: "spect[a-z][a-z][a-z]")
+        target.update("spectrum")
+        XCTAssertEqual(result, "spectrum")
+        result = nil
+        target.update("commodore")
+        XCTAssertNil(result)
+    }
+    func testRegexFilter2(){
+        let target = RegexFilter(callback: self, pattern: "")
+        target.update("commodore")
+        XCTAssertNil(result)
+    }
+    func testRegexFilter_bad_pattern(){
+        let target = RegexFilter(callback: self, pattern: "[a-[-z]\\")
+        target.update("commodore")
+        XCTAssertNil(result)
+    }
 }

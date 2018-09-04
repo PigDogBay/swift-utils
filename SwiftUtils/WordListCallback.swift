@@ -224,12 +224,18 @@ open class CrosswordFilter : WordListCallback {
 
 open class RegexFilter : WordListCallback {
     fileprivate let callback : WordListCallback
-    public init(callback : WordListCallback, letters : String){
+    fileprivate let regex : NSRegularExpression?
+
+    public init(callback : WordListCallback, pattern : String){
         self.callback = callback
+        regex = try? NSRegularExpression(pattern: pattern, options: [])
     }
     open func update(_ result: String)
     {
-        callback.update(result)
+        let range = NSRange(location: 0, length: result.length)
+        if 1 == regex?.numberOfMatches(in: result, options: [], range: range){
+            callback.update(result)
+        }
     }
 }
 
