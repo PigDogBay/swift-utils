@@ -145,10 +145,27 @@ open class WordList
         }
     }
 
+    /*
+     Speed Tests
+     -----------
+     Searching for .....ing returns 2543 matches
+     word.range(of: pattern, options:NSString.CompareOptions.regularExpression)
+     -Time taken 5.7s
+     
+     NSRegularExpression
+     -Time taken 4.4s
+     
+     In unit testing, NSRegEx is over twice as fast.
+
+     */
     open func findCrosswords(_ crossword: String, callback: WordListCallback)
     {
         let len = crossword.length
         let pattern = createRegexPattern(crossword)
+        let regex = try? NSRegularExpression(pattern: pattern, options: [])
+        if nil == regex {return}
+        let range = NSRange(location: 0, length: len)
+
         for word in self.wordlist
         {
             if (self.stop)
@@ -157,28 +174,38 @@ open class WordList
             }
             if word.length == len
             {
-                if word.range(of: pattern, options:NSString.CompareOptions.regularExpression) != nil
-                {
+                if 1 == regex!.numberOfMatches(in: word, options: [], range: range){
                     callback.update(word)
                 }
             }
         }
     }
+    /*
+     Speed Tests
+     -----------
+    
+     Unit tests show NSRegEx is 3x faster than NSString
+     iPhone 5s Device tests: 16s for NSString, 10s for NSRegEx
+     */
     open func findWildcards(_ wildcard: String, callback: WordListCallback)
     {
         let pattern = createRegexPattern(wildcard)
+        let regex = try? NSRegularExpression(pattern: pattern, options: [])
+        if nil == regex {return}
+
         for word in self.wordlist
         {
             if (self.stop)
             {
                 break
             }
-            if word.range(of: pattern, options:NSString.CompareOptions.regularExpression) != nil
-            {
+            let range = NSRange(location: 0, length: word.length)
+            if 1 == regex!.numberOfMatches(in: word, options: [], range: range){
                 callback.update(word)
             }
         }
     }
+
     fileprivate func createRegexPattern(_ query: String) ->String
     {
         //need to add word boundary to prevent regex matching just part of the word string
