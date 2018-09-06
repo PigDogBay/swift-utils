@@ -285,6 +285,7 @@ open class WordList
         var matches : [String] = []
         for word in self.wordlist
         {
+            if (self.stop) { break }
             if word.length == length && set.isSubgram(word)
             {
                 matches.append(word)
@@ -292,6 +293,73 @@ open class WordList
         }
         return matches
     }
+    open func findMultiwordAnagrams(_ word1: String,_ word2: String,_ word3: String, callback: WordListCallback){
+        let superset = LetterSet(word: word1+word2+word3)
+        let listA = self.getFilteredList(superset, length: word1.length)
+        var listB: [String]
+        var listC: [String]
+        if word1.length == word2.length {
+            //In swift arrays are structs, so listA is copied here
+            listB = listA
+        } else {
+            listB = self.getFilteredList(superset, length: word2.length)
+        }
+        
+        if word3.length == word1.length
+        {
+            listC = listA
+        } else if word3.length == word2.length {
+            listC = listB
+        } else {
+            listC = self.getFilteredList(superset, length: word3.length)
+        }
+        var sublistB : [String] = []
+        var sublistC : [String] = []
+        let are2And3SameLength = word2.length == word3.length
+        
+        for first in listA {
+            //prune lists B and C of any words that are impossible with first
+            superset.clear()
+            superset.add(word1)
+            superset.add(word2)
+            superset.add(word3)
+            superset.delete(first)
+            sublistB.removeAll()
+            filterList(set: superset, length: word2.length, matches: &sublistB, wordList: listB)
+            sublistC.removeAll()
+            if are2And3SameLength {
+                //Ideally in the case sublistC and sublistB would be the same array
+                //however in swift they are structs, so are copied if you assign to a new instance.
+                //I could use NSMutableArray but requires downcasting of the objects to Strings
+                //or wrap the [String] in a class and use inout
+                sublistC.append(contentsOf: sublistB)
+            } else {
+                filterList(set: superset, length: word3.length, matches: &sublistC, wordList: listC)
+            }
+            for second in sublistB {
+                superset.clear()
+                superset.add(word1)
+                superset.add(word2)
+                superset.add(word3)
+                superset.delete(first)
+                superset.delete(second)
+                for third in sublistC {
+                    if (self.stop) { break }
+                    if superset.isAnagram(third){
+                        callback.update("\(first) \(second) \(third)")
+                    }
+                }
+            }
+        }
+    }
     
+    func filterList(set : LetterSet, length : Int, matches : inout [String], wordList : [String]){
+        for word in wordList {
+            if (self.stop) { break }
+            if word.length == length && set.isSubgram(word) {
+                matches.append(word)
+            }
+        }
+    }
     
 }

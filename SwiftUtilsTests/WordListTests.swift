@@ -80,5 +80,23 @@ class WordListTests: XCTestCase, WordListCallback {
         XCTAssert(1 == matches.count)
         XCTAssertEqual("acorn electron", matches[0])
     }
+    func testMultiwordAnagrams3Words(){
+        let target = WordList(wordlist: list)
+        target.findMultiwordAnagrams("svaio","rumacorn", "pect", callback: self)
+        XCTAssert(3 == matches.count)
+        XCTAssertEqual("acorn spectrum vaio", matches[0])
+    }
+    func testMultiwordAnagrams3WordsSameLength(){
+        let target = WordList(wordlist: list)
+        target.findMultiwordAnagrams("vaio","orle", "vaic", callback: self)
+        XCTAssert(6 == matches.count)
+        XCTAssertEqual("oric vale vaio", matches[0])
+    }
+    func testMultiwordAnagrams2WordsSameLength(){
+        let target = WordList(wordlist: list)
+        target.findMultiwordAnagrams("ornseach","arcclair", "resin", callback: self)
+        XCTAssert(2 == matches.count)
+        XCTAssertEqual("sinclair research acorn", matches[0])
+    }
 
 }
