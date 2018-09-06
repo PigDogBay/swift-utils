@@ -27,6 +27,8 @@
 		4D9D30F51D2D2BAB0088392C /* MockIAPTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9D30F41D2D2BAB0088392C /* MockIAPTests.swift */; };
 		4D9D30F71D2D2E550088392C /* MockIAPDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9D30F61D2D2E550088392C /* MockIAPDelegate.swift */; };
 		4D9D30F91D2D36090088392C /* IAPObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9D30F81D2D36090088392C /* IAPObservable.swift */; };
+		4D9EE74521414B220013192B /* CodewordSolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9EE74421414B220013192B /* CodewordSolver.swift */; };
+		4D9EE747214182510013192B /* CodewordSolverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9EE746214182510013192B /* CodewordSolverTests.swift */; };
 		4DD7BA6F1E23B4CF00400E9D /* WordFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD7BA6E1E23B4CF00400E9D /* WordFormatter.swift */; };
 		4DD7BA711E23BD4D00400E9D /* MissingLetters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD7BA701E23BD4D00400E9D /* MissingLetters.swift */; };
 		4DD7BA731E23D55D00400E9D /* MissingLettersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD7BA721E23D55D00400E9D /* MissingLettersTests.swift */; };
@@ -67,6 +69,8 @@
 		4D9D30F41D2D2BAB0088392C /* MockIAPTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockIAPTests.swift; sourceTree = "<group>"; };
 		4D9D30F61D2D2E550088392C /* MockIAPDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockIAPDelegate.swift; sourceTree = "<group>"; };
 		4D9D30F81D2D36090088392C /* IAPObservable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPObservable.swift; sourceTree = "<group>"; };
+		4D9EE74421414B220013192B /* CodewordSolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodewordSolver.swift; sourceTree = "<group>"; };
+		4D9EE746214182510013192B /* CodewordSolverTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodewordSolverTests.swift; sourceTree = "<group>"; };
 		4DD7BA6E1E23B4CF00400E9D /* WordFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordFormatter.swift; sourceTree = "<group>"; };
 		4DD7BA701E23BD4D00400E9D /* MissingLetters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissingLetters.swift; sourceTree = "<group>"; };
 		4DD7BA721E23D55D00400E9D /* MissingLettersTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissingLettersTests.swift; sourceTree = "<group>"; };
@@ -113,6 +117,7 @@
 		4D45EFE51A9DFB3700C40BB4 /* SwiftUtils */ = {
 			isa = PBXGroup;
 			children = (
+				4D9EE74421414B220013192B /* CodewordSolver.swift */,
 				4D9D30EE1D2D26490088392C /* IAPDelegate.swift */,
 				4D9D30EC1D2D243F0088392C /* IAPInterface.swift */,
 				4D9D30F81D2D36090088392C /* IAPObservable.swift */,
@@ -143,6 +148,7 @@
 		4D45EFF21A9DFB3700C40BB4 /* SwiftUtilsTests */ = {
 			isa = PBXGroup;
 			children = (
+				4D9EE746214182510013192B /* CodewordSolverTests.swift */,
 				4D45F00B1A9E002500C40BB4 /* LetterSetTests.swift */,
 				4DD7BA721E23D55D00400E9D /* MissingLettersTests.swift */,
 				4D9D30F61D2D2E550088392C /* MockIAPDelegate.swift */,
@@ -279,6 +285,7 @@
 				4D45F0041A9DFFB500C40BB4 /* StringUtils.swift in Sources */,
 				4D9D30EF1D2D26490088392C /* IAPDelegate.swift in Sources */,
 				4D45F0021A9DFF8D00C40BB4 /* LetterSet.swift in Sources */,
+				4D9EE74521414B220013192B /* CodewordSolver.swift in Sources */,
 				4D9D30F91D2D36090088392C /* IAPObservable.swift in Sources */,
 				4DD7BA711E23BD4D00400E9D /* MissingLetters.swift in Sources */,
 				4D45F0091A9DFFBF00C40BB4 /* WordListCallback.swift in Sources */,
@@ -297,6 +304,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4DD7BA761E24FA3200400E9D /* WordFormatterTests.swift in Sources */,
+				4D9EE747214182510013192B /* CodewordSolverTests.swift in Sources */,
 				4D9D30F51D2D2BAB0088392C /* MockIAPTests.swift in Sources */,
 				4D45F0131A9E002500C40BB4 /* WordListTests.swift in Sources */,
 				4D45F0141A9E002500C40BB4 /* WordSearchTests.swift in Sources */,

@@ -141,4 +141,9 @@ open class LetterSet
         addToSetB(word)
         return isASupersetOfB()
     }
+    
+    open func getCount(scalar : UnicodeScalar) -> Int {
+        let index = Int(scalar.value) - LOWEST_CHAR_VALUE
+        return setA[index]
+    }
 }
