@@ -84,6 +84,7 @@ open class CodewordSolver {
     }
     
     open func isMatch(word : String) -> Bool {
+        if (word.length != wordLength) {return false}
         //check if known letters match
         let scalars = word.unicodeScalars
         for letter in knowns {
@@ -121,19 +122,19 @@ open class CodewordSolver {
     */
     fileprivate func checkSameLetters(word : String.UnicodeScalarView, sameLetters : inout [Letter]) -> Bool {
         if sameLetters.count<2 {return true}
-        //get the letter that is the same
+        //get the letter that is the same from the word
         let letterIndex = word.index(word.startIndex, offsetBy: sameLetters[0].position)
-        let c = word[letterIndex]
+        let actualLetter = word[letterIndex]
         //check if numbered letters are the same
         for sl in sameLetters.dropFirst() {
             let index = word.index(word.startIndex, offsetBy: sl.position)
-            if c != word[index] {return false}
+            if actualLetter != word[index] {return false}
         }
         //check that the other letters in the word are different
         var pos = 0
         for s in word {
             if !sameLetters.contains(where: {letter in letter.position == pos }) {
-                if (s == c) {return false}
+                if (s == actualLetter) {return false}
             }
             pos = pos + 1
         }

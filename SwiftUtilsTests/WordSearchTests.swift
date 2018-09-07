@@ -95,6 +95,19 @@ class WordSearchTests: XCTestCase {
         let actual = target.preProcessQuery("m?g?c")
         XCTAssertEqual(actual,"m.g.c")
     }
+    func testPreProcessQuery7() {
+        let actual = target.preProcessQuery(".a112332")
+        XCTAssertEqual(actual,".a112332")
+    }
+    func testPreProcessQuery8() {
+        let actual = target.preProcessQuery("?a112332")
+        XCTAssertEqual(actual,".a112332")
+    }
+    func testPreProcessQuery9() {
+        let actual = target.preProcessQuery("?a12332")
+        XCTAssertEqual(actual,".a...........")
+    }
+
     func testGetQueryType()
     {
         XCTAssertEqual(SearchType.crossword, target.getQueryType("m.g.c"))
@@ -105,6 +118,9 @@ class WordSearchTests: XCTestCase {
         XCTAssertEqual(SearchType.supergram, target.getQueryType("magic*"))
         XCTAssertEqual(SearchType.twoWordAnagram, target.getQueryType("monkey magic"))
         XCTAssertEqual(SearchType.twoWordAnagram, target.getQueryType("funky is monkey"))
+        XCTAssertEqual(SearchType.codeword, target.getQueryType(".a112332"))
+        XCTAssertEqual(SearchType.codeword, target.getQueryType("1.a23321"))
+        XCTAssertEqual(SearchType.crossword, target.getQueryType(".a12332"))
     }
     
     func testPostProcessQuery1()
@@ -117,6 +133,7 @@ class WordSearchTests: XCTestCase {
         XCTAssertEqual("magic*", target.postProcessQuery("magic*", type: SearchType.supergram))
         XCTAssertEqual("monkey magic", target.postProcessQuery("monkey magic", type: SearchType.twoWordAnagram))
         XCTAssertEqual("funky is monkey", target.postProcessQuery("funky is monkey", type: SearchType.twoWordAnagram))
+        XCTAssertEqual(".a112332", target.postProcessQuery(".a112332", type: SearchType.codeword))
     }
     func testPostProcessQuery2()
     {
@@ -127,6 +144,8 @@ class WordSearchTests: XCTestCase {
         XCTAssertEqual("magic++", target.postProcessQuery("ma..*?#FFgic++", type: SearchType.blanks))
         XCTAssertEqual("magic*", target.postProcessQuery("magi£#.?.c*++", type: SearchType.supergram))
         XCTAssertEqual("monkey magic", target.postProcessQuery("mo?nkƒ®†∆ø^∆~åßHGY.#*ßey magic", type: SearchType.twoWordAnagram))
+        XCTAssertEqual(".az112.332", target.postProcessQuery(".az#+@112.33#+@*2", type: SearchType.codeword))
+        XCTAssertEqual(".a", target.postProcessQuery(".a112332", type: SearchType.crossword))
     }
     func testPostProcessQuery3()
     {
@@ -137,6 +156,7 @@ class WordSearchTests: XCTestCase {
         XCTAssertEqual("", target.postProcessQuery("", type: SearchType.blanks))
         XCTAssertEqual("", target.postProcessQuery("", type: SearchType.supergram))
         XCTAssertEqual("", target.postProcessQuery("", type: SearchType.twoWordAnagram))
+        XCTAssertEqual("", target.postProcessQuery("", type: SearchType.codeword))
     }
 
     func testPerformanceExample() {

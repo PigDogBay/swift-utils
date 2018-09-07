@@ -362,4 +362,13 @@ open class WordList
         }
     }
     
+    open func findCodewords(codewordSolver : CodewordSolver, callback : WordListCallback){
+        for word in self.wordlist
+        {
+            if (self.stop) { break}
+            if codewordSolver.isMatch(word: word){
+               callback.update(word)
+            }
+        }
+    }
 }

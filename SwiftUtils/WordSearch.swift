@@ -17,6 +17,7 @@ public enum SearchType
     case wildcardAndCrossword
     case blanks
     case supergram
+    case codeword
 }
 
 open class WordSearch
@@ -24,6 +25,7 @@ open class WordSearch
     open var findSubAnagrams = true
     open var findThreeWordAnagrams = true
     open let wordList : WordList!
+    fileprivate lazy var codewordSolver = CodewordSolver()
     fileprivate let usLocale = Locale(identifier: "en_US")
 
     open let MAX_WORD_LEN = 30
@@ -32,12 +34,13 @@ open class WordSearch
     static open let WILDCARD_STR = "@"
     static open let BLANK_STR = "+"
     static open let SUPERGRAM_STR = "*"
-    
+
     fileprivate let CROSSWORD_CHAR_VALUE = UnicodeScalar(".").value
     fileprivate let TWO_WORD_CHAR_VALUE = UnicodeScalar(" ").value
     fileprivate let WILDCARD_CHAR_VALUE = UnicodeScalar("@").value
     fileprivate let BLANK_CHAR_VALUE = UnicodeScalar("+").value
     fileprivate let SUPERGRAM_VALUE = UnicodeScalar("*").value
+    fileprivate let CODEWORD_CHAR = UnicodeScalar("1")
     fileprivate let LOWEST_CHAR_VALUE = UnicodeScalar("a").value
     fileprivate let HIGHEST_CHAR_VALUE = UnicodeScalar("z").value
 
@@ -106,24 +109,31 @@ open class WordSearch
   
     open func preProcessQuery(_ query: String)->String
     {
-        var query = query
-            .lowercased(with: usLocale)
-            .replace("?", withString: ".")
-            .replace("2", withString: "..")
-            .replace("3", withString: "...")
-            .replace("4", withString: "....")
-            .replace("5", withString: ".....")
-            .replace("6", withString: "......")
-            .replace("7", withString: ".......")
-            .replace("8", withString: "........")
-            .replace("9", withString: ".........")
-        
-        if query.length > MAX_WORD_LEN
+        var processedQuery : String
+        if isCodeword(query: query){
+            processedQuery = query
+                .lowercased(with: usLocale)
+                .replace("?", withString: ".")
+        } else {
+            processedQuery = query
+                .lowercased(with: usLocale)
+                .replace("?", withString: ".")
+                .replace("1", withString: ".")
+                .replace("2", withString: "..")
+                .replace("3", withString: "...")
+                .replace("4", withString: "....")
+                .replace("5", withString: ".....")
+                .replace("6", withString: "......")
+                .replace("7", withString: ".......")
+                .replace("8", withString: "........")
+                .replace("9", withString: ".........")
+        }
+        if processedQuery.length > MAX_WORD_LEN
         {
-            query = query[0..<MAX_WORD_LEN]
+            processedQuery = processedQuery[0..<MAX_WORD_LEN]
         }
         
-        return query
+        return processedQuery
     }
     
     open func getQueryType(_ query: String) ->SearchType
@@ -135,6 +145,10 @@ open class WordSearch
         else if query.mpdb_contains(WordSearch.WILDCARD_STR)
         {
             return SearchType.wildcard
+        }
+        else if isCodeword(query: query)
+        {
+            return SearchType.codeword
         }
         else if query.mpdb_contains(WordSearch.CROSSWORD_STR)
         {
@@ -181,6 +195,8 @@ open class WordSearch
         case .wildcardAndCrossword:
             //keep a-z . @
             query = stripChars(query, except1: CROSSWORD_CHAR_VALUE, except2: WILDCARD_CHAR_VALUE)
+        case .codeword:
+            query = stripCharsForCodeword(query)
         }
         return query
     }
@@ -192,6 +208,23 @@ open class WordSearch
         {
             let v = c.value
             if (v>=LOWEST_CHAR_VALUE && v<=HIGHEST_CHAR_VALUE) || v == except1 || v == except2
+            {
+                builder.append(String(c))
+            }
+        }
+        return builder
+    }
+    fileprivate func stripCharsForCodeword(_ s: String) -> String
+    {
+        //Codewords can use numbers 1 to 7 to represent letters
+        let CHAR_1 = UnicodeScalar("1").value
+        let CHAR_7 = UnicodeScalar("7").value
+        var builder =  ""
+        let chars = s.unicodeScalars
+        for c in chars
+        {
+            let v = c.value
+            if (v>=LOWEST_CHAR_VALUE && v<=HIGHEST_CHAR_VALUE) || (v>=CHAR_1 && v<=CHAR_7) || v == CROSSWORD_CHAR_VALUE
             {
                 builder.append(String(c))
             }
@@ -234,9 +267,14 @@ open class WordSearch
             }
         case .wildcard, .wildcardAndCrossword:
             self.wordList.findWildcards(query, callback: callback)
+        case .codeword:
+            self.codewordSolver.parse(query: query)
+            self.wordList.findCodewords(codewordSolver: codewordSolver, callback: callback)
         }
     }
     
-    
+    fileprivate func isCodeword(query : String) -> Bool {
+        return query.unicodeScalars.filter({$0==CODEWORD_CHAR}).count>1
+    }
     
 }
