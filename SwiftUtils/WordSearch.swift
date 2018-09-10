@@ -263,7 +263,7 @@ open class WordSearch
             let words = query.split(separator: " ")
             if self.findThreeWordAnagrams && words.count > 2 {
                 self.wordList.findMultiwordAnagrams(String(words[0]), String(words[1]), String(words[2]), callback: callback)
-            } else if words.count == 2 {
+            } else if words.count >= 2 {
                 self.wordList.findMultiwordAnagrams(String(words[0]+words[1]), startLen: words[0].count, callback: callback)
             }
         case .wildcard, .wildcardAndCrossword:
