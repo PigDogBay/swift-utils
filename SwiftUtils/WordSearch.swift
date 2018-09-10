@@ -24,6 +24,7 @@ open class WordSearch
 {
     open var findSubAnagrams = true
     open var findThreeWordAnagrams = true
+    open var findCodewords = true
     open let wordList : WordList!
     fileprivate lazy var codewordSolver = CodewordSolver()
     fileprivate let usLocale = Locale(identifier: "en_US")
@@ -274,7 +275,7 @@ open class WordSearch
     }
     
     fileprivate func isCodeword(query : String) -> Bool {
-        return query.unicodeScalars.filter({$0==CODEWORD_CHAR}).count>1
+        return findCodewords && query.unicodeScalars.filter({$0==CODEWORD_CHAR}).count>1
     }
     
 }
