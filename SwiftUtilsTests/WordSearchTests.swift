@@ -107,8 +107,13 @@ class WordSearchTests: XCTestCase {
         let actual = target.preProcessQuery("?a12332")
         XCTAssertEqual(actual,".a...........")
     }
+    func testPreProcessQuery10() {
+        target.findCodewords = false
+        let actual = target.preProcessQuery(".a112332")
+        XCTAssertEqual(actual,".a............")
+    }
 
-    func testGetQueryType()
+    func testGetQueryType1()
     {
         XCTAssertEqual(SearchType.crossword, target.getQueryType("m.g.c"))
         XCTAssertEqual(SearchType.wildcardAndCrossword, target.getQueryType("m.g@"))
@@ -122,7 +127,12 @@ class WordSearchTests: XCTestCase {
         XCTAssertEqual(SearchType.codeword, target.getQueryType("1.a23321"))
         XCTAssertEqual(SearchType.crossword, target.getQueryType(".a12332"))
     }
-    
+    func testGetQueryType2()
+    {
+        target.findCodewords = false
+        XCTAssertEqual(SearchType.crossword, target.getQueryType(".a112332"))
+    }
+
     func testPostProcessQuery1()
     {
         XCTAssertEqual("m.g.c", target.postProcessQuery("m.g.c", type: SearchType.crossword))
