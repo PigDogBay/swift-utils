@@ -29,7 +29,7 @@ open class WordSearch
     fileprivate lazy var codewordSolver = CodewordSolver()
     fileprivate let usLocale = Locale(identifier: "en_US")
 
-    open let MAX_WORD_LEN = 30
+    open let MAX_WORD_LEN = 42
     static open let CROSSWORD_STR = "."
     static open let TWO_WORD_STR = " "
     static open let WILDCARD_STR = "@"
