@@ -49,7 +49,7 @@ open class WordSearch
     fileprivate let HIGHEST_ASCII_VALUE = UnicodeScalar("z").value
 
     public class func getGoogleUrl(word : String)->String{
-        return "https://www.google.com/search?q=define:\(word)"
+        return "https://www.google.com/search?q=dictionary:\(word)"
     }
     public class func getMerriamWebsterUrl(word : String)->String{
         return "https://www.merriam-webster.com/dictionary/\(word)"
@@ -68,6 +68,9 @@ open class WordSearch
     }
     public class func getWikipediaUrl(word : String)->String{
         return "https://en.wikipedia.org/wiki/\(word)"
+    }
+    public class func getWordGameDictionaryUrl(word : String)->String{
+        return "https://www.wordgamedictionary.com/dictionary/word/\(word)"
     }
 
     public init(wordList: WordList)
