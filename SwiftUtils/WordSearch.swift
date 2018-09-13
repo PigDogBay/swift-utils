@@ -255,7 +255,11 @@ open class WordSearch
         case .blanks:
             let queryRemovedSymbol = query.replace("+", withString: "")
             let numberOfBlanks = len - queryRemovedSymbol.length
-            self.wordList.findAnagrams(queryRemovedSymbol, numberOfBlanks: numberOfBlanks, callback: callback)
+            if self.findSubAnagrams {
+                self.wordList.findAnagrams(queryRemovedSymbol, numberOfBlanks: numberOfBlanks, callback: callback)
+            } else {
+                self.wordList.findAnagramsExactLength(queryRemovedSymbol, numberOfBlanks: numberOfBlanks, callback: callback)
+            }
         case .supergram:
             let queryRemovedSymbol = query.replace("*", withString: "")
             self.wordList.findSupergrams(queryRemovedSymbol, callback: callback, length: 0)

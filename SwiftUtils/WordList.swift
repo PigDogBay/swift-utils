@@ -104,6 +104,20 @@ open class WordList
             }
         }
     }
+    open func findAnagramsExactLength(_ letters: String, numberOfBlanks: Int, callback: WordListCallback)
+    {
+        let len = letters.length + numberOfBlanks
+        let anagram = LetterSet(word: letters)
+        for word in self.wordlist
+        {
+            if (self.stop) { break }
+            if word.length == len {
+                if anagram.isAnagram(word, numberOfBlanks: numberOfBlanks){
+                    callback.update(word)
+                }
+            }
+        }
+    }
 
     open func findAnagrams(_ letters: String, callback: WordListCallback)
     {
