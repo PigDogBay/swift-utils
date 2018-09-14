@@ -31,9 +31,9 @@ open class LetterSet
     
     open func add(_ word: String)
     {
-        for s in word.unicodeScalars
+        for s in word.utf8
         {
-            let index = Int(s.value) - LOWEST_CHAR_VALUE
+            let index = Int(s) - LOWEST_CHAR_VALUE
             if index>=0 && index<26{
                 setA[index] += 1
             }
@@ -41,9 +41,9 @@ open class LetterSet
     }
     open func delete(_ word: String)
     {
-        for s in word.unicodeScalars
+        for s in word.utf8
         {
-            let index = Int(s.value) - LOWEST_CHAR_VALUE
+            let index = Int(s) - LOWEST_CHAR_VALUE
             if index>=0 && index<26 {
                 setA[index] -= 1
             }
@@ -72,9 +72,9 @@ open class LetterSet
 
     fileprivate func addToSetB(_ letters: String)
     {
-        for s in letters.unicodeScalars
+        for s in letters.utf8
         {
-            let index = Int(s.value) - LOWEST_CHAR_VALUE
+            let index = Int(s) - LOWEST_CHAR_VALUE
             if index>=0 && index<26 {
                 setB[index] += 1
             }
