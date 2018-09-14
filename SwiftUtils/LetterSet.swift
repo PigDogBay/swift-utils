@@ -34,7 +34,9 @@ open class LetterSet
         for s in word.unicodeScalars
         {
             let index = Int(s.value) - LOWEST_CHAR_VALUE
-            setA[index] += 1
+            if index>=0 && index<26{
+                setA[index] += 1
+            }
         }
     }
     open func delete(_ word: String)
@@ -42,7 +44,9 @@ open class LetterSet
         for s in word.unicodeScalars
         {
             let index = Int(s.value) - LOWEST_CHAR_VALUE
-            setA[index] -= 1
+            if index>=0 && index<26 {
+                setA[index] -= 1
+            }
         }
     }
     open func isValid()->Bool
@@ -71,7 +75,9 @@ open class LetterSet
         for s in letters.unicodeScalars
         {
             let index = Int(s.value) - LOWEST_CHAR_VALUE
-            setB[index] += 1
+            if index>=0 && index<26 {
+                setB[index] += 1
+            }
         }
     }
     
@@ -144,6 +150,9 @@ open class LetterSet
     
     open func getCount(scalar : UnicodeScalar) -> Int {
         let index = Int(scalar.value) - LOWEST_CHAR_VALUE
-        return setA[index]
+        if index>=0 && index<26 {
+            return setA[index]
+        }
+        return 0
     }
 }

@@ -136,6 +136,12 @@ class WordListCallbackTests: XCTestCase, WordListCallback  {
         target.update("abcdef")
         XCTAssertNil(result)
     }
+    func testContainsFilter_spaces()
+    {
+        let target = ContainsFilter(callback: self, letters: "swift")
+        target.update("words with friends")
+        XCTAssertEqual(result, "words with friends")
+    }
     func testExcludesFilter1()
     {
         let target = ExcludesFilter(callback: self, letters: "mno")

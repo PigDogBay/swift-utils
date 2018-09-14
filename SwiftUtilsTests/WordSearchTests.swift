@@ -89,7 +89,7 @@ class WordSearchTests: XCTestCase {
     }
     func testPreProcessQuery4() {
         let actual = target.preProcessQuery("the quick brown fox jumped over the lazy dog")
-        XCTAssertEqual(actual,"the quick brown fox jumped ove")
+        XCTAssertEqual(actual,"the quick brown fox jumped over the lazy d")
     }
     func testPreProcessQuery5() {
         let actual = target.preProcessQuery("m?g?c")
