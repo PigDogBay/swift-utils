@@ -204,7 +204,9 @@ open class RegexFilter : WordListCallback {
 
     public init(callback : WordListCallback, pattern : String){
         self.callback = callback
-        regex = try? NSRegularExpression(pattern: pattern, options: [])
+        //need to append word boundaries \b otherwise regex will not match the words in the wordlist
+        //Oddly units will pass without \b, why?
+        regex = try? NSRegularExpression(pattern: "\\b"+pattern+"\\b", options: [])
     }
     open func update(_ result: String)
     {
@@ -214,9 +216,9 @@ open class RegexFilter : WordListCallback {
         }
     }
     open class func createCrosswordFilter(callback : WordListCallback, query : String) -> WordListCallback {
-        let pattern = "\\b"+query
+        let pattern = query
             .replace(".", withString: "[a-z]")
-            .replace("@", withString: "[a-z]+")+"\\b"
+            .replace("@", withString: "[a-z]+")
         return RegexFilter(callback: callback, pattern: pattern)
     }
 }
