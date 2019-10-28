@@ -11,20 +11,20 @@ import Foundation
 public extension String
 {
     
-    public func replace(_ target: String, withString: String) -> String
+    func replace(_ target: String, withString: String) -> String
     {
         return self.replacingOccurrences(of: target, with: withString, options: NSString.CompareOptions.literal, range: nil)
     }
     
     //return the string in specified range
-    public subscript (r: Range<Int>) -> String
+    subscript (r: Range<Int>) -> String
     {
         let startIndex = self.index(self.startIndex, offsetBy: r.lowerBound)
         let endIndex = self.index(self.startIndex, offsetBy: r.upperBound)
         return String(self[startIndex ..< endIndex])
     }
     
-    public func mpdb_contains(_ s : String) -> Bool
+    func mpdb_contains(_ s : String) -> Bool
     {
         return self.range(of: s) != nil
     }
@@ -37,7 +37,7 @@ public extension String
         eg ABCD returns
         BCD, ACD, ABD, ABC
     */
-    public func getSubWords() ->[String]
+    func getSubWords() ->[String]
     {
         //sort letter into a Array[Character]
         let sortedLetters = self.sorted(by: <)
@@ -72,7 +72,7 @@ public extension String
         9*8 seven letter words
         9*8*7 six letter words
     */
-    public func getSubWords(_ minLength: Int) -> [String]
+    func getSubWords(_ minLength: Int) -> [String]
     {
         var aggregate = [String]()
         let len = self.length
@@ -90,7 +90,7 @@ public extension String
     /*
         Subtracts the letters of word from the string
     */
-    public func subtractLetters(_ word : String) ->String
+    func subtractLetters(_ word : String) ->String
     {
         var builder = self
         for delChar in word
@@ -102,7 +102,7 @@ public extension String
         return builder
     }
 
-    public func doesNotContainBannedLetters(_ bannedLetters: CharacterSet) -> Bool
+    func doesNotContainBannedLetters(_ bannedLetters: CharacterSet) -> Bool
     {
         return self.rangeOfCharacter(from: bannedLetters) == nil
     }
