@@ -25,16 +25,16 @@ open class WordSearch
     open var findSubAnagrams = true
     open var findThreeWordAnagrams = true
     open var findCodewords = true
-    open let wordList : WordList!
+    public let wordList : WordList!
     fileprivate lazy var codewordSolver = CodewordSolver()
     fileprivate let usLocale = Locale(identifier: "en_US")
 
-    open let MAX_WORD_LEN = 42
-    static open let CROSSWORD_STR = "."
-    static open let TWO_WORD_STR = " "
-    static open let WILDCARD_STR = "@"
-    static open let BLANK_STR = "+"
-    static open let SUPERGRAM_STR = "*"
+    public let MAX_WORD_LEN = 42
+    static public let CROSSWORD_STR = "."
+    static public let TWO_WORD_STR = " "
+    static public let WILDCARD_STR = "@"
+    static public let BLANK_STR = "+"
+    static public let SUPERGRAM_STR = "*"
 
     fileprivate let CROSSWORD_CHAR_VALUE = UnicodeScalar(".").value
     fileprivate let TWO_WORD_CHAR_VALUE = UnicodeScalar(" ").value

@@ -49,12 +49,12 @@ public class SubAnagramFormatter : IWordFormatter {
 public class BlankFormatter : IWordFormatter {
     fileprivate let originalWord : String
     fileprivate let missingLetters : MissingLetters
-    fileprivate let highlightAttribute : [NSAttributedStringKey : UIColor]
+    fileprivate let highlightAttribute : [NSAttributedString.Key : UIColor]
     
     public init(_ query: String, color : UIColor){
         self.originalWord = query.replace(WordSearch.BLANK_STR, withString: "")
         self.missingLetters = MissingLetters(letters: self.originalWord)
-        self.highlightAttribute = [NSAttributedStringKey.foregroundColor : color]
+        self.highlightAttribute = [NSAttributedString.Key.foregroundColor : color]
     }
     
     public func format(_ word: String) -> String {
@@ -83,12 +83,12 @@ public class BlankFormatter : IWordFormatter {
 
 public class SupergramFormatter : IWordFormatter {
     fileprivate let missingLetters : MissingLetters
-    fileprivate let highlightAttribute : [NSAttributedStringKey : UIColor]
+    fileprivate let highlightAttribute : [NSAttributedString.Key : UIColor]
 
     public init(_ query: String, color : UIColor){
         let originalWord = query.replace(WordSearch.SUPERGRAM_STR, withString: "")
         self.missingLetters = MissingLetters(letters: originalWord)
-        self.highlightAttribute = [NSAttributedStringKey.foregroundColor : color]
+        self.highlightAttribute = [NSAttributedString.Key.foregroundColor : color]
     }
 
     public var isAttributed: Bool { get { return true}}

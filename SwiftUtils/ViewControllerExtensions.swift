@@ -12,15 +12,15 @@ extension UIViewController
 {
     public func mpdbShowErrorAlert(_ title: String, msg : String)
     {
-        let action = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil)
-        let controller = UIAlertController(title: title, message: msg, preferredStyle: UIAlertControllerStyle.alert)
+        let action = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
+        let controller = UIAlertController(title: title, message: msg, preferredStyle: UIAlertController.Style.alert)
         controller.addAction(action)
         self.present(controller, animated: true, completion: nil)
     }
     public func mpdbShowAlert(_ title: String, msg : String)
     {
-        let action = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil)
-        let controller = UIAlertController(title: title, message: msg, preferredStyle: UIAlertControllerStyle.alert)
+        let action = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
+        let controller = UIAlertController(title: title, message: msg, preferredStyle: UIAlertController.Style.alert)
         controller.addAction(action)
         self.present(controller, animated: true, completion: nil)
     }

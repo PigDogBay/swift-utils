@@ -95,7 +95,7 @@ public extension String
         var builder = self
         for delChar in word
         {
-            if let index = builder.index(of: delChar) {
+            if let index = builder.firstIndex(of: delChar) {
                 builder.remove(at: index)
             }
         }
