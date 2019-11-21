@@ -51,26 +51,46 @@ open class WordSearch
     public class func getGoogleUrl(word : String)->String{
         return "https://www.google.com/search?q=dictionary:\(word)"
     }
+    public class func getGoogleDefineUrl(word : String)->String{
+        return "https://www.google.com/search?q=define:\(word)"
+    }
     public class func getMerriamWebsterUrl(word : String)->String{
         return "https://www.merriam-webster.com/dictionary/\(word)"
     }
-    public class func getThesaurusUrl(word : String)->String{
+    public class func getMWThesaurusUrl(word : String)->String{
         return "https://www.merriam-webster.com/thesaurus/\(word)"
     }
     public class func getCollinsUrl(word : String)->String{
-        return "https://www.collinsdictionary.com/dictionary/english/\(word)"
+        let processed = word.replace(" ", withString: "-")
+        return "https://www.collinsdictionary.com/dictionary/english/\(processed)"
     }
-    public class func getOxfordDictionariesUrl(word : String)->String{
-        return "https://en.oxforddictionaries.com/definition/\(word)"
+    public class func getLexicoUrl(word : String)->String{
+        return "https://www.lexico.com/en/definition/\(word)"
     }
-    public class func getAmericanHeritageUrl(word : String)->String{
-        return "https://www.ahdictionary.com/word/search.html?q=\(word)"
+    public class func getDictionaryComUrl(word : String)->String{
+        return "https://www.dictionary.com/browse/\(word)"
+    }
+    public class func getThesaurusComUrl(word : String)->String{
+        return "https://www.thesaurus.com/browse/\(word)"
     }
     public class func getWikipediaUrl(word : String)->String{
-        return "https://en.wikipedia.org/wiki/\(word)"
+        let processed = word.replace(" ", withString: "_")
+        return "https://en.wikipedia.org/wiki/\(processed)"
     }
     public class func getWordGameDictionaryUrl(word : String)->String{
         return "https://www.wordgamedictionary.com/dictionary/word/\(word)"
+    }
+    public class func getChambersUrl(word : String)->String{
+        let processed = word.replace(" ", withString: "+")
+        return "https://chambers.co.uk/search/?query=\(processed)&title=21st"
+    }
+    public class func getWiktionaryUrl(word : String)->String{
+        let processed = word.replace(" ", withString: "_")
+        return "https://en.wiktionary.org/wiki/\(processed)"
+    }
+    public class func getCambridgeUrl(word : String)->String{
+        let processed = word.replace(" ", withString: "-")
+        return "https://dictionary.cambridge.org/dictionary/english/\(processed)"
     }
 
     public init(wordList: WordList)
