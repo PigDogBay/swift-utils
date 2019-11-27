@@ -94,10 +94,10 @@ class LetterSetTests: XCTestCase {
         self.measure() {
             for _ in 0 ..< self.loop
             {
-                target.isAnagram("linestream")
-                target.isAnagram("linestream")
-                target.isAnagram("linestream")
-                target.isAnagram("linestream")
+                _ = target.isAnagram("linestream")
+                _ = target.isAnagram("linestream")
+                _ = target.isAnagram("linestream")
+                _ = target.isAnagram("linestream")
                 if !target.isAnagram("linestream")
                 {
                     break
@@ -111,10 +111,10 @@ class LetterSetTests: XCTestCase {
         self.measure() {
             for _ in 0 ..< self.loop
             {
-                target.isSupergram("breathers")
-                target.isSupergram("breathers")
-                target.isSupergram("breathers")
-                target.isSupergram("breathers")
+                _ = target.isSupergram("breathers")
+                _ = target.isSupergram("breathers")
+                _ = target.isSupergram("breathers")
+                _ = target.isSupergram("breathers")
                 if !target.isSupergram("breathers")
                 {
                     break
