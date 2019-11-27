@@ -30,7 +30,7 @@ class WordFormatterTests: XCTestCase {
         let attrStr = target.formatAttributed("babbage")
         let attributes1 = attrStr.attributes(at: 0, effectiveRange: nil)
         XCTAssertEqual(attributes1.count, 1)
-        XCTAssertEqual(attributes1.first?.key, NSAttributedStringKey.foregroundColor)
+        XCTAssertEqual(attributes1.first?.key, NSAttributedString.Key.foregroundColor)
         XCTAssertEqual(attributes1.first?.value as! UIColor, UIColor.red)
         let attributes2 = attrStr.attributes(at: 1, effectiveRange: nil)
         XCTAssertEqual(attributes2.count, 0)
@@ -62,7 +62,7 @@ class WordFormatterTests: XCTestCase {
         let attributes1 = attrStr.attributes(at: 1, effectiveRange: nil)
         //w
         XCTAssertEqual(attributes1.count, 1)
-        XCTAssertEqual(attributes1.first?.key, NSAttributedStringKey.foregroundColor)
+        XCTAssertEqual(attributes1.first?.key, NSAttributedString.Key.foregroundColor)
         XCTAssertEqual(attributes1.first?.value as! UIColor, UIColor.blue)
         //l
         let attributes2 = attrStr.attributes(at: 2, effectiveRange: nil)
