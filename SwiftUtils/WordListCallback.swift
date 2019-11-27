@@ -13,7 +13,7 @@ public protocol WordListCallback
     func update(_ result: String)
 }
 
-open class WordListFilterWrapper : WordListCallback
+public class WordListFilterWrapper : WordListCallback
 {
     //should callback be weak?
     fileprivate let callback : WordListCallback!
@@ -23,7 +23,7 @@ open class WordListFilterWrapper : WordListCallback
     {
         self.callback = callback
     }
-    open func update(_ result: String)
+    public func update(_ result: String)
     {
         if (!matches.contains(result))
         {
@@ -34,7 +34,7 @@ open class WordListFilterWrapper : WordListCallback
 }
 
 
-open class WordListMissingLetterWrapper : WordListCallback
+public class WordListMissingLetterWrapper : WordListCallback
 {
     fileprivate let callback : WordListCallback!
     fileprivate let originalWord : String!
@@ -45,14 +45,14 @@ open class WordListMissingLetterWrapper : WordListCallback
         self.originalWord = originalWord
     }
     
-    open func update(_ result: String)
+    public func update(_ result: String)
     {
         let missingLetters = originalWord.subtractLetters(result)
         callback.update("\(result) (\(missingLetters))")
     }
 }
 
-open class BiggerThanFilter : WordListCallback {
+public class BiggerThanFilter : WordListCallback {
     fileprivate let callback : WordListCallback
     fileprivate let size : Int
     
@@ -60,7 +60,7 @@ open class BiggerThanFilter : WordListCallback {
         self.callback = callback
         self.size = size
     }
-    open func update(_ result: String)
+    public func update(_ result: String)
     {
         if result.count > size {
             callback.update(result)
@@ -68,7 +68,7 @@ open class BiggerThanFilter : WordListCallback {
     }
 }
 
-open class LessThanFilter : WordListCallback {
+public class LessThanFilter : WordListCallback {
     fileprivate let callback : WordListCallback
     fileprivate let size : Int
     
@@ -76,7 +76,7 @@ open class LessThanFilter : WordListCallback {
         self.callback = callback
         self.size = size
     }
-    open func update(_ result: String)
+    public func update(_ result: String)
     {
         if result.count < size {
             callback.update(result)
@@ -84,7 +84,7 @@ open class LessThanFilter : WordListCallback {
     }
 }
 
-open class EqualToFilter : WordListCallback {
+public class EqualToFilter : WordListCallback {
     fileprivate let callback : WordListCallback
     fileprivate let size : Int
     
@@ -92,7 +92,7 @@ open class EqualToFilter : WordListCallback {
         self.callback = callback
         self.size = size
     }
-    open func update(_ result: String)
+    public func update(_ result: String)
     {
         if result.count == size {
             callback.update(result)
@@ -100,7 +100,7 @@ open class EqualToFilter : WordListCallback {
     }
 }
 
-open class StartsWithFilter : WordListCallback {
+public class StartsWithFilter : WordListCallback {
     fileprivate let callback : WordListCallback
     fileprivate let letters : String
     
@@ -108,7 +108,7 @@ open class StartsWithFilter : WordListCallback {
         self.callback = callback
         self.letters = letters
     }
-    open func update(_ result: String)
+    public func update(_ result: String)
     {
         if result.hasPrefix(letters) {
             callback.update(result)
@@ -116,7 +116,7 @@ open class StartsWithFilter : WordListCallback {
     }
 }
 
-open class EndsWithFilter : WordListCallback {
+public class EndsWithFilter : WordListCallback {
     fileprivate let callback : WordListCallback
     fileprivate let letters : String
     
@@ -124,7 +124,7 @@ open class EndsWithFilter : WordListCallback {
         self.callback = callback
         self.letters = letters
     }
-    open func update(_ result: String)
+    public func update(_ result: String)
     {
         if result.hasSuffix(letters) {
             callback.update(result)
@@ -132,7 +132,7 @@ open class EndsWithFilter : WordListCallback {
     }
 }
 
-open class ContainsFilter : WordListCallback {
+public class ContainsFilter : WordListCallback {
     fileprivate let callback : WordListCallback
     fileprivate let letterSet : LetterSet
     
@@ -140,7 +140,7 @@ open class ContainsFilter : WordListCallback {
         self.callback = callback
         self.letterSet = LetterSet(word: letters)
     }
-    open func update(_ result: String)
+    public func update(_ result: String)
     {
         if (letterSet.isSupergram(result))
         {
@@ -149,7 +149,7 @@ open class ContainsFilter : WordListCallback {
         }
     }
 }
-open class ExcludesFilter : WordListCallback {
+public class ExcludesFilter : WordListCallback {
     fileprivate let callback : WordListCallback
     fileprivate let letters : String
     
@@ -157,7 +157,7 @@ open class ExcludesFilter : WordListCallback {
         self.callback = callback
         self.letters = letters
     }
-    open func update(_ result: String)
+    public func update(_ result: String)
     {
         for c in letters.unicodeScalars {
             if result.unicodeScalars.contains(c){
@@ -169,28 +169,28 @@ open class ExcludesFilter : WordListCallback {
         callback.update(result)
     }
 }
-open class ContainsWordFilter : WordListCallback {
+public class ContainsWordFilter : WordListCallback {
     fileprivate let callback : WordListCallback
     fileprivate let word : String
     public init(callback : WordListCallback, word : String){
         self.callback = callback
         self.word = word
     }
-    open func update(_ result: String)
+    public func update(_ result: String)
     {
         if result.contains(word){
             callback.update(result)
         }
     }
 }
-open class ExcludesWordFilter : WordListCallback {
+public class ExcludesWordFilter : WordListCallback {
     fileprivate let callback : WordListCallback
     fileprivate let word : String
     public init(callback : WordListCallback, word : String){
         self.callback = callback
         self.word = word
     }
-    open func update(_ result: String)
+    public func update(_ result: String)
     {
         if !result.contains(word){
             callback.update(result)
@@ -198,7 +198,7 @@ open class ExcludesWordFilter : WordListCallback {
     }
 }
 
-open class RegexFilter : WordListCallback {
+public class RegexFilter : WordListCallback {
     fileprivate let callback : WordListCallback
     fileprivate let regex : NSRegularExpression?
 
@@ -208,14 +208,14 @@ open class RegexFilter : WordListCallback {
         //Oddly units will pass without \b, why?
         regex = try? NSRegularExpression(pattern: "\\b"+pattern+"\\b", options: [])
     }
-    open func update(_ result: String)
+    public func update(_ result: String)
     {
         let range = NSRange(location: 0, length: result.length)
         if 1 == regex?.numberOfMatches(in: result, options: [], range: range){
             callback.update(result)
         }
     }
-    open class func createCrosswordFilter(callback : WordListCallback, query : String) -> WordListCallback {
+    public class func createCrosswordFilter(callback : WordListCallback, query : String) -> WordListCallback {
         let pattern = query
             .replace(".", withString: "[a-z]")
             .replace("@", withString: "[a-z]+")
