@@ -123,4 +123,16 @@ class LetterSetTests: XCTestCase {
         }
     }
 
+    func testIsDistinct1(){
+        let target = LetterSet(word: "spectrum")
+        XCTAssertTrue(target.isDistinct())
+    }
+    func testIsDistinct2(){
+        let target = LetterSet(word: "electron")
+        XCTAssertFalse(target.isDistinct())
+    }
+    func testIsDistinct3(){
+        let target = LetterSet(word: "")
+        XCTAssertFalse(target.isDistinct())
+    }
 }

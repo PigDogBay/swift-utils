@@ -148,6 +148,17 @@ public class LetterSet
         return isASupersetOfB()
     }
     
+    //only contains 1 or 0 of each letter
+    public func isDistinct() -> Bool {
+        var count = 0
+        for i in 0..<26 {
+            let numLetters = setA[i]
+            if numLetters>1 {return false}
+            count = count + numLetters
+        }
+        return count>0
+    }
+    
     public func getCount(scalar : UnicodeScalar) -> Int {
         let index = Int(scalar.value) - LOWEST_CHAR_VALUE
         if index>=0 && index<26 {
