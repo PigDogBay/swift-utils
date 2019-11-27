@@ -9,7 +9,7 @@
 import Foundation
 
 //Class to help compare letters in lower case words
-open class LetterSet
+public class LetterSet
 {
     //buffers to hold a count of each letter, buffer[4] == count of the letter 'e'
     fileprivate var setA : [Int] = [0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0]
@@ -21,7 +21,7 @@ open class LetterSet
         add(word)
     }
     
-    open func clear()
+    public func clear()
     {
         for i in 0 ..< 26 
         {
@@ -29,7 +29,7 @@ open class LetterSet
         }
     }
     
-    open func add(_ word: String)
+    public func add(_ word: String)
     {
         for s in word.utf8
         {
@@ -39,7 +39,7 @@ open class LetterSet
             }
         }
     }
-    open func delete(_ word: String)
+    public func delete(_ word: String)
     {
         for s in word.utf8
         {
@@ -49,7 +49,7 @@ open class LetterSet
             }
         }
     }
-    open func isValid()->Bool
+    public func isValid()->Bool
     {
         for i in 0 ..< 26
         {
@@ -114,13 +114,13 @@ open class LetterSet
         }
         return true;
     }
-    open func isAnagram(_ word: String) -> Bool
+    public func isAnagram(_ word: String) -> Bool
     {
         clearSetB()
         addToSetB(word)
         return isAIdenticalToB()
     }
-    open func isAnagram(_ word: String, numberOfBlanks: Int) -> Bool
+    public func isAnagram(_ word: String, numberOfBlanks: Int) -> Bool
     {
         clearSetB()
         addToSetB(word)
@@ -134,21 +134,21 @@ open class LetterSet
     }
     
     //is word a super-anagram of the letters in set A
-    open func isSupergram(_ word: String) -> Bool
+    public func isSupergram(_ word: String) -> Bool
     {
         clearSetB()
         addToSetB(word)
         return isASubsetOfB()
     }
     //is word a sub-anagram of the letters in set A
-    open func isSubgram(_ word: String) -> Bool
+    public func isSubgram(_ word: String) -> Bool
     {
         clearSetB()
         addToSetB(word)
         return isASupersetOfB()
     }
     
-    open func getCount(scalar : UnicodeScalar) -> Int {
+    public func getCount(scalar : UnicodeScalar) -> Int {
         let index = Int(scalar.value) - LOWEST_CHAR_VALUE
         if index>=0 && index<26 {
             return setA[index]
