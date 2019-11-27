@@ -224,17 +224,26 @@ public class RegexFilter : WordListCallback {
 }
 
 public class DistinctFilter : WordListCallback {
-    private let callback : WordListCallback
-    private let letterSet : LetterSet
+    fileprivate let callback : WordListCallback
+    fileprivate let letterSet : LetterSet
 
     public init(callback : WordListCallback){
         self.callback = callback
         self.letterSet = LetterSet(word: "")
     }
-    public func update(_ result: String) {
+    open func update(_ result: String) {
         letterSet.clear()
         letterSet.add(result)
         if letterSet.isDistinct() {
+            callback.update(result)
+        }
+    }
+}
+public class NotDistinctFilter : DistinctFilter {
+    public override func update(_ result: String) {
+        letterSet.clear()
+        letterSet.add(result)
+        if !letterSet.isDistinct() {
             callback.update(result)
         }
     }
