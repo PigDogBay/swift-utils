@@ -8,9 +8,9 @@
 
 import Foundation
 
-open class WordList
+public class WordList
 {
-    open var wordlist: [String]!
+    public var wordlist: [String]!
 
     //Stop needs to be protected by a mutex,
     //keep an eye out for future enhancements in Swift, such as synchronized blocks
@@ -31,7 +31,7 @@ open class WordList
             objc_sync_exit(self)
         }
     }
-    open func stopSearch()
+    public func stopSearch()
     {
         stop = true
     }
@@ -49,7 +49,7 @@ open class WordList
         Unfortunately the sort for added pro words to the std words
         takes over 30s on the iPad
     */
-    open func addNewWords(_ newWords: [String])
+    public func addNewWords(_ newWords: [String])
     {
         wordlist.append(contentsOf: newWords)
         wordlist.sort(by: { (str1, str2) -> Bool in
@@ -62,12 +62,12 @@ open class WordList
             })
     }
     
-    open func reset()
+    public func reset()
     {
         stop = false
     }
     
-    open func findSupergrams(_ letters: String, callback: WordListCallback, length: Int)
+    public func findSupergrams(_ letters: String, callback: WordListCallback, length: Int)
     {
         let len = letters.length
         let anagram = LetterSet(word: letters)
@@ -86,7 +86,7 @@ open class WordList
             }
         }
     }
-    open func findAnagrams(_ letters: String, numberOfBlanks: Int, callback: WordListCallback)
+    public func findAnagrams(_ letters: String, numberOfBlanks: Int, callback: WordListCallback)
     {
         let len = letters.length
         let anagram = LetterSet(word: letters)
@@ -104,7 +104,7 @@ open class WordList
             }
         }
     }
-    open func findAnagramsExactLength(_ letters: String, numberOfBlanks: Int, callback: WordListCallback)
+    public func findAnagramsExactLength(_ letters: String, numberOfBlanks: Int, callback: WordListCallback)
     {
         let len = letters.length + numberOfBlanks
         let anagram = LetterSet(word: letters)
@@ -119,7 +119,7 @@ open class WordList
         }
     }
 
-    open func findAnagrams(_ letters: String, callback: WordListCallback)
+    public func findAnagrams(_ letters: String, callback: WordListCallback)
     {
         let len = letters.length
         let anagram = LetterSet(word: letters)
@@ -138,7 +138,7 @@ open class WordList
             }
         }
     }
-    open func findSubAnagrams(_ letters: String, callback: WordListCallback)
+    public func findSubAnagrams(_ letters: String, callback: WordListCallback)
     {
         let len = letters.length
         let anagram = LetterSet(word: letters)
@@ -172,7 +172,7 @@ open class WordList
      In unit testing, NSRegEx is over twice as fast.
 
      */
-    open func findCrosswords(_ crossword: String, callback: WordListCallback)
+    public func findCrosswords(_ crossword: String, callback: WordListCallback)
     {
         let len = crossword.length
         let pattern = createRegexPattern(crossword)
@@ -201,7 +201,7 @@ open class WordList
      Unit tests show NSRegEx is 3x faster than NSString
      iPhone 5s Device tests: 16s for NSString, 10s for NSRegEx
      */
-    open func findWildcards(_ wildcard: String, callback: WordListCallback)
+    public func findWildcards(_ wildcard: String, callback: WordListCallback)
     {
         let pattern = createRegexPattern(wildcard)
         let regex = try? NSRegularExpression(pattern: pattern, options: [])
@@ -240,7 +240,7 @@ open class WordList
         Then for each word in the second list see if it is an anagram of the unused letters,
         if it is the first and second words make a two word anagram
     */
-    open func findMultiwordAnagrams(_ word1: String, word2: String, callback: WordListCallback)
+    public func findMultiwordAnagrams(_ word1: String, word2: String, callback: WordListCallback)
     {
         let superset = LetterSet(word: word1+word2)
         let listA = self.getFilteredList(superset, length: word1.length)
@@ -272,7 +272,7 @@ open class WordList
             }
         }
     }
-    open func findMultiwordAnagrams(_ letters: String, startLen : Int, callback: WordListCallback){
+    public func findMultiwordAnagrams(_ letters: String, startLen : Int, callback: WordListCallback){
         let len = letters.count
         let middleWordSize = len/2
         
@@ -307,7 +307,7 @@ open class WordList
         }
         return matches
     }
-    open func findMultiwordAnagrams(_ word1: String,_ word2: String,_ word3: String, callback: WordListCallback){
+    public func findMultiwordAnagrams(_ word1: String,_ word2: String,_ word3: String, callback: WordListCallback){
         let superset = LetterSet(word: word1+word2+word3)
         let listA = self.getFilteredList(superset, length: word1.length)
         var listB: [String]
@@ -376,7 +376,7 @@ open class WordList
         }
     }
     
-    open func findCodewords(codewordSolver : CodewordSolver, callback : WordListCallback){
+    public func findCodewords(codewordSolver : CodewordSolver, callback : WordListCallback){
         for word in self.wordlist
         {
             if (self.stop) { break}
