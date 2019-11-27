@@ -16,8 +16,8 @@ public protocol WordListCallback
 public class WordListFilterWrapper : WordListCallback
 {
     //should callback be weak?
-    fileprivate let callback : WordListCallback!
-    fileprivate var matches: [String] = []
+    private let callback : WordListCallback!
+    private var matches: [String] = []
     
     public init(callback: WordListCallback)
     {
@@ -36,8 +36,8 @@ public class WordListFilterWrapper : WordListCallback
 
 public class WordListMissingLetterWrapper : WordListCallback
 {
-    fileprivate let callback : WordListCallback!
-    fileprivate let originalWord : String!
+    private let callback : WordListCallback!
+    private let originalWord : String!
     
     public init(callback: WordListCallback, originalWord: String)
     {
@@ -53,8 +53,8 @@ public class WordListMissingLetterWrapper : WordListCallback
 }
 
 public class BiggerThanFilter : WordListCallback {
-    fileprivate let callback : WordListCallback
-    fileprivate let size : Int
+    private let callback : WordListCallback
+    private let size : Int
     
     public init(callback : WordListCallback, size : Int){
         self.callback = callback
@@ -69,8 +69,8 @@ public class BiggerThanFilter : WordListCallback {
 }
 
 public class LessThanFilter : WordListCallback {
-    fileprivate let callback : WordListCallback
-    fileprivate let size : Int
+    private let callback : WordListCallback
+    private let size : Int
     
     public init(callback : WordListCallback, size : Int){
         self.callback = callback
@@ -85,8 +85,8 @@ public class LessThanFilter : WordListCallback {
 }
 
 public class EqualToFilter : WordListCallback {
-    fileprivate let callback : WordListCallback
-    fileprivate let size : Int
+    private let callback : WordListCallback
+    private let size : Int
     
     public init(callback : WordListCallback, size : Int){
         self.callback = callback
@@ -101,8 +101,8 @@ public class EqualToFilter : WordListCallback {
 }
 
 public class StartsWithFilter : WordListCallback {
-    fileprivate let callback : WordListCallback
-    fileprivate let letters : String
+    private let callback : WordListCallback
+    private let letters : String
     
     public init(callback : WordListCallback, letters : String){
         self.callback = callback
@@ -117,8 +117,8 @@ public class StartsWithFilter : WordListCallback {
 }
 
 public class EndsWithFilter : WordListCallback {
-    fileprivate let callback : WordListCallback
-    fileprivate let letters : String
+    private let callback : WordListCallback
+    private let letters : String
     
     public init(callback : WordListCallback, letters : String){
         self.callback = callback
@@ -133,8 +133,8 @@ public class EndsWithFilter : WordListCallback {
 }
 
 public class ContainsFilter : WordListCallback {
-    fileprivate let callback : WordListCallback
-    fileprivate let letterSet : LetterSet
+    private let callback : WordListCallback
+    private let letterSet : LetterSet
     
     public init(callback : WordListCallback, letters : String){
         self.callback = callback
@@ -150,8 +150,8 @@ public class ContainsFilter : WordListCallback {
     }
 }
 public class ExcludesFilter : WordListCallback {
-    fileprivate let callback : WordListCallback
-    fileprivate let letters : String
+    private let callback : WordListCallback
+    private let letters : String
     
     public init(callback : WordListCallback, letters : String){
         self.callback = callback
@@ -170,8 +170,8 @@ public class ExcludesFilter : WordListCallback {
     }
 }
 public class ContainsWordFilter : WordListCallback {
-    fileprivate let callback : WordListCallback
-    fileprivate let word : String
+    private let callback : WordListCallback
+    private let word : String
     public init(callback : WordListCallback, word : String){
         self.callback = callback
         self.word = word
@@ -184,8 +184,8 @@ public class ContainsWordFilter : WordListCallback {
     }
 }
 public class ExcludesWordFilter : WordListCallback {
-    fileprivate let callback : WordListCallback
-    fileprivate let word : String
+    private let callback : WordListCallback
+    private let word : String
     public init(callback : WordListCallback, word : String){
         self.callback = callback
         self.word = word
@@ -199,8 +199,8 @@ public class ExcludesWordFilter : WordListCallback {
 }
 
 public class RegexFilter : WordListCallback {
-    fileprivate let callback : WordListCallback
-    fileprivate let regex : NSRegularExpression?
+    private let callback : WordListCallback
+    private let regex : NSRegularExpression?
 
     public init(callback : WordListCallback, pattern : String){
         self.callback = callback
@@ -223,20 +223,19 @@ public class RegexFilter : WordListCallback {
     }
 }
 
+public class DistinctFilter : WordListCallback {
+    private let callback : WordListCallback
+    private let letterSet : LetterSet
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    public init(callback : WordListCallback){
+        self.callback = callback
+        self.letterSet = LetterSet(word: "")
+    }
+    public func update(_ result: String) {
+        letterSet.clear()
+        letterSet.add(result)
+        if letterSet.isDistinct() {
+            callback.update(result)
+        }
+    }
+}

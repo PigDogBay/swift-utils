@@ -234,4 +234,20 @@ class WordListCallbackTests: XCTestCase, WordListCallback  {
         target.update("commodore")
         XCTAssertNil(result)
     }
+    
+    func testDistinctFilter1(){
+        let target = DistinctFilter(callback: self)
+        target.update("spectrum")
+        XCTAssertEqual(result, "spectrum")
+    }
+    func testDistinctFilter2(){
+        let target = DistinctFilter(callback: self)
+        target.update("commodore")
+        XCTAssertNil(result)
+    }
+    func testDistinctFilter3(){
+        let target = DistinctFilter(callback: self)
+        target.update("")
+        XCTAssertNil(result)
+    }
 }
