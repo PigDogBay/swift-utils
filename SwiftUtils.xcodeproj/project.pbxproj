@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		00430DFB24B5ECAB007D9DBF /* Ratings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00430DFA24B5ECAB007D9DBF /* Ratings.swift */; };
 		4D1EB2E82154D2BB00184663 /* ObservableProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1EB2E72154D2BB00184663 /* ObservableProperty.swift */; };
 		4D1EB2EA2154D2EA00184663 /* ObservablePropertyTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1EB2E92154D2EA00184663 /* ObservablePropertyTest.swift */; };
 		4D3368021AA71E3400EA824A /* ViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3368011AA71E3400EA824A /* ViewControllerExtensions.swift */; };
@@ -48,6 +49,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		00430DFA24B5ECAB007D9DBF /* Ratings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ratings.swift; sourceTree = "<group>"; };
 		4D1EB2E72154D2BB00184663 /* ObservableProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableProperty.swift; sourceTree = "<group>"; };
 		4D1EB2E92154D2EA00184663 /* ObservablePropertyTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservablePropertyTest.swift; sourceTree = "<group>"; };
 		4D3368011AA71E3400EA824A /* ViewControllerExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerExtensions.swift; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 				4DD7BA701E23BD4D00400E9D /* MissingLetters.swift */,
 				4D9D30F21D2D2A290088392C /* MockIAP.swift */,
 				4D1EB2E72154D2BB00184663 /* ObservableProperty.swift */,
+				00430DFA24B5ECAB007D9DBF /* Ratings.swift */,
 				4D45F0031A9DFFB500C40BB4 /* StringUtils.swift */,
 				4D45EFE81A9DFB3700C40BB4 /* SwiftUtils.h */,
 				4D3368011AA71E3400EA824A /* ViewControllerExtensions.swift */,
@@ -289,6 +292,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00430DFB24B5ECAB007D9DBF /* Ratings.swift in Sources */,
 				4D45F0041A9DFFB500C40BB4 /* StringUtils.swift in Sources */,
 				4D9D30EF1D2D26490088392C /* IAPDelegate.swift in Sources */,
 				4D45F0021A9DFF8D00C40BB4 /* LetterSet.swift in Sources */,
