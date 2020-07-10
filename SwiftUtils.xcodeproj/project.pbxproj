@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		00430DFB24B5ECAB007D9DBF /* Ratings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00430DFA24B5ECAB007D9DBF /* Ratings.swift */; };
 		00469B5524B73146000DBAF4 /* SoundUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00469B5424B73146000DBAF4 /* SoundUtils.swift */; };
+		005D83BF24B8C30800EA5FFD /* DebugUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005D83BE24B8C30800EA5FFD /* DebugUtils.swift */; };
 		4D1EB2E82154D2BB00184663 /* ObservableProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1EB2E72154D2BB00184663 /* ObservableProperty.swift */; };
 		4D1EB2EA2154D2EA00184663 /* ObservablePropertyTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1EB2E92154D2EA00184663 /* ObservablePropertyTest.swift */; };
 		4D3368021AA71E3400EA824A /* ViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3368011AA71E3400EA824A /* ViewControllerExtensions.swift */; };
@@ -52,6 +53,7 @@
 /* Begin PBXFileReference section */
 		00430DFA24B5ECAB007D9DBF /* Ratings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ratings.swift; sourceTree = "<group>"; };
 		00469B5424B73146000DBAF4 /* SoundUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundUtils.swift; sourceTree = "<group>"; };
+		005D83BE24B8C30800EA5FFD /* DebugUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugUtils.swift; sourceTree = "<group>"; };
 		4D1EB2E72154D2BB00184663 /* ObservableProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableProperty.swift; sourceTree = "<group>"; };
 		4D1EB2E92154D2EA00184663 /* ObservablePropertyTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservablePropertyTest.swift; sourceTree = "<group>"; };
 		4D3368011AA71E3400EA824A /* ViewControllerExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerExtensions.swift; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 			children = (
 				4D45EFE61A9DFB3700C40BB4 /* Supporting Files */,
 				4D9EE74421414B220013192B /* CodewordSolver.swift */,
+				005D83BE24B8C30800EA5FFD /* DebugUtils.swift */,
 				4D9D30EE1D2D26490088392C /* IAPDelegate.swift */,
 				4D9D30EC1D2D243F0088392C /* IAPInterface.swift */,
 				4D9D30F81D2D36090088392C /* IAPObservable.swift */,
@@ -298,6 +301,7 @@
 				00430DFB24B5ECAB007D9DBF /* Ratings.swift in Sources */,
 				4D45F0041A9DFFB500C40BB4 /* StringUtils.swift in Sources */,
 				4D9D30EF1D2D26490088392C /* IAPDelegate.swift in Sources */,
+				005D83BF24B8C30800EA5FFD /* DebugUtils.swift in Sources */,
 				4D45F0021A9DFF8D00C40BB4 /* LetterSet.swift in Sources */,
 				4D9EE74521414B220013192B /* CodewordSolver.swift in Sources */,
 				4D9D30F91D2D36090088392C /* IAPObservable.swift in Sources */,
