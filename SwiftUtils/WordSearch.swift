@@ -32,6 +32,8 @@ open class WordSearch
     public let MAX_WORD_LEN = 42
     static public let CROSSWORD_STR = "."
     static public let TWO_WORD_STR = " "
+    static public let TWO_WORD_STR_ALT1 = "-"
+    static public let TWO_WORD_STR_ALT2 = ","
     static public let WILDCARD_STR = "@"
     static public let BLANK_STR = "+"
     static public let SUPERGRAM_STR = "*"
@@ -142,6 +144,8 @@ open class WordSearch
             processedQuery = query
                 .lowercased(with: usLocale)
                 .replace("?", withString: ".")
+                .replace(WordSearch.TWO_WORD_STR_ALT1, withString: WordSearch.TWO_WORD_STR)
+                .replace(WordSearch.TWO_WORD_STR_ALT2, withString: WordSearch.TWO_WORD_STR)
                 .replace("1", withString: ".")
                 .replace("2", withString: "..")
                 .replace("3", withString: "...")

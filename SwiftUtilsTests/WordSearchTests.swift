@@ -112,6 +112,14 @@ class WordSearchTests: XCTestCase {
         let actual = target.preProcessQuery(".a112332")
         XCTAssertEqual(actual,".a............")
     }
+    func testPreProcessQuery11() {
+        let actual = target.preProcessQuery("crossword-solver")
+        XCTAssertEqual(actual,"crossword solver")
+    }
+    func testPreProcessQuery12() {
+        let actual = target.preProcessQuery("crossword,solver")
+        XCTAssertEqual(actual,"crossword solver")
+    }
 
     func testGetQueryType1()
     {
