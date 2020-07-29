@@ -45,3 +45,11 @@ public func mpdbCreateEmailUrl(to: String, subject: String, body: String) -> URL
     }
     return defaultUrl
 }
+
+public func mpdbShowSettings(){
+    let application = UIApplication.shared
+    let url = URL(string: UIApplication.openSettingsURLString)! as URL
+    if application.canOpenURL(url){
+        application.open(url,options: [:],completionHandler: nil)
+    }
+}
