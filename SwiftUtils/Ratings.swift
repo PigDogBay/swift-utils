@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import StoreKit
 
-public class Ratings {
+public final class Ratings {
     
     fileprivate let countKey = "RatingsRequestCount"
     fileprivate let installDateKey = "RatingsInstallDate"
@@ -18,7 +18,7 @@ public class Ratings {
     fileprivate let maxCount = 32
     //Ask after a week, time interval is in seconds
     fileprivate let maxTimeInterval = TimeInterval(7*24*60*60)
-    fileprivate var appUrl : String
+    fileprivate let appUrl : String
     
     public init(appId : String){
         self.appUrl = "itms-apps://itunes.apple.com/app/\(appId)"
