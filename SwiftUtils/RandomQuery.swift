@@ -78,7 +78,6 @@ public struct RandomQuery {
         let u = Int.random(in: 2...10)
         return crossword(numberOfLetters: l, numberOfUnknowns: u)
     }
-
     
     public func twoWords() -> String {
         var anag = anagram() + WordSearch.TWO_WORD_STR
@@ -102,18 +101,24 @@ public struct RandomQuery {
     }
     
     public func prefixSuffix() -> String {
-        let anag = anagram() + WordSearch.WILDCARD_STR
+        let v = Int.random(in: 1...2)
+        let c = Int.random(in: 1...4)
+        let anag = anagram(numberOfVowels: v, numberOfConsonants: c) + WordSearch.WILDCARD_STR
         return shuffle(ordered: anag)
     }
 
     public func wildcardCrossword() -> String {
-        let anag = crossword() + WordSearch.WILDCARD_STR
+        let l = Int.random(in: 1...3)
+        let u = Int.random(in: 1...3)
+        let anag = crossword(numberOfLetters: l, numberOfUnknowns: u) + WordSearch.WILDCARD_STR
         return shuffle(ordered: anag)
     }
     
     public func codeword()-> String {
+        let c = Int.random(in: 1...2)
+        var builder = anagram(numberOfVowels: 1, numberOfConsonants: c) + "11.."
+
         let r = Int.random(in: 1...3)
-        var builder = anagram(numberOfVowels: 2, numberOfConsonants: 3) + "11.."
         if r > 2 {
             builder = builder + "33"
         }
