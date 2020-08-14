@@ -79,4 +79,28 @@ class RandomQueryTests: XCTestCase {
         }
     }
 
+    func testPrefixSuffix1(){
+        let randomQuery = RandomQuery()
+        for _ in 1...loop {
+            let actual = randomQuery.prefixSuffix()
+            check(query: actual, expectedType: .wildcard)
+        }
+    }
+
+    func testWildcardCrossword1(){
+        let randomQuery = RandomQuery()
+        for _ in 1...loop {
+            let actual = randomQuery.wildcardCrossword()
+            check(query: actual, expectedType: .wildcardAndCrossword)
+        }
+    }
+
+    func testCodeword1(){
+        let randomQuery = RandomQuery()
+        for _ in 1...loop {
+            let actual = randomQuery.codeword()
+            check(query: actual, expectedType: .codeword)
+        }
+    }
+
 }

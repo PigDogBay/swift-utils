@@ -74,8 +74,29 @@ public struct RandomQuery {
         }
         return builder
     }
-
     
+    public func prefixSuffix() -> String {
+        let anag = anagram() + WordSearch.WILDCARD_STR
+        return shuffle(ordered: anag)
+    }
+
+    public func wildcardCrossword() -> String {
+        let anag = crossword() + WordSearch.WILDCARD_STR
+        return shuffle(ordered: anag)
+    }
+    
+    public func codeword()-> String {
+        let r = Int.random(in: 1...3)
+        var builder = anagram(numberOfVowels: 2, numberOfConsonants: 3) + "11.."
+        if r > 2 {
+            builder = builder + "33"
+        }
+        if r > 1 {
+            builder = builder + "22"
+        }
+        return shuffle(ordered: builder)
+    }
+
     public func example() -> String {
         return examples.randomElement()!
     }
