@@ -55,12 +55,26 @@ public struct RandomQuery {
 
     
     public func twoWords() -> String {
-        var anag = anagram() + " "
+        var anag = anagram() + WordSearch.TWO_WORD_STR
         if anag.first == " " || anag.last == " " {
             anag = shuffle(ordered: anag)
         }
         return shuffle(ordered: anag)
     }
+    
+    public func supergram() -> String {
+        return anagram() + WordSearch.SUPERGRAM_STR
+    }
+
+    public func blankLetters() -> String {
+        let b = Int.random(in: 1...3)
+        var builder = anagram()
+        for _ in 1...b {
+            builder = builder + WordSearch.BLANK_STR
+        }
+        return builder
+    }
+
     
     public func example() -> String {
         return examples.randomElement()!

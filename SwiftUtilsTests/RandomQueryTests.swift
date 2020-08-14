@@ -63,4 +63,20 @@ class RandomQueryTests: XCTestCase {
         }
     }
 
+    func testSupergram1(){
+        let randomQuery = RandomQuery()
+        for _ in 1...loop {
+            let actual = randomQuery.supergram()
+            check(query: actual, expectedType: .supergram)
+        }
+    }
+
+    func testBlankLetters1(){
+        let randomQuery = RandomQuery()
+        for _ in 1...loop {
+            let actual = randomQuery.blankLetters()
+            check(query: actual, expectedType: .blanks)
+        }
+    }
+
 }
