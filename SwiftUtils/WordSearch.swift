@@ -31,6 +31,7 @@ open class WordSearch
 
     public let MAX_WORD_LEN = 42
     static public let CROSSWORD_STR = "."
+    static public let CROSSWORD_STR_ALT = "?"
     static public let TWO_WORD_STR = " "
     static public let TWO_WORD_STR_ALT1 = "-"
     static public let TWO_WORD_STR_ALT2 = ","
@@ -139,11 +140,11 @@ open class WordSearch
         if isCodeword(query: query){
             processedQuery = query
                 .lowercased(with: usLocale)
-                .replace("?", withString: ".")
+                .replace(WordSearch.CROSSWORD_STR_ALT, withString: WordSearch.CROSSWORD_STR)
         } else {
             processedQuery = query
                 .lowercased(with: usLocale)
-                .replace("?", withString: ".")
+                .replace(WordSearch.CROSSWORD_STR_ALT, withString: WordSearch.CROSSWORD_STR)
                 .replace(WordSearch.TWO_WORD_STR_ALT1, withString: WordSearch.TWO_WORD_STR)
                 .replace(WordSearch.TWO_WORD_STR_ALT2, withString: WordSearch.TWO_WORD_STR)
                 .replace("1", withString: ".")
@@ -280,7 +281,7 @@ open class WordSearch
         case .crossword:
             self.wordList.findCrosswords(query, callback: callback)
         case .blanks:
-            let queryRemovedSymbol = query.replace("+", withString: "")
+            let queryRemovedSymbol = query.replace(WordSearch.BLANK_STR, withString: "")
             let numberOfBlanks = len - queryRemovedSymbol.length
             if self.findSubAnagrams {
                 self.wordList.findAnagrams(queryRemovedSymbol, numberOfBlanks: numberOfBlanks, callback: callback)
@@ -288,7 +289,7 @@ open class WordSearch
                 self.wordList.findAnagramsExactLength(queryRemovedSymbol, numberOfBlanks: numberOfBlanks, callback: callback)
             }
         case .supergram:
-            let queryRemovedSymbol = query.replace("*", withString: "")
+            let queryRemovedSymbol = query.replace(WordSearch.SUPERGRAM_STR, withString: "")
             self.wordList.findSupergrams(queryRemovedSymbol, callback: callback, length: 0)
         case .twoWordAnagram:
             let words = query.split(separator: " ")
