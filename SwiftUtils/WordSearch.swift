@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum SearchType
+public enum SearchType : CaseIterable
 {
     case crossword
     case anagram

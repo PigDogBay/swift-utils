@@ -16,7 +16,33 @@ public struct RandomQuery {
     
     
     public init(){
-        
+    }
+    
+    public func query() -> String{
+        let r = Int.random(in: 1...3)
+        if r == 1 {
+            return example()
+        }
+
+        let randomSearchType = SearchType.allCases.randomElement()!
+        switch randomSearchType {
+        case .crossword:
+            return crossword()
+        case .anagram:
+            return anagram()
+        case .twoWordAnagram:
+            return twoWords()
+        case .wildcard:
+            return prefixSuffix()
+        case .wildcardAndCrossword:
+            return wildcardCrossword()
+        case .blanks:
+            return blankLetters()
+        case .supergram:
+            return supergram()
+        case .codeword:
+            return codeword()
+        }
     }
     
     public func anagram() -> String {
