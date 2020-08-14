@@ -15,7 +15,12 @@ class RandomQueryTests: XCTestCase {
     func testAnagram1(){
         let randomQuery = RandomQuery()
         let actual = randomQuery.anagram(numberOfVowels: 3, numberOfConsonants: 6)
-        print(actual)
+        XCTAssertEqual(actual.length, 9)
+    }
+
+    func testCrossword1(){
+        let randomQuery = RandomQuery()
+        let actual = randomQuery.crossword(numberOfLetters: 3, numberOfUnknowns: 6)
         XCTAssertEqual(actual.length, 9)
     }
 }
