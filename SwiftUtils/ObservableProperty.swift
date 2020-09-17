@@ -44,7 +44,7 @@ public class ObservableProperty<T : Equatable> {
         }
     }
     public func removeObserver(named : String){
-        _ = internalQueue.sync {
+        internalQueue.sync {
             _ = observers.removeValue(forKey: named)
         }
     }
