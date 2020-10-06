@@ -12,9 +12,7 @@ public struct RandomQuery {
     let vowels = ["a","e","i","o","u"]
     let consonants = ["b","c","d","f","g","h","j","k","l","m","n","p","q","r","s","t","v","w","x","y","z"]
     let letters = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
-    let examples = ["m?g??","moonstarer","z9","james-bond","scrabb++","kayleigh*","super@ted","..112332", "r??p?????", "c??v?r","????ial","eprsu"
-        , "manchester-united", "cli-ntea-stwood", "google++++", "stratus+", "sup@x?", "microsoft*", "?a???p??", "steam", "hearts", "@ace", "zslteram", "thidgof"
-        , "m.z@", ".m.z.", "vegdances", "c....w...", "itchysemi", "w ackoanglo rocker", "*", "++++", "...", "@x@", "llan@", "British Broadcasting Corporation"]
+    let examples = ["m?g??","moonstarer","z9","james-bond","scrabb++","kayleigh*","super@ted","..112332"]
     
     
     public init(){
