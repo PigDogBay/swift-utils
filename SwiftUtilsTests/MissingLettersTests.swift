@@ -90,7 +90,7 @@ class MissingLettersTests: XCTestCase {
             for _ in 0 ..< 1000
             {
                 // Put the code you want to measure the time of here.
-//                target.findPositions(word: "wonderful")
+                _ = target.findPositions(word: "wonderful")
             }
         }
     }
