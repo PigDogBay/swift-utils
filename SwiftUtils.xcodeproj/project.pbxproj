@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -262,12 +262,13 @@
 					};
 					4D45EFED1A9DFB3700C40BB4 = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = ZYM8DA54T6;
 						LastSwiftMigration = 1120;
 					};
 				};
 			};
 			buildConfigurationList = 4D45EFDD1A9DFB3700C40BB4 /* Build configuration list for PBXProject "SwiftUtils" */;
-			compatibilityVersion = "Xcode 12.0";
+			compatibilityVersion = "Xcode 11.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
