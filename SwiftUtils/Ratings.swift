@@ -31,7 +31,6 @@ public final class Ratings {
             if c == nil
             {
                 defaults.set(0, forKey: countKey)
-                defaults.synchronize()
                 return 0
             }
             return c!
@@ -39,7 +38,6 @@ public final class Ratings {
         set(value){
             let defaults = UserDefaults.standard
             defaults.set(value, forKey: countKey)
-            defaults.synchronize()
         }
     }
     
@@ -51,7 +49,6 @@ public final class Ratings {
             {
                 let date = Date()
                 defaults.set(date, forKey: installDateKey)
-                defaults.synchronize()
                 return date
             }
             return c!
@@ -59,7 +56,6 @@ public final class Ratings {
         set(value){
             let defaults = UserDefaults.standard
             defaults.set(value, forKey: installDateKey)
-            defaults.synchronize()
         }
     }
     

@@ -32,7 +32,6 @@ extension UIViewController
         if firstTimeSetting == nil
         {
             defaults.set(true, forKey: key)
-            defaults.synchronize()
             return true
         }
         return false
