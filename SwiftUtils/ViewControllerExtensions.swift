@@ -37,3 +37,14 @@ extension UIViewController
         return false
     }
 }
+
+extension UIColor {
+    public func mpdbPrintRGB(){
+        var red: CGFloat = 0
+        var green: CGFloat = 0
+        var blue: CGFloat = 0
+        var alpha: CGFloat = 0
+        self.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+        print("Color R:\(red) G:\(green) B:\(blue) A:\(alpha)")
+    }
+}
