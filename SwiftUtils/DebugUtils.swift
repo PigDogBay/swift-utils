@@ -16,3 +16,16 @@ public func mpdbCurrentQueueName() -> String? {
 public func mpdbLogCurrentQueueName() {
     print("(MPDB SwiftUtils) Current Queue: \(mpdbCurrentQueueName() ?? "nil")")
 }
+
+public struct Timing {
+    private let start = CFAbsoluteTimeGetCurrent()
+    public init(){}
+    
+    public var elapsedSeconds : Double {
+        return CFAbsoluteTimeGetCurrent() - start
+    }
+    
+    public func log() {
+        print("Time taken: \(elapsedSeconds)s")
+    }
+}
