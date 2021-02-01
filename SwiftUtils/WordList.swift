@@ -10,12 +10,12 @@ import Foundation
 
 public class WordList
 {
-    public var wordlist: [String]!
+    private let wordlist: [String]
 
     //Stop needs to be protected by a mutex,
     //keep an eye out for future enhancements in Swift, such as synchronized blocks
-    fileprivate var _Stop = false
-    fileprivate var stop: Bool
+    private var _Stop = false
+    private var stop: Bool
     {
         get
         {
@@ -35,31 +35,10 @@ public class WordList
     {
         stop = true
     }
-    public init()
-    {
-    }
+
     public init(wordlist: [String])
     {
         self.wordlist = wordlist
-    }
-    /*
-        Adds the new words to the exisiting list and then
-        sorts by length, but for equal length words sort alphabetically
-        
-        Unfortunately the sort for added pro words to the std words
-        takes over 30s on the iPad
-    */
-    public func addNewWords(_ newWords: [String])
-    {
-        wordlist.append(contentsOf: newWords)
-        wordlist.sort(by: { (str1, str2) -> Bool in
-                let len1 = str1.length
-                let len2 = str2.length
-                if len1==len2 {
-                    return str1.compare(str2) == .orderedAscending
-                }
-                return len1>len2
-            })
     }
     
     public func reset()
@@ -273,7 +252,7 @@ public class WordList
         }
     }
     public func findMultiwordAnagrams(_ letters: String, startLen : Int, callback: WordListCallback){
-        let len = letters.count
+        let len = letters.length
         let middleWordSize = len/2
         
         //first show the user's requested word sizes

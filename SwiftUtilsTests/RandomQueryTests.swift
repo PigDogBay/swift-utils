@@ -12,7 +12,7 @@ import SwiftUtils
 
 class RandomQueryTests: XCTestCase {
     let loop = 100
-    let wordSearch = WordSearch(wordList: WordList())
+    let wordSearch = WordSearch()
     
     private func check(query : String, expectedType : SearchType){
         let preProcess = wordSearch.preProcessQuery(query)

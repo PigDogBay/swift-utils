@@ -20,14 +20,14 @@ public enum SearchType : CaseIterable
     case codeword
 }
 
-open class WordSearch
+public class WordSearch
 {
-    open var findSubAnagrams = true
-    open var findThreeWordAnagrams = true
-    open var findCodewords = true
-    public let wordList : WordList!
-    fileprivate lazy var codewordSolver = CodewordSolver()
-    fileprivate let usLocale = Locale(identifier: "en_US")
+    public var findSubAnagrams = true
+    public var findThreeWordAnagrams = true
+    public var findCodewords = true
+    private var wordList : WordList? = nil
+    private lazy var codewordSolver = CodewordSolver()
+    private let usLocale = Locale(identifier: "en_US")
 
     public let MAX_WORD_LEN = 42
     static public let CROSSWORD_STR = "."
@@ -39,17 +39,17 @@ open class WordSearch
     static public let BLANK_STR = "+"
     static public let SUPERGRAM_STR = "*"
 
-    fileprivate let CROSSWORD_CHAR_VALUE = UnicodeScalar(".").value
-    fileprivate let TWO_WORD_CHAR_VALUE = UnicodeScalar(" ").value
-    fileprivate let WILDCARD_CHAR_VALUE = UnicodeScalar("@").value
-    fileprivate let BLANK_CHAR_VALUE = UnicodeScalar("+").value
-    fileprivate let SUPERGRAM_VALUE = UnicodeScalar("*").value
-    fileprivate let CODEWORD_CHAR = UnicodeScalar("1")
-    fileprivate let LOWEST_CHAR_VALUE = UnicodeScalar("a").value
-    fileprivate let HIGHEST_CHAR_VALUE = UnicodeScalar("z").value
+    private let CROSSWORD_CHAR_VALUE = UnicodeScalar(".").value
+    private let TWO_WORD_CHAR_VALUE = UnicodeScalar(" ").value
+    private let WILDCARD_CHAR_VALUE = UnicodeScalar("@").value
+    private let BLANK_CHAR_VALUE = UnicodeScalar("+").value
+    private let SUPERGRAM_VALUE = UnicodeScalar("*").value
+    private let CODEWORD_CHAR = UnicodeScalar("1")
+    private let LOWEST_CHAR_VALUE = UnicodeScalar("a").value
+    private let HIGHEST_CHAR_VALUE = UnicodeScalar("z").value
 
-    fileprivate let LOWEST_ASCII_VALUE = UnicodeScalar(" ").value
-    fileprivate let HIGHEST_ASCII_VALUE = UnicodeScalar("z").value
+    private let LOWEST_ASCII_VALUE = UnicodeScalar(" ").value
+    private let HIGHEST_ASCII_VALUE = UnicodeScalar("z").value
 
     public class func getGoogleUrl(word : String)->String{
         return "https://www.google.com/search?q=dictionary:\(word)"
@@ -95,10 +95,15 @@ open class WordSearch
         let processed = word.replace(" ", withString: "-")
         return "https://dictionary.cambridge.org/dictionary/english/\(processed)"
     }
-
-    public init(wordList: WordList)
-    {
-        self.wordList = wordList
+    
+    public init(){}
+    
+    public func set(words : [String]){
+        self.wordList = WordList(wordlist: words)
+    }
+    
+    public func clearWords() {
+        self.wordList = nil
     }
     
     /*
@@ -107,7 +112,7 @@ open class WordSearch
         Trim whitespace
         Lowercase
     */
-    open func clean(_ raw: String)->String
+    public func clean(_ raw: String)->String
     {
         if raw.length==0
         {
@@ -134,7 +139,7 @@ open class WordSearch
         return builder.lowercased()
     }
   
-    open func preProcessQuery(_ query: String)->String
+    public func preProcessQuery(_ query: String)->String
     {
         var processedQuery : String
         if isCodeword(query: query){
@@ -165,7 +170,7 @@ open class WordSearch
         return processedQuery
     }
     
-    open func getQueryType(_ query: String) ->SearchType
+    public func getQueryType(_ query: String) ->SearchType
     {
         if query.mpdb_contains(WordSearch.WILDCARD_STR) && query.mpdb_contains(WordSearch.CROSSWORD_STR)
         {
@@ -198,7 +203,7 @@ open class WordSearch
         return SearchType.anagram
     }
 
-    open func postProcessQuery(_ query: String, type: SearchType)->String
+    public func postProcessQuery(_ query: String, type: SearchType)->String
     {
         var query = query
         switch type
@@ -229,7 +234,8 @@ open class WordSearch
         }
         return query
     }
-    fileprivate func stripChars(_ s: String, except1: UInt32 = 0, except2: UInt32 = 0)->String
+    
+    private func stripChars(_ s: String, except1: UInt32 = 0, except2: UInt32 = 0)->String
     {
         var builder =  ""
         let chars = s.unicodeScalars
@@ -243,7 +249,8 @@ open class WordSearch
         }
         return builder
     }
-    fileprivate func stripCharsForCodeword(_ s: String) -> String
+    
+    private func stripCharsForCodeword(_ s: String) -> String
     {
         //Codewords can use numbers 1 to 7 to represent letters
         let CHAR_1 = UnicodeScalar("1").value
@@ -260,53 +267,56 @@ open class WordSearch
         }
         return builder
     }
-    open func runQuery(_ query: String, type: SearchType, callback: WordListCallback)
+    
+    public func runQuery(_ query: String, type: SearchType, callback: WordListCallback)
     {
         let len = query.length
-        //an empty query will return a match, as an empty string is in the word list
-        if len == 0 {
-            return
-        }
-        self.wordList.reset()
-        switch type
-        {
-        case .anagram:
-            self.wordList.findAnagrams(query, callback: callback)
-            if self.findSubAnagrams && len<=self.MAX_WORD_LEN
+        if let wl = self.wordList, len > 0 {
+            wl.reset()
+            switch type
             {
-                //don't show the same word twice
-                let filterWrapper = WordListFilterWrapper(callback: callback)
-                self.wordList.findSubAnagrams(query, callback: filterWrapper)
+            case .anagram:
+                wl.findAnagrams(query, callback: callback)
+                if self.findSubAnagrams && len<=self.MAX_WORD_LEN
+                {
+                    //don't show the same word twice
+                    let filterWrapper = WordListFilterWrapper(callback: callback)
+                    wl.findSubAnagrams(query, callback: filterWrapper)
+                }
+            case .crossword:
+                wl.findCrosswords(query, callback: callback)
+            case .blanks:
+                let queryRemovedSymbol = query.replace(WordSearch.BLANK_STR, withString: "")
+                let numberOfBlanks = len - queryRemovedSymbol.length
+                if self.findSubAnagrams {
+                    wl.findAnagrams(queryRemovedSymbol, numberOfBlanks: numberOfBlanks, callback: callback)
+                } else {
+                    wl.findAnagramsExactLength(queryRemovedSymbol, numberOfBlanks: numberOfBlanks, callback: callback)
+                }
+            case .supergram:
+                let queryRemovedSymbol = query.replace(WordSearch.SUPERGRAM_STR, withString: "")
+                wl.findSupergrams(queryRemovedSymbol, callback: callback, length: 0)
+            case .twoWordAnagram:
+                let words = query.split(separator: " ")
+                if self.findThreeWordAnagrams && words.count > 2 {
+                    wl.findMultiwordAnagrams(String(words[0]), String(words[1]), String(words[2]), callback: callback)
+                } else if words.count >= 2 {
+                    wl.findMultiwordAnagrams(String(words[0]+words[1]), startLen: words[0].count, callback: callback)
+                }
+            case .wildcard, .wildcardAndCrossword:
+                wl.findWildcards(query, callback: callback)
+            case .codeword:
+                self.codewordSolver.parse(query: query)
+                wl.findCodewords(codewordSolver: codewordSolver, callback: callback)
             }
-        case .crossword:
-            self.wordList.findCrosswords(query, callback: callback)
-        case .blanks:
-            let queryRemovedSymbol = query.replace(WordSearch.BLANK_STR, withString: "")
-            let numberOfBlanks = len - queryRemovedSymbol.length
-            if self.findSubAnagrams {
-                self.wordList.findAnagrams(queryRemovedSymbol, numberOfBlanks: numberOfBlanks, callback: callback)
-            } else {
-                self.wordList.findAnagramsExactLength(queryRemovedSymbol, numberOfBlanks: numberOfBlanks, callback: callback)
-            }
-        case .supergram:
-            let queryRemovedSymbol = query.replace(WordSearch.SUPERGRAM_STR, withString: "")
-            self.wordList.findSupergrams(queryRemovedSymbol, callback: callback, length: 0)
-        case .twoWordAnagram:
-            let words = query.split(separator: " ")
-            if self.findThreeWordAnagrams && words.count > 2 {
-                self.wordList.findMultiwordAnagrams(String(words[0]), String(words[1]), String(words[2]), callback: callback)
-            } else if words.count >= 2 {
-                self.wordList.findMultiwordAnagrams(String(words[0]+words[1]), startLen: words[0].count, callback: callback)
-            }
-        case .wildcard, .wildcardAndCrossword:
-            self.wordList.findWildcards(query, callback: callback)
-        case .codeword:
-            self.codewordSolver.parse(query: query)
-            self.wordList.findCodewords(codewordSolver: codewordSolver, callback: callback)
         }
     }
     
-    fileprivate func isCodeword(query : String) -> Bool {
+    public func stop(){
+        wordList?.stopSearch()
+    }
+    
+    private func isCodeword(query : String) -> Bool {
         return findCodewords && query.unicodeScalars.filter({$0==CODEWORD_CHAR}).count>1
     }
     

@@ -55,19 +55,6 @@ class WordListTests: XCTestCase, WordListCallback {
         }
     }
     
-    func testAddNewWords1()
-    {
-        let target = WordList(wordlist: carList)
-        target.addNewWords(fruitList)
-        XCTAssert(6 == target.wordlist.count)
-        XCTAssertEqual("strawberry",target.wordlist[0])
-        XCTAssertEqual("banana",target.wordlist[1])
-        XCTAssertEqual("celica",target.wordlist[2])
-        XCTAssertEqual("sierra",target.wordlist[3])
-        XCTAssertEqual("apple",target.wordlist[4])
-        XCTAssertEqual("focus",target.wordlist[5])
-    }
-    
     func testFindAnagramsWithBlanks(){
         let target = WordList(wordlist: list)
         target.findAnagrams("aai", numberOfBlanks: 2, callback: self)
