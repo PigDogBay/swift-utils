@@ -98,11 +98,17 @@ public class WordSearch
     
     public init(){}
     
-    public func set(words : [String]){
-        self.wordList = WordList(wordlist: words)
+    public func loadDictionary(resource : String) -> Bool {
+        if let path = Bundle.main.path(forResource: resource, ofType: "txt"),
+           let content = try? String(contentsOfFile: path, encoding: String.Encoding.utf8) {
+            let words = content.components(separatedBy: "\n")
+            self.wordList = WordList(wordlist: words)
+            return true
+        }
+        return false
     }
     
-    public func clearWords() {
+    public func unloadDictionary(){
         self.wordList = nil
     }
     
