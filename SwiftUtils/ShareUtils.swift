@@ -42,8 +42,10 @@ public func mpdbCreateEmailUrl(to: String, subject: String, body: String) -> URL
         return yahooMail
     } else if let sparkUrl = sparkUrl, UIApplication.shared.canOpenURL(sparkUrl) {
         return sparkUrl
+    } else if let defaultUrl = defaultUrl, UIApplication.shared.canOpenURL(defaultUrl){
+        return defaultUrl
     }
-    return defaultUrl
+    return nil
 }
 
 public func mpdbShowSettings(){
