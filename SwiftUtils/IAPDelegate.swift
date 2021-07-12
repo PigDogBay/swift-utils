@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol IAPDelegate : class
+public protocol IAPDelegate : AnyObject
 {
     func productsRequest()
     func purchaseRequest(_ productID : String)
